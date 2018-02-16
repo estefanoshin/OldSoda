@@ -1,0 +1,183 @@
+*{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+/* ------------------ GENERAL ------------------ */
+body{
+	background-color: lightyellow;
+}
+
+ul{
+	text-align: left;
+}
+
+td{
+	padding-bottom: 15px;
+}
+h1{
+	text-decoration: underline;
+	text-align: center;
+}
+
+article{
+	border: solid black 0.5px;
+	background-color: #DBDBDB;
+	padding: 5px;
+	margin: 5px;
+	text-align: center;
+}
+
+section{
+	padding: 20px;
+	background-color: lightyellow;
+}
+
+/* ------------------ HEADER ------------------ */
+
+header{
+	background-image: url('../img/background/head_back.jpg');
+	background-repeat: no-repeat;
+}
+
+header > figure > img{
+	min-width: 15%;
+	max-width: 15%;
+}
+
+header > nav > div{
+	font-weight: bold;
+	text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+	margin-top: 15px;
+}
+
+header > nav > div >a{
+	border: solid black 0.5px;
+	padding: 3px;
+}
+
+a:visited{
+	color: black;
+	text-decoration: none;
+}
+
+summary{
+	border: solid black 0.75px;
+	background-color: lightgrey;
+	margin: 15px;
+	text-align: center;
+	padding: 3px;
+	background-image: url('../img/background/summary.jpg');
+}
+
+/* ------------------ INICIO ------------------ */
+
+section.claseInicio{
+	text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+}
+
+section.claseInicio img{
+	width: 150px;
+	max-height: 250px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+section.claseInicio article{
+	width: 260px;
+	height: 400px;
+	display: inline-flex;
+	justify-content: center;
+}
+
+section.claseInicio summary{
+	color: black;
+}
+
+section.claseinicio p{
+	color: red;
+}
+
+/* ------------------ NUEVO CORTE ------------------ */
+
+section.claseNuevoCorte tr > td{
+	margin: 5px;
+	border: 0.5px solid gray;
+}
+
+#tablaColores{
+	text-align: left;
+}
+
+#tablaColores > span{
+	margin: 0px;
+	border:1px solid gray;
+	width:65px;
+	height:45px;
+	display: inline-table;
+}
+
+#loadImg{
+	max-width: 300px;
+	max-height: 300px;
+}
+
+li.error_dato{
+	color:red;
+	font-style: italic;
+}
+
+#optionColorList{
+	border: solid 0.5px lightgrey;
+}
+
+#colorDiv > span{
+	padding: 5px;
+}
+
+/* ------------------ MODELO ------------------ */
+
+section.claseModelo article{
+	display: inline-table;
+	overflow: auto;
+}
+
+section.claseModelo button{
+	margin: 20px;
+}
+
+section.claseModelo img{
+	width: 250px;
+	float: left;
+}
+
+section.claseModelo table{
+	float: right;
+}
+
+section.claseModelo td{
+	padding: 4px;
+}
+
+/* ------------------ LISTA DE CORTES POR ART ------------------ */
+
+section.claseArtList article{
+	display: flex;
+	overflow: auto;
+}
+
+section.claseArtList img{
+	width: 250px;
+	float: left;
+}
+
+section.claseArtList td{
+	border: solid lightgrey 0.5px;
+	padding: 2px;
+}
+
+#goIcon{
+	width: 35px;
+}
