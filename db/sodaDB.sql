@@ -29,7 +29,7 @@ CREATE TABLE `movimiento` (
 	`tipoMov` VARCHAR(80) NOT NULL ,
 	`cantMov` INT(15) NOT NULL ,
 	`tallesMov` VARCHAR(80) NOT NULL ,
-	`colorID` VARCHAR(80) NOT NULL ,
+	`nombColor` VARCHAR(80) NOT NULL ,
 	
 	`tallerID` INT(10) NOT NULL ,
 	`clientID` INT(10) NOT NULL ,
@@ -42,9 +42,9 @@ CREATE TABLE `articulo` (
 	`cant` INT(15) NOT NULL ,
 	`descrip` VARCHAR(80) NOT NULL ,
 	`img` VARCHAR(80) NOT NULL ,
+	`nombColor` VARCHAR(80) NOT NULL ,
 
 	`talleID` INT(10) NOT NULL ,
-	`colorID` INT(10) NOT NULL ,
 	PRIMARY KEY (`artID`)
 );
 

@@ -9,7 +9,7 @@ class Articulo extends Corte
 	private $img;
 
 	private $talleID;
-	private $colorID;
+	private $nombColor;
 
     public function getArtID()
     {
@@ -51,6 +51,14 @@ class Articulo extends Corte
     {
         $this->img = $img;
     }
+    public function getNombColor()
+    {
+        return $this->nombColor;
+    }
+    public function setNombColor($nombColor)
+    {
+        $this->nombColor = $nombColor;
+    }
 
 
     public function getTalleID()
@@ -61,14 +69,6 @@ class Articulo extends Corte
     {
         $this->talleID = $talleID;
     }
-    public function getColorID()
-    {
-        return $this->colorID;
-    }
-    public function setColorID($colorID)
-    {
-        $this->colorID = $colorID;
-    }
 
     //---------------------------------------------------------
 
@@ -77,8 +77,8 @@ class Articulo extends Corte
         $link = Conexion::conectar();
 
         $sql = 
-        "INSERT INTO `articulo` (`art`, `cant`, `descrip`, `img`, `talleID`, `colorID`)
-        VALUES (:art, :cant, :descrip, :img, :talleID, :colorID);";
+        "INSERT INTO `articulo` (`art`, `cant`, `descrip`, `img`, `talleID`, `nombColor`)
+        VALUES (:art, :cant, :descrip, :img, :talleID, :nombColor);";
 
         $stmt = $link->prepare($sql);
 
@@ -88,7 +88,7 @@ class Articulo extends Corte
         $stmt->bindValue(":img",$dato['img']);
 
         $stmt->bindValue(":talleID",$dato['talleID']);
-        $stmt->bindValue(":colorID",$dato['colorID']);
+        $stmt->bindValue(":nombColor",$dato['nombColor']);
 
         $stmt->execute();
 
@@ -98,7 +98,7 @@ class Articulo extends Corte
     public function readArt()
     {
         $link = Conexion::conectar();
-        $sql = "SELECT artID, art, cant, descrip, img, talleID, colorID FROM articulo";
+        $sql = "SELECT artID, art, cant, descrip, img, talleID, nombColor FROM articulo";
         $stmt = $link->prepare($sql);
         $stmt->execute();
 
@@ -121,7 +121,7 @@ class Articulo extends Corte
 
         $sql =
         "UPDATE articulo
-        SET art = :art, cant = :cant, descrip = :descrip, img = :img, talleID = :talleID, colorID = :colorID
+        SET art = :art, cant = :cant, descrip = :descrip, img = :img, talleID = :talleID, nombColor = :nombColor
         WHERE artID = :artID";
         $stmt = $link->prepare($sql);
 
@@ -131,7 +131,7 @@ class Articulo extends Corte
         $stmt->bindValue(":img",$dato['img']);
 
         $stmt->bindValue(":talleID",$dato['talleID']);
-        $stmt->bindValue(":colorID",$dato['colorID']);
+        $stmt->bindValue(":nombColor",$dato['nombColor']);
         $stmt->bindValue(":artID",$dato['artID']);
 
         $stmt->execute();
@@ -160,7 +160,7 @@ class Articulo extends Corte
     public function buscarArtPorID($id)
     {
         $link = Conexion::conectar();
-        $sql = "SELECT art, cant, descrip, img, talleID, colorID FROM articulo WHERE artID =".$id;
+        $sql = "SELECT art, cant, descrip, img, talleID, nombColor FROM articulo WHERE artID =".$id;
 
         $stmt = $link->prepare($sql);
         $stmt->execute();
