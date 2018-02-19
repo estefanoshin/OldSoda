@@ -30,8 +30,8 @@
 			<td><?php echo $t['art'];?></td>
 			<td><?php echo $t['cant'];?></td>
 			<td><?php echo $t['descrip'];?></td>
-			<td><?php echo $t['talleID'];?></td>
-			<td><?php echo $t['colorID'];?></td>
+			<td><?php echo $t['nombTalle'];?></td>
+			<td><?php echo $t['nombColor'];?></td>
 			<td><?php echo $t['img'];?></td>
 
 			<td><a href="index.php?page=updateArt&artID=<?php echo $t['artID'];?>"><img src="img/site/update.png"></a></td>

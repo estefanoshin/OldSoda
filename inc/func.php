@@ -1,32 +1,5 @@
 <?php
-function irActionProcesos($action,$tipo)
-{
-	echo "<script>window.location.assign(window.location.origin+'/soda/action_procesos.php?action=".$action."&tipo=".$tipo."');</script>";
-}
 
-function irA($section)
-{
-	echo "<script>window.location.assign(window.location.origin+'/soda/index.php?page=".$section."');</script>";
-}
-
-function ifBusqueda($busqueda){
-
-	if (!$busqueda) {
-		echo "error";
-		return array();
-	}else{
-		$result = $busqueda->fetchAll(PDO::FETCH_ASSOC);
-		return $result;
-		}
-}
-
-function obtenerSeccion(){
-	if(isset($_GET['page'])){
-		return $_GET['page'];
-	} else{
-		return 'inicio';
-	}
-}
 
 // function volver(){
 // 	if(isset($_GET['page'])){

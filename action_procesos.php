@@ -1,8 +1,10 @@
 <?php
-require 'inc/func.php';
+// require 'inc/func.php';
 require 'inc/globals.php';
 
 require 'class/Conexion.php';
+require 'class/Metodos.php';
+
 require 'class/Tela.php';
 require 'class/Movimiento.php';
 

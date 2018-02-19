@@ -44,7 +44,7 @@ CREATE TABLE `articulo` (
 	`img` VARCHAR(80) NOT NULL ,
 	`nombColor` VARCHAR(80) NOT NULL ,
 
-	`talleID` INT(10) NOT NULL ,
+	`nombTalle` VARCHAR(80) NOT NULL ,
 	PRIMARY KEY (`artID`)
 );
 

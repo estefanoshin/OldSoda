@@ -1,6 +1,5 @@
 <?php
 require 'inc/globals.php';
-require 'inc/func.php';
 
 require 'class/Conexion.php';
 require 'class/Metodos.php';
