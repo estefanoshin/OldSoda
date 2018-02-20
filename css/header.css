@@ -9,9 +9,26 @@ nav{
 }
 
 .navbar-brand{
-	width: 15%;
+	width: 60%;
 }
 
 .logo{
 	width: 100%;
+}
+
+/* -------------------- */
+/* Media Queries */
+
+/* Smaller Screens */
+@media screen and (min-width: 250px){
+	.navbar-brand{
+		width: 70%;
+	}
+}
+
+/* Desktop */
+@media screen and (min-width: 991px){
+	.navbar-brand{
+		width: 20%;
+	}
 }

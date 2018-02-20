@@ -6,7 +6,6 @@ class Corte{
 	private $temporada;
 
 	private $artID;
-	private $telaID;
 
     public function getCorteID()
     {
@@ -50,16 +49,32 @@ class Corte{
     {
         $this->artID = $artID;
     }
-    public function getTelaID()
-    {
-        return $this->telaID;
-    }
-    public function setTelaID($telaID)
-    {
-        $this->telaID = $telaID;
-    }
 
     //---------------------------------------------------------
+
+    private function cargaDatosform()
+    {
+        if(isset($corteID))
+        {
+            $this->setCorteID($_POST['corteID']);
+        }
+        if(isset($nc))
+        {
+            $this->setNc($_POST['nc']);
+        }
+        if(isset($fechaCorte))
+        {
+            $this->setFechaCorte($_POST['fechaCorte']);
+        }
+        if(isset($temporada))
+        {
+            $this->setTemporada($_POST['temporada']);
+        }
+        if(isset($artID))
+        {
+            $this->setArtID($_POST['artID']);
+        }           
+    }
 
     public function createCorte($dato)
     {
@@ -105,6 +120,7 @@ class Corte{
     
     public function updateCorte($dato)
     {
+        $this->cargaDatosform();
         $link = Conexion::conectar();
 
         $sql =
@@ -113,13 +129,12 @@ class Corte{
         WHERE corteID = :corteID";
         $stmt = $link->prepare($sql);
 
-        $stmt->bindValue(":corteID",$dato['corteID']);
-        $stmt->bindValue(":nc",$dato['nc']);
-        $stmt->bindValue(":fechaCorte",$dato['fechaCorte']);
-        $stmt->bindValue(":temporada",$dato['temporada']);
+        $stmt->bindValue(":corteID",$corteID=$this->getCorteID());
+        $stmt->bindValue(":nc",$nc=$this->getNc());
+        $stmt->bindValue(":fechaCorte",$fechaCorte=$this->getFechaCorte());
+        $stmt->bindValue(":temporada",$temporada=$this->getTemporada());
 
-        $stmt->bindValue(":artID",$dato['artID']);
-        $stmt->bindValue(":telaID",$dato['telaID']);
+        $stmt->bindValue(":artID",$artID=$this->getArtID());
 
         $stmt->execute();
 

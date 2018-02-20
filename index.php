@@ -1,10 +1,11 @@
 <?php
-require 'inc/globals.php';
+require 'config/config.php';
+// require 'inc/globals.php';
 
-require 'class/Conexion.php';
-require 'class/Metodos.php';
+// require 'class/Conexion.php';
 
-$section = obtenerSeccion();
+$metodo = new Metodo();
+$section = $metodo->obtenerSeccion();
 
 require 'inc/header.php';
 require 'inc/'.$section.'.php';

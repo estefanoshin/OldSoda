@@ -1,5 +1,4 @@
 <?php
-require 'Corte.php';
 class Articulo extends Corte
 {
 	private $artID;
@@ -10,6 +9,7 @@ class Articulo extends Corte
 
 	private $nombTalle;
 	private $nombColor;
+    private $telaID;
 
     public function getArtID()
     {
@@ -59,8 +59,6 @@ class Articulo extends Corte
     {
         $this->nombColor = $nombColor;
     }
-
-
     public function getNombTalle()
     {
         return $this->nombTalle;
@@ -69,26 +67,70 @@ class Articulo extends Corte
     {
         $this->nombTalle = $nombTalle;
     }
+    public function getTelaID()
+    {
+        return $this->telaID;
+    }
+    public function setTelaID($telaID)
+    {
+        $this->telaID = $telaID;
+    }    
 
     //---------------------------------------------------------
+    private function cargaDatosform()
+    {
+        if(isset($artID))
+        {
+            $this->setArtID($_POST['artID']);
+        }
+        if(isset($art))
+        {
+            $this->setArt($_POST['art']);
+        }
+        if(isset($cant))
+        {
+            $this->setCant($_POST['cant']);
+        }
+        if(isset($descrip))
+        {
+            $this->setDescrip($_POST['descrip']);
+        }
+        if(isset($img))
+        {
+            $this->setImg($_POST['img']);
+        }
+        if(isset($nombTalle))
+        {
+            $this->setNombTalle($_POST['nombTalle']);
+        }
+        if(isset($nombColor))
+        {
+            $this->setNombColor($_POST['nombColor']);
+        }
+        if(isset($telaID))
+        {
+            $this->setTelaID($_POST['telaID']);
+        }
+    }
 
     public function createArt($dato)
     {
+        $this->cargaDatosform();
         $link = Conexion::conectar();
 
         $sql = 
         "INSERT INTO `articulo` (`art`, `cant`, `descrip`, `img`, `nombTalle`, `nombColor`)
-        VALUES (:art, :cant, :descrip, :img, :nombTalle, :nombColor);";
+        VALUES (:art, :cant, :descrip, :img, :nombTalle, :nombColor, :telaID);";
 
         $stmt = $link->prepare($sql);
 
-        $stmt->bindValue(":art",$dato['art']);
-        $stmt->bindValue(":cant",$dato['cant']);
-        $stmt->bindValue(":descrip",$dato['descrip']);
-        $stmt->bindValue(":img",$dato['img']);
-
-        $stmt->bindValue(":nombTalle",$dato['nombTalle']);
-        $stmt->bindValue(":nombColor",$dato['nombColor']);
+        $stmt->bindValue(":art",$art=$this->getArt());
+        $stmt->bindValue(":cant",$cant=$this->getCant());
+        $stmt->bindValue(":descrip",$descrip=$this->getDescrip());
+        $stmt->bindValue(":img",$img=$this->getImg());
+        $stmt->bindValue(":nombTalle",$nombTalle=$this->getNombTalle());
+        $stmt->bindValue(":nombColor",$nombColor=$this->getNombColor());
+        $stmt->bindValue(":telaID",$telaID=$this->getTelaID());
 
         $stmt->execute();
 
@@ -114,25 +156,28 @@ class Articulo extends Corte
             return $listadoArt;
         }
     }
+
     
     public function updateArt($dato)
     {
+        $this->cargaDatosform();
         $link = Conexion::conectar();
 
         $sql =
         "UPDATE articulo
-        SET art = :art, cant = :cant, descrip = :descrip, img = :img, nombTalle = :nombTalle, nombColor = :nombColor
+        SET art = :art, cant = :cant, descrip = :descrip, img = :img, nombTalle = :nombTalle, nombColor = :nombColor, telaID = :telaID
         WHERE artID = :artID";
         $stmt = $link->prepare($sql);
 
-        $stmt->bindValue(":art",$dato['art']);
-        $stmt->bindValue(":cant",$dato['cant']);
-        $stmt->bindValue(":descrip",$dato['descrip']);
-        $stmt->bindValue(":img",$dato['img']);
+        $stmt->bindValue(":art",$art=$this->getArt());
+        $stmt->bindValue(":cant",$cant=$this->getCant());
+        $stmt->bindValue(":descrip",$descrip=$this->getDescrip());
+        $stmt->bindValue(":img",$img=$this->getImg());
+        $stmt->bindValue(":nombTalle",$nombTalle=$this->getNombTalle());
+        $stmt->bindValue(":nombColor",$nombColor=$this->getNombColor());
+        $stmt->bindValue(":telaID",$telaID=$this->getTelaID());
 
-        $stmt->bindValue(":nombTalle",$dato['nombTalle']);
-        $stmt->bindValue(":nombColor",$dato['nombColor']);
-        $stmt->bindValue(":artID",$dato['artID']);
+        $stmt->bindValue(":artID",$artID=$this->getArtID());
 
         $stmt->execute();
 

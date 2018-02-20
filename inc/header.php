@@ -31,6 +31,9 @@
 		      <li class="nav-item">
 		        <a class="nav-link disabled" href="index.php?page=readTelas">Telas</a>
 		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link disabled" href="index.php?page=readCortes">Cortes</a>
+		      </li>
 		    </ul>
 		  </div>
 

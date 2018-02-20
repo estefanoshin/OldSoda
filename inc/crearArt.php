@@ -1,11 +1,10 @@
 <?php
-	require 'class/Articulo.php';
-
-if($_SERVER['REQUEST_METHOD'] == 'POST')
+$tela = new Tela();
+$listaTelas = $tela->readTela();
+/*if($_SERVER['REQUEST_METHOD'] == 'POST')
 {
 
     $create = new Articulo();
-    $errores = ValidarDatos($_POST, 'articulo');
     $data_inicial = $_POST;
 
 	if(empty($errores))
@@ -17,7 +16,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
     {
     	echo "<script>alert('Verifique los datos ingresados')</script>";
     }
-}
+}*/
 ?>
 <style type="text/css">
 	table{text-align: center; display: flex; justify-content: center;}
@@ -29,39 +28,48 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
 	<table>
 		<tr>
 			<td>Articulo</td>
-			<td><input type="placeholder" name="art" value="<?php echo @$data_inicial['art'];?>"></td>
-			<td><?php echo @$errores['art']; ?></td>
+			<td><input type="placeholder" name="art"></td>
 		</tr>
 
 		<tr>
 			<td>Cantidad</td>
-			<td><input type="placeholder" name="cant" value="<?php echo @$data_inicial['cant'];?>"></td>
-			<td><?php echo @$errores['cant'];?></td>
+			<td><input type="placeholder" name="cant"></td>
 		</tr>
 
 		<tr>
 			<td>Descripcion</td>
-			<td><input type="placeholder" name="descrip" value="<?php echo @$data_inicial['descrip'];?>"></td>
-			<td><?php echo @$errores['descrip']; ?></td>
+			<td><input type="placeholder" name="descrip"></td>
 		</tr>		
 
 		<tr>
 			<td>Talle</td>
-			<td><input type="placeholder" name="nombTalle" value="<?php echo @$data_inicial['nombTalle'];?>"></td>
-			<td><?php echo @$errores['nombTalle']; ?></td>
+			<td><input type="placeholder" name="nombTalle"></td>
 		</tr>
 
 		<tr>
 			<td>Color</td>
-			<td><input type="placeholder" name="nombColor" value="<?php echo @$data_inicial['nombColor'];?>"></td>
-			<td><?php echo @$errores['nombColor']; ?></td>
+			<td><input type="placeholder" name="nombColor"></td>
+		</tr>
+
+		<tr>
+			<td>Seleccione una Tela</td>
+			<td>
+				<select name="telaID">
+				<?php 
+					foreach ($listaTelas as $telas) {
+				?>
+				<option value="<?php echo $telas['telaID'];?>"><?php echo $telas['nombTela'];?></option>
+				<?php } ?>
+				</select>
+			</td>
+			<td></td>
 		</tr>
 
 		<tr>
 			<td>Seleccione una imagen</td>
-			<td><input type="file" name="img" value="<?php echo @$data_inicial['img'];?>"></td>
-			<td><?php echo @$errores['img']; ?></td>
+			<td><input type="file" name="img"></td>
 		</tr>
+
 	</table>
 
 	<input type="submit" name="submit" value="Enviar">

@@ -43,8 +43,8 @@ CREATE TABLE `articulo` (
 	`descrip` VARCHAR(80) NOT NULL ,
 	`img` VARCHAR(80) NOT NULL ,
 	`nombColor` VARCHAR(80) NOT NULL ,
-
 	`nombTalle` VARCHAR(80) NOT NULL ,
+	`telaID` INT(10) NOT NULL ,
 	PRIMARY KEY (`artID`)
 );
 
@@ -55,6 +55,5 @@ CREATE TABLE `corte` (
 	`temporada` VARCHAR(15) NOT NULL ,
 
 	`artID` INT(10) NOT NULL ,
-	`telaID` INT(10) NOT NULL ,
 	PRIMARY KEY (`corteID`)
 );

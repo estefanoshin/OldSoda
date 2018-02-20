@@ -1,5 +1,4 @@
 <?php
-	require 'class/Articulo.php';
 	$art = new Articulo();
 	$listaArt = $art->readArt();
 ?>

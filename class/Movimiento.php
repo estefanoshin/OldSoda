@@ -1,5 +1,4 @@
 <?php
-require 'Articulo.php';
 class Movimiento extends Articulo
 {
 	private $movID;
