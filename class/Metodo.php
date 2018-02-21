@@ -1,17 +1,17 @@
 <?php
 class Metodo
 {
-	function irActionProcesos($action,$tipo)
+	public function irActionProcesos($action,$tipo)
 	{
 		echo "<script>window.location.assign(window.location.origin+'/soda/action_procesos.php?action=".$action."&tipo=".$tipo."');</script>";
 	}
 
-	function irA($section)
+	public function irA($section)
 	{
 		echo "<script>window.location.assign(window.location.origin+'/soda/index.php?page=".$section."');</script>";
 	}
 
-	function ifBusqueda($busqueda){
+	public function ifBusqueda($busqueda){
 
 		if (!$busqueda) {
 			echo "error";
@@ -22,7 +22,7 @@ class Metodo
 			}
 	}
 
-	function obtenerSeccion(){
+	public function obtenerSeccion(){
 		if(isset($_GET['page'])){
 			return $_GET['page'];
 		} else{
@@ -30,7 +30,7 @@ class Metodo
 		}
 	}
 
-	function ValidarDatos($datos,$seccion)
+	public function ValidarDatos($datos,$seccion)
 	{
 		$errores = array();
 		
@@ -195,7 +195,7 @@ class Metodo
 	    }
 	}*/
 
-	function tipoDeMovimiento($tipoMov,$destino)
+	public function tipoDeMovimiento($tipoMov,$destino)
 	{
 		if($tipoMov == 'entrada')
 		{
@@ -213,6 +213,14 @@ class Metodo
 			{
 				
 			}
+		}
+	}
+
+	public function selected($telaID,$artTelaID)
+	{
+		if ($telaID == $artTelaID)
+		{
+			echo 'selected';
 		}
 	}
 }

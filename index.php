@@ -1,8 +1,5 @@
 <?php
 require 'config/config.php';
-// require 'inc/globals.php';
-
-// require 'class/Conexion.php';
 
 $metodo = new Metodo();
 $section = $metodo->obtenerSeccion();

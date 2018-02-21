@@ -79,58 +79,66 @@ class Articulo extends Corte
     //---------------------------------------------------------
     private function cargaDatosform()
     {
-        if(isset($artID))
+        if(isset($_POST['artID']))
         {
             $this->setArtID($_POST['artID']);
         }
-        if(isset($art))
+        if(isset($_POST['art']))
         {
             $this->setArt($_POST['art']);
         }
-        if(isset($cant))
+        if(isset($_POST['cant']))
         {
             $this->setCant($_POST['cant']);
         }
-        if(isset($descrip))
+        if(isset($_POST['descrip']))
         {
             $this->setDescrip($_POST['descrip']);
         }
-        if(isset($img))
+        if(isset($_POST['img']))
         {
             $this->setImg($_POST['img']);
         }
-        if(isset($nombTalle))
+        if(isset($_POST['nombTalle']))
         {
             $this->setNombTalle($_POST['nombTalle']);
         }
-        if(isset($nombColor))
+        if(isset($_POST['nombColor']))
         {
             $this->setNombColor($_POST['nombColor']);
         }
-        if(isset($telaID))
+        if(isset($_POST['telaID']))
         {
             $this->setTelaID($_POST['telaID']);
         }
     }
 
-    public function createArt($dato)
+    public function createArt()
     {
         $this->cargaDatosform();
         $link = Conexion::conectar();
 
         $sql = 
-        "INSERT INTO `articulo` (`art`, `cant`, `descrip`, `img`, `nombTalle`, `nombColor`)
-        VALUES (:art, :cant, :descrip, :img, :nombTalle, :nombColor, :telaID);";
+        "INSERT INTO articulo (art, cant, descrip, img, nombTalle, nombColor, telaID)
+        VALUES (:art, :cant, :descrip, :img, :nombTalle, :nombColor, :telaID)";
 
         $stmt = $link->prepare($sql);
 
-        $stmt->bindValue(":art",$art=$this->getArt());
-        $stmt->bindValue(":cant",$cant=$this->getCant());
-        $stmt->bindValue(":descrip",$descrip=$this->getDescrip());
-        $stmt->bindValue(":img",$img=$this->getImg());
-        $stmt->bindValue(":nombTalle",$nombTalle=$this->getNombTalle());
-        $stmt->bindValue(":nombColor",$nombColor=$this->getNombColor());
-        $stmt->bindValue(":telaID",$telaID=$this->getTelaID());
+        $art = $this->getArt();
+        $cant = $this->getCant();
+        $descrip = $this->getDescrip();
+        $img = $this->getImg();
+        $nombTalle = $this->getNombTalle();
+        $nombColor = $this->getNombColor();
+        $telaID = $this->getTelaID();
+
+        $stmt->bindParam(":art",$art,PDO::PARAM_STR);
+        $stmt->bindParam(":cant",$cant,PDO::PARAM_INT);
+        $stmt->bindParam(":descrip",$descrip,PDO::PARAM_STR);
+        $stmt->bindParam(":img",$img,PDO::PARAM_STR);
+        $stmt->bindParam(":nombTalle",$nombTalle,PDO::PARAM_STR);
+        $stmt->bindParam(":nombColor",$nombColor,PDO::PARAM_STR);
+        $stmt->bindParam(":telaID",$telaID,PDO::PARAM_INT);
 
         $stmt->execute();
 
@@ -140,7 +148,7 @@ class Articulo extends Corte
     public function readArt()
     {
         $link = Conexion::conectar();
-        $sql = "SELECT artID, art, cant, descrip, img, nombTalle, nombColor FROM articulo";
+        $sql = "SELECT artID, art, cant, descrip, img, nombTalle, nombColor, telaID FROM articulo";
         $stmt = $link->prepare($sql);
         $stmt->execute();
 
@@ -158,7 +166,7 @@ class Articulo extends Corte
     }
 
     
-    public function updateArt($dato)
+    public function updateArt()
     {
         $this->cargaDatosform();
         $link = Conexion::conectar();
@@ -169,15 +177,23 @@ class Articulo extends Corte
         WHERE artID = :artID";
         $stmt = $link->prepare($sql);
 
-        $stmt->bindValue(":art",$art=$this->getArt());
-        $stmt->bindValue(":cant",$cant=$this->getCant());
-        $stmt->bindValue(":descrip",$descrip=$this->getDescrip());
-        $stmt->bindValue(":img",$img=$this->getImg());
-        $stmt->bindValue(":nombTalle",$nombTalle=$this->getNombTalle());
-        $stmt->bindValue(":nombColor",$nombColor=$this->getNombColor());
-        $stmt->bindValue(":telaID",$telaID=$this->getTelaID());
+        $art = $this->getArt();
+        $cant = $this->getCant();
+        $descrip = $this->getDescrip();
+        $img = $this->getImg();
+        $nombTalle = $this->getNombTalle();
+        $nombColor = $this->getNombColor();
+        $telaID = $this->getTelaID();
+        $artID = $this->getArtID();
 
-        $stmt->bindValue(":artID",$artID=$this->getArtID());
+        $stmt->bindParam(":art",$art,PDO::PARAM_STR);
+        $stmt->bindParam(":cant",$cant,PDO::PARAM_INT);
+        $stmt->bindParam(":descrip",$descrip,PDO::PARAM_STR);
+        $stmt->bindParam(":img",$img,PDO::PARAM_STR);
+        $stmt->bindParam(":nombTalle",$nombTalle,PDO::PARAM_STR);
+        $stmt->bindParam(":nombColor",$nombColor,PDO::PARAM_STR);
+        $stmt->bindParam(":telaID",$telaID,PDO::PARAM_INT);
+        $stmt->bindParam(":artID",$artID,PDO::PARAM_INT);
 
         $stmt->execute();
 
@@ -186,36 +202,37 @@ class Articulo extends Corte
         return true;
     }
 
-    public function deleteArt($id)
+    public function deleteArt()
     {
         $link = Conexion::conectar();
 
         $sql = "DELETE FROM articulo WHERE artID = :artID";
         $stmt = $link->prepare($sql);
 
-        $stmt->bindValue(':artID', $id);
+        $stmt->bindParam(":artID",$_GET['artID'],PDO::PARAM_INT);
 
         $stmt->execute();
-
-        $stmt = $link->prepare($sql);
 
         return true;
     }
 
-    public function buscarArtPorID($id)
+    public function buscarArtPorID()
     {
         $link = Conexion::conectar();
-        $sql = "SELECT art, cant, descrip, img, nombTalle, nombColor FROM articulo WHERE artID =".$id;
+        $sql = "SELECT art, cant, descrip, img, nombTalle, nombColor, telaID FROM articulo WHERE artID = :artID";
 
         $stmt = $link->prepare($sql);
+
+        $stmt->bindParam(':artID',$_GET['artID'],PDO::PARAM_INT);
+
         $stmt->execute();
 
         $datoArt = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if($stmt->rowCount() == 0)
         {
-            echo  '<h2>No existen modelo en la base de Datos</h2>';
-            return $datoArt;
+            $obj = new Metodo();
+            $obj->irA('readArticulos');
         }
         else
         {

@@ -31,7 +31,7 @@ class Tela{
 
     //---------------------------------------------------------
 
-    public function createTela($dato)
+    public function createTela()
     {
         $link = Conexion::conectar();
         $sql = "INSERT INTO `tela` (`nombTela`, `proveedTela`) VALUES (:nombTela, :proveedTela);";

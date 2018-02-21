@@ -8,7 +8,7 @@
 	img{width: 25px;}
 </style>
 <section id="readTela">
-	<h1>TELAS <a href="index.php?page=CrearTelas"><img src="img/site/add.png"></a></h1>
+	<h1>TELAS <a href="index.php?page=crearTelas"><img src="img/site/add.png"></a></h1>
 	<table>
 		<tr>
 			<th>ID</th>
@@ -25,7 +25,7 @@
 			<td><?php echo $t['telaID'];?></td>
 			<td><?php echo $t['nombTela'];?></td>
 			<td><?php echo $t['proveedTela'];?></td>
-			<td><a href="index.php?page=UpdateTelas&telaID=<?php echo $t['telaID'];?>"><img src="img/site/update.png"></a></td>
+			<td><a href="index.php?page=updateTelas&telaID=<?php echo $t['telaID'];?>"><img src="img/site/update.png"></a></td>
 			<td><img style="cursor: pointer;" id="<?php echo $t['telaID'];?>" onclick="borrar('telaID','<?php echo $t['telaID'];?>','tela')" src="img/site/delete.png"></td>
 		</tr>
 <?php

@@ -16,6 +16,37 @@ nav{
 	width: 100%;
 }
 
+.card{
+	display: inline-flex;
+	align-items: flex-start;
+	box-sizing: border-box;
+	margin: 1%;
+}
+
+#verArtSeleccionado > article > figure{
+	width: 100%;
+}
+
+#verArtSeleccionado > article > figure > img{
+	width: 100%;
+}
+
+.needs-validation > table{
+	width: 100%;
+}
+
+.input-group-text{
+	width: 33.33%;
+}
+
+.form-control{
+	width: 33.33%;
+}
+
+.invalid-tooltip{
+	position: inherit;
+	width: 33.33%;
+}
 /* -------------------- */
 /* Media Queries */
 
@@ -30,5 +61,18 @@ nav{
 @media screen and (min-width: 991px){
 	.navbar-brand{
 		width: 20%;
+	}
+
+/* verArtSeleccionado */
+	#verArtSeleccionado > article{
+		display: flex;
+	}
+
+	#verArtSeleccionado > article > figure{
+		width: 30%;
+	}
+
+	.needs-validation > table{
+		width: 50%;
 	}
 }

@@ -1,77 +1,97 @@
 <?php
 $tela = new Tela();
 $listaTelas = $tela->readTela();
-/*if($_SERVER['REQUEST_METHOD'] == 'POST')
-{
-
-    $create = new Articulo();
-    $data_inicial = $_POST;
-
-	if(empty($errores))
-    {
-		$create->createArt($_POST);
-		irActionProcesos('create','articulo');
-    }
-    else
-    {
-    	echo "<script>alert('Verifique los datos ingresados')</script>";
-    }
-}*/
 ?>
-<style type="text/css">
-	table{text-align: center; display: flex; justify-content: center;}
-</style>
-<section id="test">
+<section id="crearArt">
 	<h1>CREAR ARTICULO</h1>
 
-<form action="" method="post">
+<form class="needs-validation" novalidate action="action_procesos.php?action=create&tipo=articulo" method="post">
 	<table>
 		<tr>
-			<td>Articulo</td>
-			<td><input type="placeholder" name="art"></td>
+			<td>
+		        <div class="input-group-prepend">
+			        <span class="input-group-text">Articulo</span>
+					<input type="text" placeholder="Ingrese el Articulo" class="form-control" name="art" required>
+					<span class="invalid-tooltip">Ingrese algun Articulo</span>
+		        </div>
+			</td>
 		</tr>
 
 		<tr>
-			<td>Cantidad</td>
-			<td><input type="placeholder" name="cant"></td>
+			<td>
+		        <div class="input-group-prepend">
+			        <span class="input-group-text">Cantidad</span>
+					<input type="text" placeholder="Ingrese alguna Cantidad" class="form-control" name="cant" required>
+					<span class="invalid-tooltip">Ingrese alguna Cantidad</span>
+		        </div>
+			</td>
 		</tr>
 
 		<tr>
-			<td>Descripcion</td>
-			<td><input type="placeholder" name="descrip"></td>
+			<td>
+		        <div class="input-group-prepend">
+			        <span class="input-group-text">Descripcion</span>
+					<input type="text" placeholder="Ingrese alguna Descripcion" class="form-control" name="descrip" required>
+					<span class="invalid-tooltip">Ingrese alguna Descripcion</span>
+		        </div>
+			</td>
 		</tr>		
 
 		<tr>
-			<td>Talle</td>
-			<td><input type="placeholder" name="nombTalle"></td>
-		</tr>
-
-		<tr>
-			<td>Color</td>
-			<td><input type="placeholder" name="nombColor"></td>
-		</tr>
-
-		<tr>
-			<td>Seleccione una Tela</td>
 			<td>
-				<select name="telaID">
-				<?php 
-					foreach ($listaTelas as $telas) {
-				?>
-				<option value="<?php echo $telas['telaID'];?>"><?php echo $telas['nombTela'];?></option>
-				<?php } ?>
-				</select>
+		        <div class="input-group-prepend">
+			        <span class="input-group-text">Talle</span>
+					<input type="text" placeholder="Ingrese algun Talle" class="form-control" name="nombTalle" required>
+					<span class="invalid-tooltip">Ingrese algun Talle</span>
+		        </div>
 			</td>
-			<td></td>
 		</tr>
 
 		<tr>
-			<td>Seleccione una imagen</td>
-			<td><input type="file" name="img"></td>
+			<td>
+		        <div class="input-group-prepend">
+			        <span class="input-group-text">Color</span>
+					<input type="text" placeholder="Ingrese algun Color" class="form-control" name="nombColor" required>
+					<span class="invalid-tooltip">Ingrese algun Color</span>
+		        </div>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+		        <div class="input-group-prepend">
+			        <span class="input-group-text">Tela</span>
+					<select class="custom-select" required name="telaID">
+						<option value="">Seleccione una Tela</option>
+						<?php 
+							foreach ($listaTelas as $telas) {
+						?>
+						<option value="<?php echo $telas['telaID'];?>"><?php echo $telas['nombTela'];?></option>
+						<?php } ?>
+					</select>
+					<div class="invalid-tooltip">Ingrese una Tela</div>
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				<div class="custom-file">
+					<input id="img" onchange="return fileValidation();" type="file" accept="image/*" class="custom-file-input" id="validatedCustomFile" name="img">
+					<label class="custom-file-label" for="validatedCustomFile">Elija una imagen...</label>
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td><div id="imagePreview"></div></td>
 		</tr>
 
 	</table>
 
-	<input type="submit" name="submit" value="Enviar">
+	<button class="btn btn-primary" type="submit">Agregar</button>
 </form>
+
+<script src="js/validacion.js"></script>
+<script src="js/validacionImagen.js"></script>
 </section>

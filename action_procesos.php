@@ -1,12 +1,6 @@
 <?php
-// require 'inc/func.php';
-require 'inc/globals.php';
-
-require 'class/Conexion.php';
-require 'class/Metodos.php';
-
-require 'class/Tela.php';
-require 'class/Movimiento.php';
+require 'config/config.php';
+$functions = new Metodo;
 
 if(!isset($_REQUEST['action']))
 {
@@ -24,18 +18,18 @@ else
 			{
 				case 'movimiento':
 					$borrar = new Movimiento();
-					$borrar->deleteMov($_GET['movID']);
+					$borrar->deleteMov();
 					$seccion_volver = 'readMovimientos';
 					break;
 				case 'articulo':
 					$borrar = new Articulo();
-					$borrar->deleteArt($_GET['artID']);
+					$borrar->deleteArt();
 					$seccion_volver = 'readArticulos';
 					break;
 
 				case 'tela':
 					$borrar = new Tela();
-					$borrar->deleteTela($_GET['telaID']);
+					$borrar->deleteTela();
 					$seccion_volver = 'readTelas';
 					break;
 			}			
@@ -46,36 +40,69 @@ else
 			switch ($tipo)
 			{
 				case 'movimiento':
-					echo "<script>alert('Modelo Modificado!!');</script>";
+					$obj = new Movimiento();
+					$check = $obj->updateMov();
+					if($check)
+					{
+						echo "<script>alert('Modificado exitosamente!!');</script>";
+					}
 					$seccion_volver = 'readMovimientos';
 					break;
 				case 'articulo':
-					echo "<script>alert('Modelo Modificado!!');</script>";
+					$obj = new Articulo();
+					$check = $obj->updateArt();
+					if($check)
+					{
+						echo "<script>alert('Modificado exitosamente!!');</script>";
+					}
 					$seccion_volver = 'readArticulos';
 					break;
 
 				case 'tela':
-					echo "<script>alert('Modelo Modificado!!');</script>";
+					$obj = new Tela();
+					$check = $obj->updateTela();
+					if($check)
+					{
+						echo "<script>alert('Modificado exitosamente!!');</script>";
+					}
 					$seccion_volver = 'readTelas';
 					break;
 			}
 		break;
 		//-----------------------------------------
 		case 'create': 
-			echo "<script>alert('Modelo ingresado!!');</script>";
+			// echo "<script>alert('Modelo ingresado!!');</script>";
 			switch ($tipo)
 			{
 				case 'movimiento':
+					$obj = new Movimiento();
+					$check = $obj->createMov();
+					if($check)
+					{
+						echo "<script>alert('Agregado exitosamente!!');</script>";
+					}
 					$seccion_volver = 'readMovimientos';
 					break;
 				case 'articulo':
+					$obj = new Articulo();
+					$check = $obj->createArt();
+					if($check)
+					{
+						echo "<script>alert('Agregado exitosamente!!');</script>";
+					}
 					$seccion_volver = 'readArticulos';
 					break;
 
 				case 'tela':
+					$obj = new Tela();
+					$check = $obj->createTela();
+					if($check)
+					{
+						echo "<script>alert('Agregado exitosamente!!');</script>";
+					}
 					$seccion_volver = 'readTelas';
 					break;
 			}
 	}
 
-irA($seccion_volver);
+$volver = $functions->irA($seccion_volver);
