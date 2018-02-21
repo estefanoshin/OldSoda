@@ -6,7 +6,7 @@ $listaTelas = $tela->readTela();
 	<h1>CREAR ARTICULO</h1>
 
 <form class="needs-validation" novalidate action="action_procesos.php?action=create&tipo=articulo" method="post">
-	<table>
+	<table class="tableContainer">
 		<tr>
 			<td>
 		        <div class="input-group-prepend">
@@ -72,6 +72,13 @@ $listaTelas = $tela->readTela();
 					<div class="invalid-tooltip">Ingrese una Tela</div>
 				</div>
 			</td>
+
+			<td>
+				<!-- MODAL BUTTON -->
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+				  + Nueva Tela
+				</button>				
+			</td>
 		</tr>
 
 		<tr>
@@ -92,6 +99,29 @@ $listaTelas = $tela->readTela();
 	<button class="btn btn-primary" type="submit">Agregar</button>
 </form>
 
-<script src="js/validacion.js"></script>
+<!-- INGRESAR NUEVA TELA (MODAL) -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Agregar Tela</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div id="result" class="modal-body">
+        ...
+        <script>
+        	$( "#result" ).load( "inc/crearTelas.php" );
+        </script>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script src="js/validacionImagen.js"></script>
 </section>

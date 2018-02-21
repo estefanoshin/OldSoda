@@ -197,8 +197,6 @@ class Articulo extends Corte
 
         $stmt->execute();
 
-        $stmt = $link->prepare($sql);
-
         return true;
     }
 

@@ -1,47 +1,19 @@
-<?php
-	require 'class/Tela.php';
-
-if($_SERVER['REQUEST_METHOD'] == 'POST')
-{
-
-    $create = new Tela();
-    $errores = ValidarDatos($_POST, 'tela');
-    $data_inicial = $_POST;
-
-	if(empty($errores))
-    {
-		$create->createTela($_POST);
-		irActionProcesos('create','tela');
-    }
-    else
-    {
-    	echo "<script>alert('Verifique los datos ingresados')</script>";
-    }
-}
-?>
-<style type="text/css">
-	table{text-align: center; display: flex; justify-content: center;}
-</style>
-<section id="test">
+<section id="crearTela">
 	<h1>TELAS</h1>
-<?php
-		echo @$errores['nombTela'].'<br>';
-    	echo @$errores['proveedTela'];
- ?>
 
-<form action="" method="post">
-	<table>
-		<tr>
-			<th>Nombre Tela</th>
-			<th>Proveedor</th>
-		</tr>
+<form class="needs-validation" novalidate action="action_procesos.php?action=create&tipo=tela" method="post">
+	<div>
+        <span class="input-group-text">Tela</span>
+		<input type="text" placeholder="Ingrese la Tela..." class="form-control" name="nombTela" required>
+		<div class="invalid-tooltip">Ingrese alguna Tela</div>
+    </div>
 
-		<tr align="center">
-			<td><input type="placeholder" name="nombTela" value="<?php echo @$data_inicial['nombTela'];?>"></td>
-			<td><input type="placeholder" name="proveedTela" value="<?php echo @$data_inicial['proveedTela'];?>"></td>
-		</tr>
-	</table>
+	<div>
+        <span class="input-group-text">Proveedor de Tela</span>
+		<input type="text" placeholder="Ingrese un Proveedor..." class="form-control" name="proveedTela" required>
+        <div class="invalid-tooltip">Ingrese algun Proveedor</div>
+    </div>
 
-	<input type="submit" name="submit" value="Enviar">
+	<button class="btn btn-primary" type="submit">Agregar</button>
 </form>
 </section>

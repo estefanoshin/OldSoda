@@ -30,15 +30,34 @@ class Tela{
     }
 
     //---------------------------------------------------------
+    private function cargaDatosform()
+    {
+        if(isset($_POST['telaID']))
+        {
+            $this->setTelaID($_POST['telaID']);
+        }
+        if(isset($_POST['nombTela']))
+        {
+            $this->setNombTela($_POST['nombTela']);
+        }
+        if(isset($_POST['proveedTela']))
+        {
+            $this->setProveedTela($_POST['proveedTela']);
+        }
+    }
 
     public function createTela()
     {
+        $this->cargaDatosform();
         $link = Conexion::conectar();
         $sql = "INSERT INTO `tela` (`nombTela`, `proveedTela`) VALUES (:nombTela, :proveedTela);";
         $stmt = $link->prepare($sql);
 
-        $stmt->bindValue(":nombTela",$dato['nombTela']);
-        $stmt->bindValue(":proveedTela",$dato['proveedTela']);
+        $nombTela = $this->getNombTela();
+        $proveedTela = $this->getProveedTela();
+
+        $stmt->bindParam(":nombTela",$nombTela,PDO::PARAM_STR);
+        $stmt->bindParam(":proveedTela",$proveedTela,PDO::PARAM_STR);
 
         $stmt->execute();
 
@@ -48,6 +67,7 @@ class Tela{
     public function readTela()
     {
         $link = Conexion::conectar();
+
         $sql = "SELECT telaID, nombTela, proveedTela FROM tela";
         $stmt = $link->prepare($sql);
         $stmt->execute();
@@ -65,52 +85,64 @@ class Tela{
         }
     }
     
-    public function updateTela($dato)
+    public function updateTela()
     {
+        $this->cargaDatosform();
         $link = Conexion::conectar();
 
         $sql = "UPDATE tela SET nombTela = :nombTela, proveedTela = :proveedTela WHERE telaID = :telaID";
         $stmt = $link->prepare($sql);
 
-        $stmt->bindValue(":nombTela", $dato['nombTela']);
-        $stmt->bindValue(':proveedTela', $dato['proveedTela']);
-        $stmt->bindValue(':telaID', $dato['telaID']);
+        $nombTela = $this->getNombTela();
+        $proveedTela = $this->getProveedTela();      
+        $telaID = $this->getTelaID();
+
+        $stmt->bindParam(":nombTela",$dato['nombTela'],PDO::PARAM_STR);
+        $stmt->bindParam(':proveedTela',$dato['proveedTela'],PDO::PARAM_STR);
+        $stmt->bindParam(':telaID',$dato['telaID'],PDO::PARAM_INT);
 
         $stmt->execute();
-
-        $stmt = $link->prepare($sql);
 
         return true;
     }
 
-    public function deleteTela($id) //---------------------
+    public function deleteTela() //---------------------
     {
         $link = Conexion::conectar();
 
         $sql = "DELETE FROM tela WHERE telaID = :telaID";
         $stmt = $link->prepare($sql);
 
-        $stmt->bindValue(':telaID', $id);
+        $stmt->bindParam(':telaID',$_GET['telaID'],PDO::PARAM_INT);
 
         $stmt->execute();
-
-        $stmt = $link->prepare($sql);
 
         return true;
     }
 
-    public function buscarTelaPorID($id)
+    public function buscarTelaPorID()
     {
         $link = Conexion::conectar();
-        $sql = "SELECT nombTela, proveedTela FROM tela WHERE telaID = ".$id;
+        $sql = "SELECT nombTela, proveedTela FROM tela WHERE telaID = :telaID";
         $stmt = $link->prepare($sql);
+
+        if(isset($_GET['telaID']))
+        {
+            $stmt->bindParam(':telaID',$_GET['telaID'],PDO::PARAM_INT);
+        }
+        else
+        {
+        $telaID = $this->getTelaID();
+        $stmt->bindParam(':telaID',$telaID,PDO::PARAM_INT);
+        }
+
         $stmt->execute();
 
         $datoTela = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if($stmt->rowCount() == 0)
         {
-            echo  '<h2>No existen modelo en la base de Datos</h2>';
+            echo  '<h2>No existen tela en la base de Datos</h2>';
             return $datoTela;
         }
         else

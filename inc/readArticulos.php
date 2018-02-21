@@ -4,27 +4,23 @@
 
 	$tela = new Tela();
 ?>
-<style type="text/css">
-	table{text-align: center; display: flex; justify-content: center;}
-	img{width: 25px;}
-</style>
 <section id="readArt">
-	<h1>ARTICULOS <a href="index.php?page=crearArt"><img src="img/site/add.png"></a></h1>
+	<h1>ARTICULOS <a href="index.php?page=crearArt"><img class="icono" src="img/site/add.png"></a></h1>
 
-<?php 
+<?php
 		foreach ($listaArt as $art) {
-			$tipoTela = $tela->buscarTelaPorID($art['telaID']);
+			$tipoTela = $tela->buscarTelaPorID($tela->setTelaID($art['telaID']));
 ?>
-	<div class="card" style="width: 18rem;">
+		<div class="card" style="width: 18rem;">
 		<a href="index.php?page=verArtSeleccionado&artID=<?php echo $art['artID'];?>">
 			<img class="card-img-top btn btn-secondary" data-toggle="tooltip" data-placement="top" title="<?php echo $art['art'];?>" src="img/site/noImage.jpg" alt="Art image">
 		</a>
 		<div class="card-body">
 			<a href="index.php?page=updateArt&artID=<?php echo $art['artID'];?>">
-				<img src="img/site/update.png">
+				<img class="icono" src="img/site/update.png">
 			</a>
 
-			<img style="cursor: pointer;" id="<?php echo $art['artID'];?>" onclick="borrar('artID','<?php echo $art['artID'];?>','articulo')" src="img/site/delete.png">
+			<img style="cursor: pointer;" id="<?php echo $art['artID'];?>" onclick="borrar('artID','<?php echo $art['artID'];?>','articulo')" class="icono" src="img/site/delete.png">
 
 			<h5 class="card-title">Articulo : <?php echo $art['art'];?></h5>
 		    <p class="card-text"><?php echo $art['descrip'];?></p>

@@ -1,48 +1,36 @@
 <?php
-	require 'class/Tela.php';
-
 	$updateTela = new Tela();
-	$data_inicial = $updateTela->buscarTelaPorID($_GET['telaID']);
-
-	if($_SERVER['REQUEST_METHOD'] == 'POST')
-	{
-		$errores = ValidarDatos($_POST,'tela');
-		if(empty($errores))
-	    {
-	    	$updateTela->updateTela($_POST);
-			irActionProcesos('update','tela');
-	    }
-	    else
-	    {
-	    	echo "<script>alert('Verifique los datos ingresados');</script>";
-	    	
-	    }
-	}
+	$data_inicial = $updateTela->buscarTelaPorID();
 ?>
-<style type="text/css">
-	table{text-align: center; display: flex; justify-content: center;}
-</style>
 <section id="test">
 	<h1>TELAS</h1>
-<?php
-		echo @$errores['nombTela'].'<br>';
-    	echo @$errores['proveedTela'];
- ?>
 
-<form action="" method="post">
-	<table>
+<form action="action_procesos.php?action=update&tipo=tela" method="post" class="needs-validation" novalidate>
+	<table class="tableContainer">
 		<tr>
-			<th>Nombre Tela</th>
-			<th>Proveedor</th>
+			<td>
+				<div class="input-group-pretend">
+			        <span class="input-group-text">Tela</span>
+					<input type="text" placeholder="Ingrese la Tela..." class="form-control" name="nombTela" required value="<?php echo $data_inicial['nombTela'];?>">
+					<div class="invalid-tooltip">Ingrese alguna Tela</div>
+			    </div>
+			</td>
 		</tr>
 
-		<tr align="center">
-			<td><input type="placeholder" name="nombTela" value="<?php echo $data_inicial['nombTela'];?>"></td>
-			<td><input type="placeholder" name="proveedTela" value="<?php echo $data_inicial['proveedTela'];?>"></td>
-			<input type="placeholder" name="telaID" value="<?php echo $_GET['telaID'];?>" hidden>
+		<tr>
+			<td>
+				<div class="input-group-pretend">
+			        <span class="input-group-text">Proveedor de Tela</span>
+					<input type="text" placeholder="Ingrese un Proveedor..." class="form-control" name="proveedTela" required value="<?php echo $data_inicial['proveedTela'];?>">
+			        <div class="invalid-tooltip">Ingrese algun Proveedor</div>
+			    </div>
+			</td>
 		</tr>
 	</table>
 
-	<input type="submit" name="submit" value="MODIFICAR">
+
+    <input type="placeholder" name="telaID" value="<?php echo $_GET['telaID'];?>" hidden>
+
+    <button class="btn btn-primary" type="submit">Modificar</button>
 </form>
 </section>

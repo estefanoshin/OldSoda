@@ -6,6 +6,7 @@
 
 	<link rel="stylesheet" type="text/css" href="css/header.css">
 
+	<script src="bootstrap/js/jquery-3.3.1.js"></script>
 </head>
 <body>
 	<header>
