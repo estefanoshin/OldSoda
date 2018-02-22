@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Header</title>
+	<title>Soda</title>
 	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
 
 	<link rel="stylesheet" type="text/css" href="css/header.css">

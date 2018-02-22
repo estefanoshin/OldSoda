@@ -1,7 +1,7 @@
 <section id="crearTela">
 	<h1>TELAS</h1>
 
-<form class="needs-validation" novalidate action="action_procesos.php?action=create&tipo=tela" method="post">
+<form id="formCrearTela" class="needs-validation" novalidate action="#" method="post">
 	<div>
         <span class="input-group-text">Tela</span>
 		<input type="text" placeholder="Ingrese la Tela..." class="form-control" name="nombTela" required>
@@ -16,4 +16,6 @@
 
 	<button class="btn btn-primary" type="submit">Agregar</button>
 </form>
+
+<script src="js/postAjax.js"></script>
 </section>

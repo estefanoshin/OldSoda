@@ -49,6 +49,10 @@ nav{
 	text-align: center;
 }
 
+.hoverPointer{
+	cursor: pointer;
+}
+
 /* tables 3 columns */
 .input-group-text{
 	width: 100%;
@@ -146,5 +150,10 @@ nav{
 	}
 	.input-group-pretend{
 		width: 100%;
+	}
+
+	.table{
+		margin: auto;
+		width: 60%;
 	}
 }
