@@ -11,29 +11,30 @@ CREATE TABLE `taller` (
 	PRIMARY KEY (`tallerID`)
 );
 
-CREATE TABLE `talle` (
-	`talleID` INT(10) NOT NULL AUTO_INCREMENT ,
-	`nombTalle` VARCHAR(80) NOT NULL ,
-	PRIMARY KEY (`talleID`)
-);
-
 CREATE TABLE `cliente` (
 	`clientID` INT(10) NOT NULL AUTO_INCREMENT ,
 	`nombClient` VARCHAR(80) NOT NULL ,
 	PRIMARY KEY (`clientID`)
 );
 
-CREATE TABLE `movimiento` (
-	`movID` INT(10) NOT NULL AUTO_INCREMENT ,
-	`fechaMov` DATE NOT NULL ,
-	`tipoMov` VARCHAR(80) NOT NULL ,
-	`cantMov` INT(15) NOT NULL ,
-	`tallesMov` VARCHAR(80) NOT NULL ,
-	`nombColor` VARCHAR(80) NOT NULL ,
-	
-	`tallerID` INT(10) NOT NULL ,
-	`clientID` INT(10) NOT NULL ,
-	PRIMARY KEY (`movID`)
+CREATE TABLE `entrada` (
+	`entradaID` INT(10) NOT NULL AUTO_INCREMENT ,
+	`fechaEntrada` DATE NOT NULL ,
+	`cantEntrada` INT(15) NOT NULL ,
+	`tallesEntrada` VARCHAR(80) NOT NULL ,
+	`colorEntrada` VARCHAR(80) NOT NULL ,
+	`origen` VARCHAR(80) NOT NULL ,
+	PRIMARY KEY (`entradaID`)
+);
+
+CREATE TABLE `salida` (
+	`salidaID` INT(10) NOT NULL AUTO_INCREMENT ,
+	`fechaSalida` DATE NOT NULL ,
+	`cantSalida` INT(15) NOT NULL ,
+	`tallesSalida` VARCHAR(80) NOT NULL ,
+	`colorSalida` VARCHAR(80) NOT NULL ,
+	`destino` VARCHAR(80) NOT NULL ,
+	PRIMARY KEY (`salidaID`)
 );
 
 CREATE TABLE `articulo` (

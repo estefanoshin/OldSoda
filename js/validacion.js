@@ -1,3 +1,6 @@
+  var crearTela = 'action_procesos.php?action=create&tipo=tela';
+
+    var myform = document.getElementById('formCrearTela');
 //Validacion datos front-end
 (function() {
   'use strict';

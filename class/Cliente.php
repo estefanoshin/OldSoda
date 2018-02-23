@@ -22,7 +22,7 @@ class Cliente{
 
     //---------------------------------------------------------
 
-    public function createClient($dato)
+    public function createClient()
     {
         $link = Conexion::conectar();
         $sql = "INSERT INTO `cliente` `nombClient` VALUES :nombClient;";
@@ -55,7 +55,7 @@ class Cliente{
         }
     }
     
-    public function updateClient($dato)
+    public function updateClient()
     {
         $link = Conexion::conectar();
 
@@ -72,7 +72,7 @@ class Cliente{
         return true;
     }
 
-    public function deleteClient($id)
+    public function deleteClient()
     {
         $link = Conexion::conectar();
 

@@ -17,5 +17,9 @@
 	<button class="btn btn-primary" type="submit">Agregar</button>
 </form>
 
+<script>
+	var myform = document.getElementById('formCrearTela');
+	var urlActionProcesos = 'action_procesos.php?action=create&tipo=tela';
+</script>
 <script src="js/postAjax.js"></script>
 </section>

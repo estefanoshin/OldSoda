@@ -35,5 +35,4 @@
 	</div>
 <?php } ?>
 
-<script src="js/script.js"></script>
 </section>

@@ -1,18 +1,22 @@
-	var crearTela = 'action_procesos.php?action=create&tipo=tela';
+var listaInputs = document.getElementsByClassName('form-control');
 
-    var myform = document.getElementById('formCrearTela');
-
-$(myform).submit(function(){
-    var fd = new FormData(myform );
-    $.ajax({
-        url: crearTela,
-        data: fd,
-        cache: false,
-        processData: false,
-        contentType: false,
-        type: 'POST',
-        success: function () {
-            // do something with the result
-        }
-    });
-});
+//No tiene portabilidad -> Modificarlo luego
+$(myform).submit(function(event){
+if(listaInputs[0].value&&listaInputs[1].value){
+	    var datosDelForm = new FormData(myform );
+	    $.ajax({
+	        url: urlActionProcesos,
+	        data: datosDelForm,
+	        cache: false,
+	        processData: false,
+	        contentType: false,
+	        type: 'POST',
+	        success: function () {
+	            // do something with the result
+	        }
+	    });
+}else{
+  event.preventDefault();
+  event.stopPropagation();
+}
+	});

@@ -21,14 +21,28 @@ class Taller{
     }
 
     //---------------------------------------------------------
-
-    public function createTaller($dato)
+    private function cargaDatosform()
     {
+        if(isset($_POST['tallerID']))
+        {
+            $this->setTallerID($_POST['tallerID']);
+        }
+        if(isset($_POST['nombTaller']))
+        {
+            $this->setNombTaller($_POST['nombTaller']);
+        }
+    }
+
+    public function createTaller()
+    {
+        $this->cargaDatosform();
         $link = Conexion::conectar();
         $sql = "INSERT INTO `taller` (`nombTaller`) VALUES (:nombTaller);";
         $stmt = $link->prepare($sql);
 
-        $stmt->bindValue(":nombTaller",$dato['nombTaller']);
+        $nombTaller = $this->getNombTaller();
+
+        $stmt->bindParam(":nombTaller",$nombTaller,PDO::PARAM_STR);
 
         $stmt->execute();
 
@@ -55,36 +69,67 @@ class Taller{
         }
     }
     
-    public function updateTaller($dato)
+    public function updateTaller()
     {
+        $this->cargaDatosform();
         $link = Conexion::conectar();
 
         $sql = "UPDATE taller SET nombTaller = :nombTaller WHERE tallerID = :tallerID";
         $stmt = $link->prepare($sql);
 
-        $stmt->bindValue(":nombTaller", $dato['nombTaller']);
-        $stmt->bindValue(':tallerID', $dato['tallerID']);
+        $nombTaller = $this->getNombTaller();
+        $tallerID = $this->getTallerID();
+
+        $stmt->bindParam(":nombTaller",$nombTaller,PDO::PARAM_STR);
+        $stmt->bindParam(":tallerID",$tallerID,PDO::PARAM_INT);
 
         $stmt->execute();
-
-        $stmt = $link->prepare($sql);
 
         return true;
     }
 
-    public function deleteTaller($id)
+    public function deleteTaller()
     {
         $link = Conexion::conectar();
 
         $sql = "DELETE FROM taller WHERE tallerID = :tallerID";
         $stmt = $link->prepare($sql);
 
-        $stmt->bindValue(':tallerID', $id);
+        $stmt->bindParam(':tallerID', $_GET['tallerID'],PDO::PARAM_INT);
 
         $stmt->execute();
 
+        return true;
+    }
+
+    public function buscarTallerPorID(){
+
+        $link = Conexion::conectar();
+        $sql = "SELECT nombTaller FROM taller WHERE tallerID = :tallerID";
         $stmt = $link->prepare($sql);
 
-        return true;
+        if(isset($_GET['tallerID']))
+        {
+            $stmt->bindParam(':tallerID',$_GET['tallerID'],PDO::PARAM_INT);
+        }
+        else
+        {
+        $tallerID = $this->gettallerID();
+        $stmt->bindParam(':tallerID',$tallerID,PDO::PARAM_INT);
+        }
+
+        $stmt->execute();
+
+        $datoTaller = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if($stmt->rowCount() == 0)
+        {
+            echo  '<h2>No existen talleres en la base de Datos</h2>';
+            return $datoTaller;
+        }
+        else
+        {
+            return $datoTaller;
+        }
     }
 }

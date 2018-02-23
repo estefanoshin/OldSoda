@@ -97,16 +97,16 @@ class Tela{
         $proveedTela = $this->getProveedTela();      
         $telaID = $this->getTelaID();
 
-        $stmt->bindParam(":nombTela",$dato['nombTela'],PDO::PARAM_STR);
-        $stmt->bindParam(':proveedTela',$dato['proveedTela'],PDO::PARAM_STR);
-        $stmt->bindParam(':telaID',$dato['telaID'],PDO::PARAM_INT);
+        $stmt->bindParam(":nombTela",$nombTela,PDO::PARAM_STR);
+        $stmt->bindParam(':proveedTela',$proveedTela,PDO::PARAM_STR);
+        $stmt->bindParam(':telaID',$telaID,PDO::PARAM_INT);
 
         $stmt->execute();
 
         return true;
     }
 
-    public function deleteTela() //---------------------
+    public function deleteTela()
     {
         $link = Conexion::conectar();
 

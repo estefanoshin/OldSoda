@@ -16,10 +16,10 @@ else
 		case 'delete':
 			switch ($tipo)
 			{
-				case 'movimiento':
-					$borrar = new Movimiento();
-					$borrar->deleteMov();
-					$seccion_volver = 'readMovimientos';
+				case 'entrada':
+					$borrar = new Entrada();
+					$borrar->deleteEntrada();
+					$seccion_volver = 'readEntradas';
 					break;
 				case 'articulo':
 					$borrar = new Articulo();
@@ -32,6 +32,12 @@ else
 					$borrar->deleteTela();
 					$seccion_volver = 'readTelas';
 					break;
+
+				case 'taller':
+					$borrar = new Taller();
+					$borrar->deleteTaller();
+					$seccion_volver = 'readTalleres';
+					break;
 			}			
 
 		break;
@@ -39,14 +45,14 @@ else
 		case 'update':
 			switch ($tipo)
 			{
-				case 'movimiento':
-					$obj = new Movimiento();
-					$check = $obj->updateMov();
+				case 'entrada':
+					$obj = new Entrada();
+					$check = $obj->updateEntrada();
 					if($check)
 					{
 						echo "<script>alert('Modificado exitosamente!!');</script>";
 					}
-					$seccion_volver = 'readMovimientos';
+					$seccion_volver = 'readEntradas';
 					break;
 				case 'articulo':
 					$obj = new Articulo();
@@ -67,6 +73,16 @@ else
 					}
 					$seccion_volver = 'readTelas';
 					break;
+
+				case 'taller':
+					$obj = new Taller();
+					$check = $obj->updateTaller();
+					if($check)
+					{
+						echo "<script>alert('Modificado exitosamente!!');</script>";
+					}
+					$seccion_volver = 'readTalleres';
+					break;
 			}
 		break;
 		//-----------------------------------------
@@ -74,14 +90,14 @@ else
 			// echo "<script>alert('Modelo ingresado!!');</script>";
 			switch ($tipo)
 			{
-				case 'movimiento':
-					$obj = new Movimiento();
-					$check = $obj->createMov();
+				case 'entrada':
+					$obj = new Entrada();
+					$check = $obj->createEntrada();
 					if($check)
 					{
 						echo "<script>alert('Agregado exitosamente!!');</script>";
 					}
-					$seccion_volver = 'readMovimientos';
+					$seccion_volver = 'readEntradas';
 					break;
 				case 'articulo':
 					$obj = new Articulo();
@@ -102,7 +118,18 @@ else
 					}
 					$seccion_volver = 'readTelas';
 					break;
+
+				case 'taller':
+					$obj = new Taller();
+					$check = $obj->createTaller();
+					if($check)
+					{
+						echo "<script>alert('Agregado exitosamente!!');</script>";
+					}
+					$seccion_volver = 'readTalleres';
+					break;
 			}
 	}
+
 
 $volver = $functions->irA($seccion_volver);

@@ -1,6 +1,4 @@
 <?php
-	require 'class/Movimiento.php';
-
 	$updateMov = new Movimiento();
 	$data_inicial = $updateMov->buscarMovPorID($_GET['movID']);
 
