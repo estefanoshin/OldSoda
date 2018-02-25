@@ -1,7 +1,7 @@
 <section id="crearTela">
 	<h1>TELAS</h1>
 
-<form id="formCrearTela" class="needs-validation" novalidate action="#" method="post">
+<form id="formCrearTela" class="needs-validation" novalidate action="" method="post">
 	<div>
         <span class="input-group-text">Tela</span>
 		<input type="text" placeholder="Ingrese la Tela..." class="form-control" name="nombTela" required>

@@ -1,7 +1,7 @@
 var listaInputs = document.getElementsByClassName('form-control');
 
 //No tiene portabilidad -> Modificarlo luego
-$(myform).submit(function(event){
+$(myform).submit(function(){
 if(listaInputs[0].value&&listaInputs[1].value){
 	    var datosDelForm = new FormData(myform );
 	    $.ajax({
@@ -15,8 +15,5 @@ if(listaInputs[0].value&&listaInputs[1].value){
 	            // do something with the result
 	        }
 	    });
-}else{
-  event.preventDefault();
-  event.stopPropagation();
 }
 	});
