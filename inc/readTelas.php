@@ -26,9 +26,6 @@
 			<td><?php echo $t['proveedTela'];?></td>
 			<td><a href="index.php?page=updateTelas&telaID=<?php echo $t['telaID'];?>"><img class="icono" src="img/site/update.png"></a></td>
 			<td><img class="icono" style="cursor: pointer;" id="<?php echo $t['telaID'];?>" onclick="borrarTela('telaID','<?php echo $t['telaID'];?>','tela','<?php echo $tela->verifyTelaDelete($t['telaID']); ?>')" src="img/site/delete.png"></td>
-
-			<td><p>delete : <?php echo $tela->verifyTelaDelete($t['telaID']);?></p></td>
-			
 		</tr>
 <?php
 		}
