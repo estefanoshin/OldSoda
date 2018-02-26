@@ -20,7 +20,7 @@
 				<img class="icono" src="img/site/update.png">
 			</a>
 
-			<img style="cursor: pointer;" id="<?php echo $art['artID'];?>" onclick="borrar('artID','<?php echo $art['artID'];?>','articulo')" class="icono" src="img/site/delete.png">
+			<img style="cursor: pointer;" id="<?php echo $art['artID'];?>" onclick="borrarArt('artID','<?php echo $art['artID'];?>','articulo','<?php echo $articulo->verifyArtDelete($art['artID']) ?>')" class="icono" src="img/site/delete.png">
 
 			<h5 class="card-title">Articulo : <?php echo $art['art'];?></h5>
 		    <p class="card-text"><?php echo $art['descrip'];?></p>

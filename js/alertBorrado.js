@@ -5,12 +5,22 @@ function borrar(index,id,tipo){
 	}
 }
 
-function borrarTela(index,id,tipo,telaEnUso){
+function borrarTela(index,id,tipo,uso){
 	if(confirm('Esta seguro que desea borrarlo?')){
-		console.log(telaEnUso)
-		if(telaEnUso == 'enUso'){
+		if(uso == 'enUso'){
 			
-			alert('La tela se esta utilizando en algun articulo, el borrado no se realizara !!')
+			alert('La tela se esta utilizando en algun articulo, el borrado NO se realizara !!')
+		}else{
+			window.location.assign(window.location.origin+"/soda/action_procesos.php?action=delete&"+index+"="+id+"&tipo="+tipo);
+		}
+	}
+}
+
+function borrarArt(index,id,tipo,uso){
+	if(confirm('Esta seguro que desea borrarlo?')){
+		if(uso == 'enUso'){
+			
+			alert('el Articulo se esta utilizando en algun Corte, el borrado NO se realizara !!')
 		}else{
 			window.location.assign(window.location.origin+"/soda/action_procesos.php?action=delete&"+index+"="+id+"&tipo="+tipo);
 		}

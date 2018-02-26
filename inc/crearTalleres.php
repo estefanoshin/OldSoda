@@ -1,5 +1,5 @@
 <section id="crearTaller">
-	<h1>TELAS</h1>
+	<h1>Taller</h1>
 
 <form id="formCrearTaller" class="needs-validation" novalidate action="" method="post">
 	<div>

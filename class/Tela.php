@@ -156,7 +156,15 @@ class Tela{
         $sql = "SELECT T.telaID FROM tela T JOIN articulo A ON T.telaID = A.telaID WHERE T.telaID = :telaID";
         $stmt = $link->prepare($sql);
 
-        $stmt->bindParam(':telaID',$id,PDO::PARAM_INT);
+         if(isset($_GET['telaID']))
+        {
+            $this->setTelaID($_GET['telaID']);
+            $stmt->bindParam(':telaID',$_GET['telaID'],PDO::PARAM_INT);
+        }
+        else
+        {
+        $stmt->bindParam(':telaID',$telaID,PDO::PARAM_INT);
+        }
 
         $stmt->execute();
 

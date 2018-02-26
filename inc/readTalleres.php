@@ -4,10 +4,8 @@
 ?>
 
 <section id="readTalleres">
-
 	<h1>Talleres 
 	<a class="hoverPointer"><img class="icono" src="img/site/add.png" data-toggle="modal" data-target="#exampleModal"></a></h1>
-
 	<table class="table table-striped">
 		<thead>
 		<tr align="center">
@@ -17,11 +15,11 @@
 		</tr>
 		</thead>
 
+		<tbody>
 <?php
 	foreach ($listadoTalleres as $lt)
 	{
 ?>
-		<tbody>
 		<tr align="center">
 			<td><?php echo $lt['tallerID'];?></td>
 			<td><?php echo $lt['nombTaller'];?></td>
@@ -29,9 +27,8 @@
 			<td><a href="index.php?page=updateTalleres&tallerID=<?php echo $lt['tallerID'];?>"><img class="icono" src="img/site/update.png"></a></td>
 			<td><img class="icono" style="cursor: pointer;" id="<?php echo $lt['tallerID'];?>" onclick="borrar('tallerID','<?php echo $lt['tallerID'];?>','taller')" src="img/site/delete.png"></td>
 		</tr>
-		</tbody>
-
 <?php } ?>
+		</tbody>
 	</table>
 
 	<!-- INGRESAR NUEVA TALLER (MODAL) -->
@@ -47,7 +44,7 @@
       <div id="result" class="modal-body">
         ...
         <script>
-        	$( "#result" ).load( "inc/crearClientes.php" );
+        	$( "#result" ).load( "inc/crearTalleres.php" );
         </script>
       </div>
       <div class="modal-footer">

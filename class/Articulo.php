@@ -221,7 +221,16 @@ class Articulo extends Corte
 
         $stmt = $link->prepare($sql);
 
-        $stmt->bindParam(':artID',$_GET['artID'],PDO::PARAM_INT);
+        if(isset($_GET['artID']))
+        {
+            $this->setArtID($_GET['artID']);
+            $stmt->bindParam(':artID',$_GET['artID'],PDO::PARAM_INT);
+        }
+        else
+        {
+            $artID = $this->getArtID();
+            $stmt->bindParam(':artID',$artID,PDO::PARAM_INT);
+        }
 
         $stmt->execute();
 
@@ -230,11 +239,30 @@ class Articulo extends Corte
         if($stmt->rowCount() == 0)
         {
             $obj = new Metodo();
-            $obj->irA('readArticulos');
+            return $datoArt;
         }
         else
         {
             return $datoArt;
+        }
+    }
+
+    public function verifyArtDelete($id){
+        $link = Conexion::conectar();
+        $sql = "SELECT A.artID FROM articulo A JOIN corte C ON A.artID = C.artID WHERE C.artID = :artID";
+        $stmt = $link->prepare($sql);
+
+        $stmt->bindParam(':artID',$id,PDO::PARAM_INT);
+
+        $stmt->execute();
+
+        if($stmt->rowCount())
+        {
+            return 'enUso';
+        }
+        else
+        {
+            return 'noSeUsa';
         }
     }
 }

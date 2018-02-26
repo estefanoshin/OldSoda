@@ -44,6 +44,12 @@ else
 					$borrar->deleteClient();
 					$seccion_volver = 'readClientes';
 					break;
+
+				case 'corte':
+					$borrar = new Corte();
+					$borrar->deleteCorte();
+					$seccion_volver = 'readCortes';
+					break;
 			}			
 
 		break;
@@ -99,6 +105,16 @@ else
 					}
 					$seccion_volver = 'readClientes';
 					break;
+
+				case 'corte':
+					$obj = new Corte();
+					$check = $obj->updateCorte();
+					if($check)
+					{
+						echo "<script>alert('Modificado exitosamente!!');</script>";
+					}
+					$seccion_volver = 'readCortes';
+					break;
 			}
 		break;
 		//-----------------------------------------
@@ -152,6 +168,16 @@ else
 						echo "<script>alert('Agregado exitosamente!!');</script>";
 					}
 					$seccion_volver = 'readClientes';
+					break;
+
+				case 'corte':
+					$obj = new Corte();
+					$check = $obj->createCorte();
+					if($check)
+					{
+						echo "<script>alert('Agregado exitosamente!!');</script>";
+					}
+					$seccion_volver = 'readCortes';
 					break;
 			}
 	}

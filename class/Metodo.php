@@ -216,9 +216,9 @@ class Metodo
 		}
 	}
 
-	public function selected($telaID,$artTelaID)
+	public function selected($firstVar,$secondVar)
 	{
-		if ($telaID == $artTelaID)
+		if ($firstVar == $secondVar)
 		{
 			echo 'selected';
 		}

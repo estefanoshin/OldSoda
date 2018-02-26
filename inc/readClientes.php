@@ -17,11 +17,11 @@
 		</tr>
 		</thead>
 
+		<tbody>
 <?php
 	foreach ($listadoClientes as $lc)
 	{
 ?>
-		<tbody>
 		<tr align="center">
 			<td><?php echo $lc['clientID'];?></td>
 			<td><?php echo $lc['nombClient'];?></td>
@@ -29,9 +29,9 @@
 			<td><a href="index.php?page=updateClientes&clientID=<?php echo $lc['clientID'];?>"><img class="icono" src="img/site/update.png"></a></td>
 			<td><img class="icono" style="cursor: pointer;" id="<?php echo $lc['clientID'];?>" onclick="borrar('clientID','<?php echo $lc['clientID'];?>','cliente')" src="img/site/delete.png"></td>
 		</tr>
-		</tbody>
 
 <?php } ?>
+		</tbody>
 	</table>
 
 	<!-- INGRESAR NUEVA TALLER (MODAL) -->

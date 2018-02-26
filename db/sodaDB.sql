@@ -53,7 +53,7 @@ CREATE TABLE `corte` (
 	`corteID` INT(10) NOT NULL AUTO_INCREMENT ,
 	`nc` VARCHAR(10) NOT NULL ,
 	`fechaCorte` DATE NOT NULL ,
-	`temporada` VARCHAR(15) NOT NULL ,
+	`temporada` VARCHAR(20) NOT NULL ,
 
 	`artID` INT(10) NOT NULL ,
 	PRIMARY KEY (`corteID`)

@@ -6,9 +6,9 @@ $listaTaller = $taller->readTaller();
 $listaCliente = $cliente->readClient();
 ?>
 <section id="crearMov">
-	<h1>CREAR MOVIMIENTO</h1>
+	<h1>Crear nueva Entrada</h1>
 
-<form class="needs-validation" novalidate action="" method="post">
+<form class="needs-validation" novalidate action="action_procesos.php?action=create&tipo=entrada" method="post">
 	<table class="tableContainer">
 		<tr>
 			<td>
@@ -17,20 +17,6 @@ $listaCliente = $cliente->readClient();
 					<input type="date"  class="form-control" name="fechaMov" required>
 					<span class="invalid-tooltip">Ingrese una Fecha</span>
 		        </div>
-			</td>
-		</tr>
-
-		<tr>
-			<td>
-		        <div class="input-group-prepend">
-			        <span class="input-group-text">Tipo de Movimiento</span>
-					<select class="custom-select" required name="tipoMov">
-						<option value="">Seleccione una Movimiento</option>
-						<option value="salida">Salida</option>
-						<option value="entrada">Entrada</option>
-					</select>
-					<div class="invalid-tooltip">Ingrese un Movimiento</div>
-				</div>
 			</td>
 		</tr>
 
@@ -64,6 +50,11 @@ $listaCliente = $cliente->readClient();
 			</td>
 		</tr>
 
+
+
+
+<!-- *********************************************************************** -->
+<!-- ANALIZAR ESTA SITUACION!!!!! -->
 		<tr>
 			<td>
 		        <div class="input-group-prepend">

@@ -54,23 +54,23 @@ class Corte{
 
     private function cargaDatosform()
     {
-        if(isset($corteID))
+        if(isset($_POST['corteID']))
         {
             $this->setCorteID($_POST['corteID']);
         }
-        if(isset($nc))
+        if(isset($_POST['nc']))
         {
             $this->setNc($_POST['nc']);
         }
-        if(isset($fechaCorte))
+        if(isset($_POST['fechaCorte']))
         {
             $this->setFechaCorte($_POST['fechaCorte']);
         }
-        if(isset($temporada))
+        if(isset($_POST['temporada']))
         {
             $this->setTemporada($_POST['temporada']);
         }
-        if(isset($artID))
+        if(isset($_POST['artID']))
         {
             $this->setArtID($_POST['artID']);
         }           
@@ -82,7 +82,7 @@ class Corte{
         $link = Conexion::conectar();
 
         $sql = 
-        "INSERT INTO `corte` (`nc`, `fechaCorte`, `temporada`, `artID`, `telaID`)
+        "INSERT INTO `corte` (`nc`, `fechaCorte`, `temporada`, `artID`)
         VALUES (:nc, :fechaCorte, :temporada, :artID);";
 
         $stmt = $link->prepare($sql);
@@ -100,7 +100,7 @@ class Corte{
 
         $stmt->execute();
 
-        return true;
+        return $nc;
     }
 
     public function readCorte()
@@ -145,7 +145,7 @@ class Corte{
         $stmt->bindParam(":temporada",$temporada,PDO::PARAM_STR);
 
         $stmt->bindParam(":artID",$artID,PDO::PARAM_INT);
-        $stmt->bindParam(":artID",$corteID,PDO::PARAM_INT);
+        $stmt->bindParam(":corteID",$corteID,PDO::PARAM_INT);
 
         $stmt->execute();
 
@@ -166,7 +166,7 @@ class Corte{
         return true;
     }
 
-    public function buscarTallerPorID(){
+    public function buscarCortePorID(){
 
         $link = Conexion::conectar();
         $sql = "SELECT corteID, nc, fechaCorte, temporada, artID FROM corte WHERE corteID = :corteID";
@@ -174,7 +174,7 @@ class Corte{
 
         if(isset($_GET['corteID']))
         {
-            $this->setTallerID($_GET['corteID']);
+            $this->setCorteID($_GET['corteID']);
             $stmt->bindParam(':corteID',$_GET['corteID'],PDO::PARAM_INT);
         }
         else
