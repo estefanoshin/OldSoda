@@ -16,7 +16,6 @@
 		</figure>
 
 		<nav class="navbar navbar-expand-lg navbar-light">
-
 		  <a class="navbar-brand" href="index.php?page=readArticulos"><img class="logo" src="img/background/head_logo.fw.png"></a>
 		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 		    <span class="navbar-toggler-icon"></span>
@@ -24,17 +23,30 @@
 
 		  <div class="collapse navbar-collapse" id="navbarNav">
 		    <ul class="navbar-nav">
-		      <li class="nav-item active">
+		      <li class="nav-item">
 		        <a class="nav-link" href="index.php?page=readArticulos">Articulos <span class="sr-only">(current)</span></a>
 		      </li>
-		    <!--   <li class="nav-item">
-		        <a class="nav-link" href="index.php?page=readEntradas">Entradas</a>
-		      </li> -->
 		      <li class="nav-item">
-		        <a class="nav-link disabled" href="index.php?page=readTelas">Telas</a>
+		        <a class="nav-link" href="index.php?page=readEntradas">Entradas</a>
+		      </li>
+
+			<!-- -------------------- -->
+			<li class="nav-item">
+		        <p class="nav-link"> -- </p>
+		      </li>
+			<!-- -------------------- -->
+		      <li>
+
+		      	<p></p>
 		      </li>
 		      <li class="nav-item">
-		        <a class="nav-link disabled" href="index.php?page=readTalleres">Talleres</a>
+		        <a class="nav-link" href="index.php?page=readTelas">Telas</a>
+		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link" href="index.php?page=readTalleres">Talleres</a>
+		      </li>
+  		      <li class="nav-item">
+		        <a class="nav-link" href="index.php?page=readClientes">Clientes</a>
 		      </li>
 		    </ul>
 		  </div>

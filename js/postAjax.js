@@ -2,14 +2,17 @@
 var nombTela = document.querySelector('input[name="nombTela"]');
 var proveedTela = document.querySelector('input[name="proveedTela"]');
 var nombTaller = document.querySelector('input[name=nombTaller');
+var nombCliente = document.querySelector('input[name=nombClient');
 
-//No tiene portabilidad -> Modificarlo luego
 $(myform).submit(function(){
 	if(myform.id == 'formCrearTela'){
 		var compare = (nombTela.value&&proveedTela.value);
 	}
 	if(myform.id == 'formCrearTaller'){
 		var compare = (nombTaller.value);
+	}
+	if(myform.id == 'formCrearCliente'){
+		var compare = (nombCliente.value);
 	}
 if(compare){
 	    var datosDelForm = new FormData(myform );

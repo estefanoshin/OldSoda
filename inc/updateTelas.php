@@ -2,7 +2,7 @@
 	$updateTela = new Tela();
 	$data_inicial = $updateTela->buscarTelaPorID();
 ?>
-<section id="test">
+<section id="updateTelas">
 	<h1>TELAS</h1>
 
 <form action="action_procesos.php?action=update&tipo=tela" method="post" class="needs-validation" novalidate>

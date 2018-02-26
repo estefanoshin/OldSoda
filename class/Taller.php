@@ -105,16 +105,16 @@ class Taller{
     public function buscarTallerPorID(){
 
         $link = Conexion::conectar();
-        $sql = "SELECT nombTaller FROM taller WHERE tallerID = :tallerID";
+        $sql = "SELECT tallerID, nombTaller FROM taller WHERE tallerID = :tallerID";
         $stmt = $link->prepare($sql);
 
         if(isset($_GET['tallerID']))
         {
+            $this->setTallerID($_GET['tallerID']);
             $stmt->bindParam(':tallerID',$_GET['tallerID'],PDO::PARAM_INT);
         }
         else
         {
-        $tallerID = $this->gettallerID();
         $stmt->bindParam(':tallerID',$tallerID,PDO::PARAM_INT);
         }
 

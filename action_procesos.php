@@ -38,6 +38,12 @@ else
 					$borrar->deleteTaller();
 					$seccion_volver = 'readTalleres';
 					break;
+
+				case 'cliente':
+					$borrar = new Cliente();
+					$borrar->deleteClient();
+					$seccion_volver = 'readClientes';
+					break;
 			}			
 
 		break;
@@ -83,6 +89,16 @@ else
 					}
 					$seccion_volver = 'readTalleres';
 					break;
+
+				case 'cliente':
+					$obj = new Cliente();
+					$check = $obj->updateClient();
+					if($check)
+					{
+						echo "<script>alert('Modificado exitosamente!!');</script>";
+					}
+					$seccion_volver = 'readClientes';
+					break;
 			}
 		break;
 		//-----------------------------------------
@@ -127,6 +143,16 @@ else
 						echo "<script>alert('Agregado exitosamente!!');</script>";
 					}
 					$seccion_volver = 'readTalleres';
+					break;
+
+				case 'cliente':
+					$obj = new Cliente();
+					$check = $obj->createClient();
+					if($check)
+					{
+						echo "<script>alert('Agregado exitosamente!!');</script>";
+					}
+					$seccion_volver = 'readClientes';
 					break;
 			}
 	}

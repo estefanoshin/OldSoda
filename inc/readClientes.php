@@ -1,11 +1,11 @@
 <?php
-	$talleres = new Taller();
-	$listadoTalleres = $talleres->readTaller();
+	$clientes = new Cliente();
+	$listadoClientes = $clientes->readClient();
 ?>
 
-<section id="readTalleres">
+<section id="readClientes">
 
-	<h1>Talleres 
+	<h1>Clientes 
 	<a class="hoverPointer"><img class="icono" src="img/site/add.png" data-toggle="modal" data-target="#exampleModal"></a></h1>
 
 	<table class="table table-striped">
@@ -18,16 +18,16 @@
 		</thead>
 
 <?php
-	foreach ($listadoTalleres as $lt)
+	foreach ($listadoClientes as $lc)
 	{
 ?>
 		<tbody>
 		<tr align="center">
-			<td><?php echo $lt['tallerID'];?></td>
-			<td><?php echo $lt['nombTaller'];?></td>
+			<td><?php echo $lc['clientID'];?></td>
+			<td><?php echo $lc['nombClient'];?></td>
 
-			<td><a href="index.php?page=updateTalleres&tallerID=<?php echo $lt['tallerID'];?>"><img class="icono" src="img/site/update.png"></a></td>
-			<td><img class="icono" style="cursor: pointer;" id="<?php echo $lt['tallerID'];?>" onclick="borrar('tallerID','<?php echo $lt['tallerID'];?>','taller')" src="img/site/delete.png"></td>
+			<td><a href="index.php?page=updateClientes&clientID=<?php echo $lc['clientID'];?>"><img class="icono" src="img/site/update.png"></a></td>
+			<td><img class="icono" style="cursor: pointer;" id="<?php echo $lc['clientID'];?>" onclick="borrar('clientID','<?php echo $lc['clientID'];?>','cliente')" src="img/site/delete.png"></td>
 		</tr>
 		</tbody>
 
@@ -39,15 +39,15 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Agregar Cliente</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Crear Cliente</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div id="result" class="modal-body">
+      <div id="resulc" class="modal-body">
         ...
         <script>
-        	$( "#result" ).load( "inc/crearClientes.php" );
+        	$( "#resulc" ).load( "inc/crearClientes.php" );
         </script>
       </div>
       <div class="modal-footer">

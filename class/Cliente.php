@@ -21,14 +21,28 @@ class Cliente{
     }
 
     //---------------------------------------------------------
+    private function cargaDatosform()
+    {
+        if(isset($_POST['clientID']))
+        {
+            $this->setClientID($_POST['clientID']);
+        }
+        if(isset($_POST['nombClient']))
+        {
+            $this->setNombClient($_POST['nombClient']);
+        }
+    }
 
     public function createClient()
     {
+        $this->cargaDatosform();
         $link = Conexion::conectar();
-        $sql = "INSERT INTO `cliente` `nombClient` VALUES :nombClient;";
+        $sql = "INSERT INTO cliente(nombClient) VALUES (:nombClient);";
         $stmt = $link->prepare($sql);
 
-        $stmt->bindValue(":nombClient",$dato['nombClient']);
+        $nombClient = $this->getNombClient();
+
+        $stmt->bindParam(":nombClient",$nombClient,PDO::PARAM_STR);
 
         $stmt->execute();
 
@@ -57,17 +71,19 @@ class Cliente{
     
     public function updateClient()
     {
+        $this->cargaDatosform();
         $link = Conexion::conectar();
 
         $sql = "UPDATE cliente SET nombClient = :nombClient WHERE clientID = :clientID";
         $stmt = $link->prepare($sql);
 
-        $stmt->bindValue(":nombClient", $dato['nombClient']);
-        $stmt->bindValue(':clientID', $dato['clientID']);
+        $nombClient = $this->getNombClient();
+        $clientID = $this->getClientID();
+
+        $stmt->bindParam(":nombClient",$nombClient,PDO::PARAM_STR);
+        $stmt->bindParam(':clientID', $clientID,PDO::PARAM_INT);
 
         $stmt->execute();
-
-        $stmt = $link->prepare($sql);
 
         return true;
     }
@@ -79,12 +95,41 @@ class Cliente{
         $sql = "DELETE FROM cliente WHERE clientID = :clientID";
         $stmt = $link->prepare($sql);
 
-        $stmt->bindValue(':clientID', $id);
+        $stmt->bindParam(':clientID', $_GET['clientID']);
 
         $stmt->execute();
 
+        return true;
+    }
+
+    public function buscarClientePorID(){
+
+        $link = Conexion::conectar();
+        $sql = "SELECT clientID, nombClient FROM cliente WHERE clientID = :clientID";
         $stmt = $link->prepare($sql);
 
-        return true;
+        if(isset($_GET['clientID']))
+        {
+            $this->setclientID($_GET['clientID']);
+            $stmt->bindParam(':clientID',$_GET['clientID'],PDO::PARAM_INT);
+        }
+        else
+        {
+        $stmt->bindParam(':clientID',$clientID,PDO::PARAM_INT);
+        }
+
+        $stmt->execute();
+
+        $datoClient = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if($stmt->rowCount() == 0)
+        {
+            echo  '<h2>No existen talleres en la base de Datos</h2>';
+            return $datoClient;
+        }
+        else
+        {
+            return $datoClient;
+        }
     }
 }
