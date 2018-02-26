@@ -7,11 +7,12 @@ function borrar(index,id,tipo){
 
 function borrarTela(index,id,tipo,telaEnUso){
 	if(confirm('Esta seguro que desea borrarlo?')){
-		if(! telaEnUso){
-			console.log(telaEnUso);
+		console.log(telaEnUso)
+		if(telaEnUso == 'enUso'){
+			
 			alert('La tela se esta utilizando en algun articulo, el borrado no se realizara !!')
 		}else{
-		window.location.assign(window.location.origin+"/soda/action_procesos.php?action=delete&"+index+"="+id+"&tipo="+tipo);
+			window.location.assign(window.location.origin+"/soda/action_procesos.php?action=delete&"+index+"="+id+"&tipo="+tipo);
 		}
 	}
 }
