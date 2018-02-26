@@ -237,13 +237,4 @@ class Articulo extends Corte
             return $datoArt;
         }
     }
-
-    public function verifyTelaDelete(){
-        $this->cargaDatosform();
-        $link = Conexion::conectar();
-        $sql = "SELECT * FROM articulo A JOIN tela T ON A.telaID = T.telaID WHERE A.telaID = :telaID"
-        $stmt = $link->prepare($sql);
-
-        $telaID = 
-    }
 }

@@ -1,8 +1,10 @@
-var listaInputs = document.getElementsByClassName('form-control');
+// var listaInputs = document.getElementsByClassName('form-control');
+var nombTela = document.querySelector('input[name="nombTela"]');
+var proveedTela = document.querySelector('input[name="proveedTela"]');
 
 //No tiene portabilidad -> Modificarlo luego
 $(myform).submit(function(){
-if(listaInputs[0].value&&listaInputs[1].value){
+if(nombTela.value&&proveedTela.value){
 	    var datosDelForm = new FormData(myform );
 	    $.ajax({
 	        url: urlActionProcesos,

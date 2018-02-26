@@ -150,4 +150,23 @@ class Tela{
             return $datoTela;
         }
     }
+
+    public function verifyTelaDelete(){
+        $this->cargaDatosform();
+        $link = Conexion::conectar();
+        $sql = "SELECT * FROM articulo A JOIN tela T ON A.telaID = T.telaID WHERE A.telaID = :telaID";
+        $stmt = $link->prepare($sql);
+
+        $telaID = $this->getTelaID();
+        $stmt->bindParam('telaID',$telaID,PDO::PARAM_INT);
+
+        if($stmt->rowCount() == 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
