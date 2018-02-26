@@ -13,7 +13,7 @@
 		<tr align="center">
 			<th scope="col">ID</th>
 			<th scope="col">Taller</th>
-			<th scope="col" colspan="2"></th>
+			<th scope="col" colspan="2">+</th>
 		</tr>
 		</thead>
 

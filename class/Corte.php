@@ -76,22 +76,27 @@ class Corte{
         }           
     }
 
-    public function createCorte($dato)
+    public function createCorte()
     {
+        $this->cargaDatosform();
         $link = Conexion::conectar();
 
         $sql = 
         "INSERT INTO `corte` (`nc`, `fechaCorte`, `temporada`, `artID`, `telaID`)
-        VALUES (:nc, :fechaCorte, :temporada, :artID, :telaID);";
+        VALUES (:nc, :fechaCorte, :temporada, :artID);";
 
         $stmt = $link->prepare($sql);
 
-        $stmt->bindValue(":nc",$dato['nc']);
-        $stmt->bindValue(":fechaCorte",$dato['fechaCorte']);
-        $stmt->bindValue(":temporada",$dato['temporada']);
+        $nc = $this->getNc();
+        $fechaCorte = $this->getFechaCorte();
+        $temporada = $this->getTemporada();
+        $artID = $this->getArtID();
 
-        $stmt->bindValue(":artID",$dato['artID']);
-        $stmt->bindValue(":telaID",$dato['telaID']);
+        $stmt->bindParam(":nc",$nc,PDO::PARAM_STR);
+        $stmt->bindParam(":fechaCorte",$fechaCorte,PDO::PARAM_STR);
+        $stmt->bindParam(":temporada",$temporada,PDO::PARAM_STR);
+
+        $stmt->bindParam(":artID",$artID,PDO::PARAM_INT);
 
         $stmt->execute();
 
@@ -101,7 +106,7 @@ class Corte{
     public function readCorte()
     {
         $link = Conexion::conectar();
-        $sql = "SELECT corteID, nc, fechaCorte, temporada, artID, telaID FROM corte";
+        $sql = "SELECT corteID, nc, fechaCorte, temporada, artID FROM corte";
         $stmt = $link->prepare($sql);
         $stmt->execute();
 
@@ -118,44 +123,77 @@ class Corte{
         }
     }
     
-    public function updateCorte($dato)
+    public function updateCorte()
     {
         $this->cargaDatosform();
         $link = Conexion::conectar();
 
         $sql =
         "UPDATE corte
-        SET nc = :nc, fechaCorte = :fechaCorte, temporada = :temporada, artID = :artID, telaID = :telaID
+        SET nc = :nc, fechaCorte = :fechaCorte, temporada = :temporada, artID = :artID
         WHERE corteID = :corteID";
         $stmt = $link->prepare($sql);
 
-        $stmt->bindValue(":corteID",$corteID=$this->getCorteID());
-        $stmt->bindValue(":nc",$nc=$this->getNc());
-        $stmt->bindValue(":fechaCorte",$fechaCorte=$this->getFechaCorte());
-        $stmt->bindValue(":temporada",$temporada=$this->getTemporada());
+        $nc = $this->getNc();
+        $fechaCorte = $this->getFechaCorte();
+        $temporada = $this->getTemporada();
+        $artID = $this->getArtID();
+        $corteID = $this->getCorteID();
 
-        $stmt->bindValue(":artID",$artID=$this->getArtID());
+        $stmt->bindParam(":nc",$nc,PDO::PARAM_STR);
+        $stmt->bindParam(":fechaCorte",$fechaCorte,PDO::PARAM_STR);
+        $stmt->bindParam(":temporada",$temporada,PDO::PARAM_STR);
+
+        $stmt->bindParam(":artID",$artID,PDO::PARAM_INT);
+        $stmt->bindParam(":artID",$corteID,PDO::PARAM_INT);
 
         $stmt->execute();
-
-        $stmt = $link->prepare($sql);
 
         return true;
     }
 
-    public function deleteCorte($id)
+    public function deleteCorte()
     {
         $link = Conexion::conectar();
 
         $sql = "DELETE FROM corte WHERE corteID = :corteID";
         $stmt = $link->prepare($sql);
 
-        $stmt->bindValue(':corteID', $id);
+        $stmt->bindParam(':corteID', $_GET['corteID']);
 
         $stmt->execute();
 
+        return true;
+    }
+
+    public function buscarTallerPorID(){
+
+        $link = Conexion::conectar();
+        $sql = "SELECT corteID, nc, fechaCorte, temporada, artID FROM corte WHERE corteID = :corteID";
         $stmt = $link->prepare($sql);
 
-        return true;
+        if(isset($_GET['corteID']))
+        {
+            $this->setTallerID($_GET['corteID']);
+            $stmt->bindParam(':corteID',$_GET['corteID'],PDO::PARAM_INT);
+        }
+        else
+        {
+        $stmt->bindParam(':corteID',$corteID,PDO::PARAM_INT);
+        }
+
+        $stmt->execute();
+
+        $datoCorte = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if($stmt->rowCount() == 0)
+        {
+            echo  '<h2>No existen Cortes en la base de Datos</h2>';
+            return $datoCorte;
+        }
+        else
+        {
+            return $datoCorte;
+        }
     }
 }

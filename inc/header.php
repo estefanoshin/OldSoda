@@ -27,14 +27,17 @@
 		        <a class="nav-link" href="index.php?page=readArticulos">Articulos <span class="sr-only">(current)</span></a>
 		      </li>
 		      <li class="nav-item">
-		        <a class="nav-link" href="index.php?page=readEntradas">Entradas</a>
+		        <a class="nav-link" href="index.php?page=readCortes">Cortes <span class="sr-only">(current)</span></a>
 		      </li>
+		      <!-- <li class="nav-item">
+		        <a class="nav-link" href="index.php?page=readEntradas">Entradas</a>
+		      </li> -->
 
-			<!-- -------------------- -->
+			<!-- ************************ -->
 			<li class="nav-item">
 		        <p class="nav-link"> -- </p>
 		      </li>
-			<!-- -------------------- -->
+			<!-- ************************ -->
 		      <li>
 
 		      	<p></p>

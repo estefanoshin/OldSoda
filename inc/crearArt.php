@@ -5,7 +5,7 @@ $listaTelas = $tela->readTela();
 <section id="crearArt">
 	<h1>CREAR ARTICULO</h1>
 
-<form class="needs-validation" novalidate action="action_procesos.php?action=create&tipo=articulo" method="post">
+<form id="formCrearArt" class="needs-validation" novalidate action="" method="post">
 	<table class="tableContainer">
 		<tr>
 			<td>
@@ -123,4 +123,9 @@ $listaTelas = $tela->readTela();
 </div>
 
 <script src="js/validacionImagen.js"></script>
+<script>
+	var myform = document.getElementById('formCrearArt');
+	var urlActionProcesos = 'action_procesos.php?action=create&tipo=articulo';
+</script>
+<script src="js/postAjax.js"></script>
 </section>

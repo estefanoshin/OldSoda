@@ -124,7 +124,7 @@ class Cliente{
 
         if($stmt->rowCount() == 0)
         {
-            echo  '<h2>No existen talleres en la base de Datos</h2>';
+            echo  '<h2>No existen clientes en la base de Datos</h2>';
             return $datoClient;
         }
         else

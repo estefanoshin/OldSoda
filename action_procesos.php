@@ -103,7 +103,6 @@ else
 		break;
 		//-----------------------------------------
 		case 'create': 
-			// echo "<script>alert('Modelo ingresado!!');</script>";
 			switch ($tipo)
 			{
 				case 'entrada':
