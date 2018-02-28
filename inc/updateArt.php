@@ -9,9 +9,9 @@ $data_inicial = $updateArt->buscarArtPorID();
 <section id="updateArt">
 	<h1>Modificar Articulo</h1>
 
-<form action="action_procesos.php?action=update&tipo=articulo" method="post" class="needs-validation" novalidate>
+<form action="action_procesos.php?action=update&tipo=articulo" method="post" class="needs-validation" novalidate enctype="multipart/form-data">
 
-<table>
+<table class="tableContainer">
 	<tr>
 		<td>
 	        <div class="input-group-prepend">

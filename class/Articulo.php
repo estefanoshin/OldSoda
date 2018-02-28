@@ -100,9 +100,25 @@ class Articulo extends Corte
         }
     }
 
+    private function existeArchivo()
+    {
+        if($_FILES['img'] == UPLOAD_ERR_OK) // UPLOAD_ERR_OK = 0 -> There is no error, the file uploaded with success.
+        {
+            $this->setImg($_FILE['img']['name']);
+             return true;
+        }
+        else
+        {
+            $this->setImg('site/noImage.jpg');
+            return false;
+        }
+    }
+
     public function createArt()
     {
         $this->cargaDatosform();
+        $tieneFoto = $this->existeArchivo();
+
         $link = Conexion::conectar();
 
         $sql = 
@@ -125,7 +141,12 @@ class Articulo extends Corte
         $stmt->bindParam(":nombColor",$nombColor,PDO::PARAM_STR);
         $stmt->bindParam(":telaID",$telaID,PDO::PARAM_INT);
 
-        $stmt->execute();
+        $exito = $stmt->execute();
+
+        if ($exito && $tieneFoto)
+        {
+            move_uploaded_file($_FILES['img']['tmp_name'], 'img/'.$img);
+        }
 
         return true;
     }
@@ -154,6 +175,8 @@ class Articulo extends Corte
     public function updateArt()
     {
         $this->cargaDatosform();
+        $tieneFoto = $this->existeArchivo();
+
         $link = Conexion::conectar();
 
         $sql =
@@ -178,7 +201,12 @@ class Articulo extends Corte
         $stmt->bindParam(":telaID",$telaID,PDO::PARAM_INT);
         $stmt->bindParam(":artID",$artID,PDO::PARAM_INT);
 
-        $stmt->execute();
+        $exito = $stmt->execute();
+
+        if ($exito && $tieneFoto)
+        {
+            move_uploaded_file($_FILES['img']['tmp_name'], 'img/'.$img);
+        }
 
         return true;
     }

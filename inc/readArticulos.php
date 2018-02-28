@@ -13,7 +13,7 @@
 ?>
 		<div class="card" style="width: 18rem;">
 		<a href="index.php?page=verArtSeleccionado&artID=<?php echo $art['artID'];?>">
-			<img class="card-img-top btn btn-secondary" data-toggle="tooltip" data-placement="top" title="<?php echo $art['art'];?>" src="img/site/noImage.jpg" alt="Art image">
+			<img class="card-img-top btn btn-secondary" data-toggle="tooltip" data-placement="top" title="<?php echo $art['art'];?>" src="img/<?php echo $art['img']; ?>" alt="Art image">
 		</a>
 		<div class="card-body">
 			<a href="index.php?page=updateArt&artID=<?php echo $art['artID'];?>">

@@ -140,60 +140,9 @@ class Metodo
 				$errores['clientID'] = 'Ingrese un Cliente';
 			}
 		}
-		/*
-		// Valido el stock:
-		if(empty($datos['Stock']))
-		{
-			$errores['Stock'] = 'Ingrese el valor de stock.';
-		}
-		else
-		{
-			if(!is_numeric($datos['Stock']) || $datos['Stock'] < 0 || 
-			substr_count($datos['Stock'],'.') == 1)
-			{
-				$errores['Stock'] = 'El valor del stock NO es correcto.';
-			}
-		}*/
 
 		return $errores;
 	}
-
-	// function errorCode($errores){
-	// 	foreach ($errores as $index => $value) {
-	// 		// if($index-strlen($index)==0)
-	// 		// {
-	// 		// 	$errorCode += $index."=".$value;
-	// 		// }
-	// 		// else
-	// 		// {
-	// 		// 	$errorCode += $index."=".$value."&";
-	// 		// }
-	// 		// return $errorCode;
-	// 	}
-	// }
-
-
-	/*function metodoJoin($dato,$tabla,$joined,$primerID,$segundoID)
-	{
-		$link = Conexion::conectar();
-		$sql = "SELECT ".$dato." FROM ".$tabla." JOIN ".$joined." WHERE ".$tabla.".".$primerID." = ".$joined.".".$segundoID;
-
-		$stmt = $link->prepare($sql);
-	    $stmt->execute();
-
-	    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-	    echo $sql;
-
-	    if($stmt->rowCount() == 0)
-	    {
-	        echo  '<h2>No existe informacion buscada en la base de datos</h2>';
-	        return $result;
-	    }
-	    else
-	    {
-	        return $result;
-	    }
-	}*/
 
 	public function tipoDeMovimiento($tipoMov,$destino)
 	{
@@ -223,4 +172,15 @@ class Metodo
 			echo 'selected';
 		}
 	}
+
+	//FILE MANAGEMENT
+
+	public function buscarImagen($img){
+		if(!file_exists('img/'.$img/*.'.jpg'*/)){
+			return 'site/noImage.jpg';
+		} else{
+			return $img;
+		}
+	}
+
 }

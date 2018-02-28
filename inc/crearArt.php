@@ -5,7 +5,7 @@ $listaTelas = $tela->readTela();
 <section id="crearArt">
 	<h1>CREAR ARTICULO</h1>
 
-<form id="formCrearArt" class="needs-validation" novalidate action="action_procesos.php?action=create&tipo=articulo" method="post">
+<form id="formCrearArt" class="needs-validation" novalidate action="action_procesos.php?action=create&tipo=articulo" method="post" enctype="multipart/form-data">
 	<table class="tableContainer">
 		<tr>
 			<td>
