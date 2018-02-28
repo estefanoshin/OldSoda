@@ -3,7 +3,6 @@ class Articulo extends Corte
 {
 	private $artID;
 	private $art;
-	private $cant;
 	private $descrip;
 	private $img;
 
@@ -26,14 +25,6 @@ class Articulo extends Corte
     public function setArt($art)
     {
         $this->art = $art;
-    }
-    public function getCant()
-    {
-        return $this->cant;
-    }
-    public function setCant($cant)
-    {
-        $this->cant = $cant;
     }
     public function getDescrip()
     {
@@ -87,10 +78,6 @@ class Articulo extends Corte
         {
             $this->setArt($_POST['art']);
         }
-        if(isset($_POST['cant']))
-        {
-            $this->setCant($_POST['cant']);
-        }
         if(isset($_POST['descrip']))
         {
             $this->setDescrip($_POST['descrip']);
@@ -119,13 +106,12 @@ class Articulo extends Corte
         $link = Conexion::conectar();
 
         $sql = 
-        "INSERT INTO articulo (art, cant, descrip, img, nombTalle, nombColor, telaID)
+        "INSERT INTO articulo (art, descrip, img, nombTalle, nombColor, telaID)
         VALUES (:art, :cant, :descrip, :img, :nombTalle, :nombColor, :telaID)";
 
         $stmt = $link->prepare($sql);
 
         $art = $this->getArt();
-        $cant = $this->getCant();
         $descrip = $this->getDescrip();
         $img = $this->getImg();
         $nombTalle = $this->getNombTalle();
@@ -133,7 +119,6 @@ class Articulo extends Corte
         $telaID = $this->getTelaID();
 
         $stmt->bindParam(":art",$art,PDO::PARAM_STR);
-        $stmt->bindParam(":cant",$cant,PDO::PARAM_INT);
         $stmt->bindParam(":descrip",$descrip,PDO::PARAM_STR);
         $stmt->bindParam(":img",$img,PDO::PARAM_STR);
         $stmt->bindParam(":nombTalle",$nombTalle,PDO::PARAM_STR);
@@ -148,7 +133,7 @@ class Articulo extends Corte
     public function readArt()
     {
         $link = Conexion::conectar();
-        $sql = "SELECT artID, art, cant, descrip, img, nombTalle, nombColor, telaID FROM articulo";
+        $sql = "SELECT artID, art, descrip, img, nombTalle, nombColor, telaID FROM articulo";
         $stmt = $link->prepare($sql);
         $stmt->execute();
 
@@ -173,12 +158,11 @@ class Articulo extends Corte
 
         $sql =
         "UPDATE articulo
-        SET art = :art, cant = :cant, descrip = :descrip, img = :img, nombTalle = :nombTalle, nombColor = :nombColor, telaID = :telaID
+        SET art = :art, descrip = :descrip, img = :img, nombTalle = :nombTalle, nombColor = :nombColor, telaID = :telaID
         WHERE artID = :artID";
         $stmt = $link->prepare($sql);
 
         $art = $this->getArt();
-        $cant = $this->getCant();
         $descrip = $this->getDescrip();
         $img = $this->getImg();
         $nombTalle = $this->getNombTalle();
@@ -187,7 +171,6 @@ class Articulo extends Corte
         $artID = $this->getArtID();
 
         $stmt->bindParam(":art",$art,PDO::PARAM_STR);
-        $stmt->bindParam(":cant",$cant,PDO::PARAM_INT);
         $stmt->bindParam(":descrip",$descrip,PDO::PARAM_STR);
         $stmt->bindParam(":img",$img,PDO::PARAM_STR);
         $stmt->bindParam(":nombTalle",$nombTalle,PDO::PARAM_STR);
@@ -217,7 +200,7 @@ class Articulo extends Corte
     public function buscarArtPorID()
     {
         $link = Conexion::conectar();
-        $sql = "SELECT art, cant, descrip, img, nombTalle, nombColor, telaID FROM articulo WHERE artID = :artID";
+        $sql = "SELECT art, descrip, img, nombTalle, nombColor, telaID FROM articulo WHERE artID = :artID";
 
         $stmt = $link->prepare($sql);
 

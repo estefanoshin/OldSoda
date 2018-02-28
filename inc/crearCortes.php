@@ -58,6 +58,16 @@ foreach ($listaArt as $la) {
 				</td>
 			</tr>
 
+			<tr>
+				<td>
+					<div class="input-group-prepend">
+				        <span class="input-group-text">Cantidad</span>
+						<input type="text" placeholder="Ingrese una Cantidad..." class="form-control" name="cantidad" required>
+						<div class="invalid-tooltip">Ingrese una Cantidad</div>
+				    </div>
+				</td>
+			</tr>
+
 		</table>
 		<button class="btn btn-primary" type="submit">Agregar</button>
 	</form>

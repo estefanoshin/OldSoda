@@ -4,6 +4,7 @@ class Corte{
 	private $nc;
 	private $fechaCorte;
 	private $temporada;
+    private $cantidad;
 
 	private $artID;
 
@@ -39,6 +40,14 @@ class Corte{
     {
         $this->temporada = $temporada;
     }
+    public function getCantidad()
+    {
+        return $this->cantidad;
+    }
+    public function setCantidad($cantidad)
+    {
+        $this->cantidad = $cantidad;
+    }
 
 
     public function getArtID()
@@ -70,6 +79,10 @@ class Corte{
         {
             $this->setTemporada($_POST['temporada']);
         }
+        if(isset($_POST['cantidad']))
+        {
+            $this->setCantidad($_POST['cantidad']);
+        }
         if(isset($_POST['artID']))
         {
             $this->setArtID($_POST['artID']);
@@ -82,7 +95,7 @@ class Corte{
         $link = Conexion::conectar();
 
         $sql = 
-        "INSERT INTO `corte` (`nc`, `fechaCorte`, `temporada`, `artID`)
+        "INSERT INTO corte (nc, fechaCorte, temporada, cantidad, artID)
         VALUES (:nc, :fechaCorte, :temporada, :artID);";
 
         $stmt = $link->prepare($sql);
@@ -90,23 +103,25 @@ class Corte{
         $nc = $this->getNc();
         $fechaCorte = $this->getFechaCorte();
         $temporada = $this->getTemporada();
+        $cantidad = $this->getCantidad();
         $artID = $this->getArtID();
 
         $stmt->bindParam(":nc",$nc,PDO::PARAM_STR);
         $stmt->bindParam(":fechaCorte",$fechaCorte,PDO::PARAM_STR);
         $stmt->bindParam(":temporada",$temporada,PDO::PARAM_STR);
+        $stmt->bindParam(":cantidad",$cantidad,PDO::PARAM_INT);
 
         $stmt->bindParam(":artID",$artID,PDO::PARAM_INT);
 
         $stmt->execute();
 
-        return $nc;
+        return $true;
     }
 
     public function readCorte()
     {
         $link = Conexion::conectar();
-        $sql = "SELECT corteID, nc, fechaCorte, temporada, artID FROM corte";
+        $sql = "SELECT corteID, nc, fechaCorte, temporada, cantidad, artID FROM corte";
         $stmt = $link->prepare($sql);
         $stmt->execute();
 
@@ -130,19 +145,21 @@ class Corte{
 
         $sql =
         "UPDATE corte
-        SET nc = :nc, fechaCorte = :fechaCorte, temporada = :temporada, artID = :artID
+        SET nc = :nc, fechaCorte = :fechaCorte, temporada = :temporada, cantidad = :cantidad, artID = :artID
         WHERE corteID = :corteID";
         $stmt = $link->prepare($sql);
 
         $nc = $this->getNc();
         $fechaCorte = $this->getFechaCorte();
         $temporada = $this->getTemporada();
+        $cantidad = $this->getCantidad();
         $artID = $this->getArtID();
         $corteID = $this->getCorteID();
 
         $stmt->bindParam(":nc",$nc,PDO::PARAM_STR);
         $stmt->bindParam(":fechaCorte",$fechaCorte,PDO::PARAM_STR);
         $stmt->bindParam(":temporada",$temporada,PDO::PARAM_STR);
+        $stmt->bindParam(":cantidad",$cantidad,PDO::PARAM_INT);
 
         $stmt->bindParam(":artID",$artID,PDO::PARAM_INT);
         $stmt->bindParam(":corteID",$corteID,PDO::PARAM_INT);
@@ -169,7 +186,7 @@ class Corte{
     public function buscarCortePorID(){
 
         $link = Conexion::conectar();
-        $sql = "SELECT corteID, nc, fechaCorte, temporada, artID FROM corte WHERE corteID = :corteID";
+        $sql = "SELECT corteID, nc, fechaCorte, temporada, cantidad, artID FROM corte WHERE corteID = :corteID";
         $stmt = $link->prepare($sql);
 
         if(isset($_GET['corteID']))

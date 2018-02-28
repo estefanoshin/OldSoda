@@ -62,6 +62,16 @@ foreach ($listaArt as $la) {
 				</td>
 			</tr>
 
+			<tr>
+				<td>
+					<div class="input-group-prepend">
+				        <span class="input-group-text">Cantidad</span>
+						<input type="text" placeholder="Ingrese una Cantidad..." class="form-control" name="cantidad" required value="<?php echo $data_inicial['cantidad']; ?>">
+						<div class="invalid-tooltip">Ingrese una Cantidad</div>
+				    </div>
+				</td>
+			</tr>
+
 			<input type="placeholder" name="corteID" value="<?php echo $_GET['corteID']; ?>" hidden>
 
 		</table>

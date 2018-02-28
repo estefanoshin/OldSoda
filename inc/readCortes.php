@@ -14,6 +14,7 @@ $articulo = new Articulo();
 				<th scope="col">Fecha</th>
 				<th scope="col">Temporada</th>
 				<th scope="col">ART</th>
+				<th scope="col">Cantidad</th>
 				<th colspan="2">+</th>
 			</tr>
 		</thead>
@@ -29,7 +30,8 @@ $articulo = new Articulo();
 				<td><?php echo $listC['nc']; ?></td>
 				<td><?php echo $listC['fechaCorte']; ?></td>
 				<td><?php echo $listC['temporada']; ?></td>
-				<td><?php print_r($datoArt['art']); ?></td>
+				<td><?php echo($datoArt['art']); ?></td>
+				<td><?php echo($listC['cantidad']); ?></td>
 				<td><a href="index.php?page=updateCortes&corteID=<?php echo $listC['corteID'];?>"><img class="icono" src="img/site/update.png"></a></td>
 				<td><img class="icono" style="cursor: pointer;" id="<?php echo $listC['corteID'];?>" onclick="borrar('corteID','<?php echo $listC['corteID'];?>','corte')" src="img/site/delete.png"></td>
 			</tr>

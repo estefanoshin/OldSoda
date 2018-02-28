@@ -20,16 +20,6 @@ $listaTelas = $tela->readTela();
 		<tr>
 			<td>
 		        <div class="input-group-prepend">
-			        <span class="input-group-text">Cantidad</span>
-					<input type="text" placeholder="Ingrese alguna Cantidad" class="form-control" name="cant" required>
-					<span class="invalid-tooltip">Ingrese alguna Cantidad</span>
-		        </div>
-			</td>
-		</tr>
-
-		<tr>
-			<td>
-		        <div class="input-group-prepend">
 			        <span class="input-group-text">Descripcion</span>
 					<input type="text" placeholder="Ingrese alguna Descripcion" class="form-control" name="descrip" required>
 					<span class="invalid-tooltip">Ingrese alguna Descripcion</span>

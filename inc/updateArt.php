@@ -25,16 +25,6 @@ $data_inicial = $updateArt->buscarArtPorID();
 	<tr>
 		<td>
 	        <div class="input-group-prepend">
-		        <span class="input-group-text">Cantidad</span>
-				<input type="text" placeholder="Ingrese alguna Cantidad" class="form-control" name="cant" required value="<?php echo $data_inicial['cant'];?>">
-				<span class="invalid-tooltip">Ingrese alguna Cantidad</span>
-	        </div>
-		</td>
-	</tr>
-
-	<tr>
-		<td>
-	        <div class="input-group-prepend">
 		        <span class="input-group-text">Descripcion</span>
 				<input type="text" placeholder="Ingrese alguna Descripcion" class="form-control" name="descrip" required value="<?php echo $data_inicial['descrip'];?>">
 				<span class="invalid-tooltip">Ingrese alguna Descripcion</span>

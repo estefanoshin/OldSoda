@@ -40,7 +40,6 @@ CREATE TABLE `salida` (
 CREATE TABLE `articulo` (
 	`artID` INT(10) NOT NULL AUTO_INCREMENT ,
 	`art` VARCHAR(80) NOT NULL ,
-	`cant` INT(15) NOT NULL ,
 	`descrip` VARCHAR(80) NOT NULL ,
 	`img` VARCHAR(80) NOT NULL ,
 	`nombColor` VARCHAR(80) NOT NULL ,
@@ -54,6 +53,7 @@ CREATE TABLE `corte` (
 	`nc` VARCHAR(10) NOT NULL ,
 	`fechaCorte` DATE NOT NULL ,
 	`temporada` VARCHAR(20) NOT NULL ,
+	`cantidad` INT(15) NOT NULL ,
 
 	`artID` INT(10) NOT NULL ,
 	PRIMARY KEY (`corteID`)
