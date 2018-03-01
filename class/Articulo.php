@@ -102,9 +102,9 @@ class Articulo extends Corte
 
     private function existeArchivo()
     {
-        if($_FILES['img'] == UPLOAD_ERR_OK) // UPLOAD_ERR_OK = 0 -> There is no error, the file uploaded with success.
+        if($_FILES['img']['error'] == UPLOAD_ERR_OK) // UPLOAD_ERR_OK = 0 -> There is no error, the file uploaded with success.
         {
-            $this->setImg($_FILE['img']['name']);
+            $this->setImg($_FILES['img']['name']);
              return true;
         }
         else
@@ -123,7 +123,7 @@ class Articulo extends Corte
 
         $sql = 
         "INSERT INTO articulo (art, descrip, img, nombTalle, nombColor, telaID)
-        VALUES (:art, :cant, :descrip, :img, :nombTalle, :nombColor, :telaID)";
+        VALUES (:art, :descrip, :img, :nombTalle, :nombColor, :telaID)";
 
         $stmt = $link->prepare($sql);
 
@@ -175,7 +175,18 @@ class Articulo extends Corte
     public function updateArt()
     {
         $this->cargaDatosform();
-        $tieneFoto = $this->existeArchivo();
+        $datosPrevios = $this->buscarArtPorID();
+
+        if($_POST['nuevaImagen'] === 'changes')
+        {
+            $tieneFoto = $this->existeArchivo();
+        }
+        else
+        {
+            $tieneFoto = false;
+            $this->setImg($datosPrevios['img']);
+        }
+
 
         $link = Conexion::conectar();
 
@@ -203,6 +214,13 @@ class Articulo extends Corte
 
         $exito = $stmt->execute();
 
+
+        //Borra imagen previa si no se subio una y si anteriormente tenia alguna imagen
+        if($img != $datosPrevios['img'] && $datosPrevios['img'] != 'site/noImage.jpg')
+        {
+            unlink('img/'.$datosPrevios['img']);
+        }
+
         if ($exito && $tieneFoto)
         {
             move_uploaded_file($_FILES['img']['tmp_name'], 'img/'.$img);
@@ -213,6 +231,13 @@ class Articulo extends Corte
 
     public function deleteArt()
     {
+        $busquedaDatos = $this->buscarArtPorID();
+
+        if($busquedaDatos['img'] != 'site/noImage.jpg')
+        {
+            unlink('img/'.$busquedaDatos['img']);
+        }
+
         $link = Conexion::conectar();
 
         $sql = "DELETE FROM articulo WHERE artID = :artID";

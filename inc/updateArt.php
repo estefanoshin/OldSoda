@@ -76,21 +76,26 @@ $data_inicial = $updateArt->buscarArtPorID();
 		</td>
 	</tr>
 
+
 	<tr>
-		<td>
+		<td class="input-group-prepend">
+			<button id="newImg" type="button" class="btn btn-primary" onclick="agregarImagen()">Cambiar imagen</button>
+			<button id="delImg" type="button" class="btn btn-primary" onclick="borrarImagen()">Borrar imagen</button>
 			<div class="custom-file">
-				<input id="img" onchange="return fileValidation();" type="file" accept="image/*" class="custom-file-input" id="validatedCustomFile" name="img">
+				<input id="img" onchange="return fileValidation();" type="file" accept="image/*" class="custom-file-input" id="validatedCustomFile" name="img" value="<?php echo $data_inicial['img']; ?>">
 				<label class="custom-file-label" for="validatedCustomFile">Elija una imagen...</label>
 			</div>
 		</td>
 	</tr>
 
 	<tr>
-		<td><div id="imagePreview"></div></td>
+		<td><div id="imagePreview"><img id="pImage" src="img/<?php echo $data_inicial['img']; ?>"></div></td>
+
 	</tr>
 
 </table>
 
+<input type="placeholder" name="nuevaImagen" value="no_changes" hidden>
 <input type="placeholder" name="artID" value="<?php echo $_GET['artID'];?>" hidden>
 
 <button class="btn btn-primary" type="submit">Modificar</button>
@@ -121,5 +126,6 @@ $data_inicial = $updateArt->buscarArtPorID();
   </div>
 </div>
 
+<script src="js/modificarImagen.js"></script>
 <script src="js/validacionImagen.js"></script>
 </section>
