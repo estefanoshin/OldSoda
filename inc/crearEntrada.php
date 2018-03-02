@@ -32,6 +32,31 @@ $listaCliente = $cliente->readClient();
 
 		<tr>
 			<td>
+				<div class="input-group-pretend">
+					<select name="selectOrigen" id="selectOrigen" class="form-control">
+						<option value="" selected>Seleccione de donde viene la mercaderia</option>
+						<option value="cliente">Cliente</option>
+						<option value="taller">Taller</option>
+						<span class="invalid-tooltip">Ingrese algun origen</span>
+					</select>
+				</div>
+			</td>
+		</tr>
+
+ERROR ERROR ERROR ERROR ERROR ERROR ERROR ERROR ERROR ERROR 
+SEGUIR HACIENDO CODIGO ACA
+PHP ERRRROOOOOR!!! :D
+
+
+
+
+
+
+
+
+<!-- ********************************* TALLERES Y CLIENTES -->
+		<tr>
+			<td>
 		        <div class="input-group-prepend">
 			        <span class="input-group-text">Talles</span>
 					<input type="text" placeholder="Ingrese Talles" class="form-control" name="tallesMov" required>
