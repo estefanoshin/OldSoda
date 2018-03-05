@@ -38,6 +38,7 @@ $listaCliente = $cliente->readClient();
 						<option value="cliente">Cliente</option>
 						<option value="taller">Taller</option>
 						<span class="invalid-tooltip">Ingrese algun origen</span>
+						<input id="origen" type="placeholder" name="origen">
 					</select>
 				</div>
 			</td>
@@ -57,6 +58,41 @@ PHP ERRRROOOOOR!!! :D
 <!-- ********************************* TALLERES Y CLIENTES -->
 		<tr>
 			<td>
+		        <div id="cliente" class="input-group-prepend" >
+			        <span class="input-group-text">Cliente</span>
+					<select id="selectedClient" class="custom-select" required name="clientID">
+						<option value="">Seleccione un Cliente</option>
+						<?php 
+							foreach ($listaCliente as $cl) {
+						?>
+						<option value="<?php echo $cl['clientID'];?>"><?php echo $cl['nombClient'];?></option>
+						<?php } ?>
+					</select>
+					<div class="invalid-tooltip">Ingrese un Cliente</div>
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+		        <div id="taller" class="input-group-prepend">
+			        <span class="input-group-text">Taller</span>
+					<select id="selectedTaller" class="custom-select" required name="tallerID">
+						<option value="">Seleccione un Taller</option>
+						<?php 
+							foreach ($listaTaller as $t) {
+						?>
+						<option value="<?php echo $t['tallerID'];?>"><?php echo $t['nombTaller'];?></option>
+						<?php } ?>
+					</select>
+					<div class="invalid-tooltip">Ingrese un Taller</div>
+				</div>
+			</td>
+		</tr>
+
+<!-- *********************************************************************** -->
+		<tr>
+			<td>
 		        <div class="input-group-prepend">
 			        <span class="input-group-text">Talles</span>
 					<input type="text" placeholder="Ingrese Talles" class="form-control" name="tallesMov" required>
@@ -74,47 +110,9 @@ PHP ERRRROOOOOR!!! :D
 		        </div>
 			</td>
 		</tr>
-
-
-
-
-<!-- *********************************************************************** -->
-<!-- ANALIZAR ESTA SITUACION!!!!! -->
-		<tr>
-			<td>
-		        <div class="input-group-prepend">
-			        <span class="input-group-text">Taller</span>
-					<select class="custom-select" required name="tallerID">
-						<option value="">Seleccione un Taller</option>
-						<?php 
-							foreach ($listaTaller as $t) {
-						?>
-						<option value="<?php echo $t['tallerID'];?>"><?php echo $t['nombTaller'];?></option>
-						<?php } ?>
-					</select>
-					<div class="invalid-tooltip">Ingrese un Taller</div>
-				</div>
-			</td>
-		</tr>
-
-		<tr>
-			<td>
-		        <div class="input-group-prepend">
-			        <span class="input-group-text">Cliente</span>
-					<select class="custom-select" required name="clientID">
-						<option value="">Seleccione un Cliente</option>
-						<?php 
-							foreach ($listaCliente as $cl) {
-						?>
-						<option value="<?php echo $cl['clientID'];?>"><?php echo $cl['nombClient'];?></option>
-						<?php } ?>
-					</select>
-					<div class="invalid-tooltip">Ingrese un Cliente</div>
-				</div>
-			</td>
-		</tr>
 	</table>
 
 	<button class="btn btn-primary" type="submit">Agregar</button>
 </form>
+<script src="js/clienteORtaller.js"></script>
 </section>
