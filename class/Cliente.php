@@ -115,7 +115,8 @@ class Cliente{
         }
         else
         {
-        $stmt->bindParam(':clientID',$clientID,PDO::PARAM_INT);
+            $clientID = $this->getClientID();
+            $stmt->bindParam(':clientID',$clientID,PDO::PARAM_INT);
         }
 
         $stmt->execute();

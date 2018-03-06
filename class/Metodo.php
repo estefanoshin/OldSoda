@@ -30,141 +30,6 @@ class Metodo
 		}
 	}
 
-	public function ValidarDatos($datos,$seccion)
-	{
-		$errores = array();
-		
-		if($seccion == 'tela')
-		{
-			// Valido el Nombre de Tela:
-			if(empty($datos['nombTela']))
-			{
-				$errores['nombTela'] = 'Ingrese el Nombre de Tela.';
-			}
-			
-			// Valido el Proveedor de Tela
-			if(empty($datos['proveedTela']))
-			{
-				$errores['proveedTela'] = 'Ingrese el Proveedor de Tela.';
-			}	
-		}
-		
-		if($seccion == 'articulo')
-		{
-			//Valido Cantidad
-			if(empty($datos['cant']))
-			{
-				$errores['cant'] = 'Ingrese la cantidad.';
-			}
-			else
-			{
-				if(!is_numeric($datos['cant']) || $datos['cant'] <= 0)
-				{
-					$errores['cant'] = 'Las cantidades deben ser numeros.';
-				}
-			}
-
-			// Valido el Articulo
-			if(empty($datos['art']))
-			{
-				$errores['art'] = 'Ingrese el Articulo.';
-			}
-
-			// Valido la Descripcion
-				if(empty($datos['descrip']))
-			{
-				$errores['descrip'] = 'Ingrese una Descripcion';
-			}
-
-			// Valido el Talle
-				if(empty($datos['nombTalle']))
-			{
-				$errores['nombTalle'] = 'Ingrese un Talle';
-			}
-			
-			// Valido el Color
-				if(empty($datos['nombColor']))
-			{
-				$errores['nombColor'] = 'Ingrese un Color';
-			}
-		}
-
-		if($seccion == 'movimiento')
-		{
-
-			// Valido la Fecha
-			if(empty($datos['fechaMov']))
-			{
-				$errores['fechaMov'] = 'Ingrese una Fecha.';
-			}
-
-			// Valido el Tipo de Movimiento
-				if(empty($datos['tipoMov']))
-			{
-				$errores['tipoMov'] = 'Ingrese un Tipo de Movimiento';
-			}
-
-			//Valido Cantidad
-			if(empty($datos['cantMov']))
-			{
-				$errores['cantMov'] = 'Ingrese la cantidad.';
-			}
-			else
-			{
-				if(!is_numeric($datos['cantMov']) || $datos['cantMov'] <= 0)
-				{
-					$errores['cantMov'] = 'Las cantidades deben ser numeros.';
-				}
-			}
-			// Valido el Talle
-				if(empty($datos['tallesMov']))
-			{
-				$errores['tallesMov'] = 'Ingrese un Talle';
-			}
-			
-			// Valido el Color
-				if(empty($datos['nombColor']))
-			{
-				$errores['nombColor'] = 'Ingrese un Color';
-			}
-
-			// Valido el Taller
-				if(empty($datos['tallerID']))
-			{
-				$errores['tallerID'] = 'Ingrese un Taller';
-			}
-
-			// Valido el Cliente
-				if(empty($datos['clientID']))
-			{
-				$errores['clientID'] = 'Ingrese un Cliente';
-			}
-		}
-
-		return $errores;
-	}
-
-	public function tipoDeMovimiento($tipoMov,$destino)
-	{
-		if($tipoMov == 'entrada')
-		{
-			
-		}
-		
-		if($tipoMov == 'salida')
-		{
-			if($destino == 'taller')
-			{
-
-			}
-
-			if($destino == 'cliente')
-			{
-				
-			}
-		}
-	}
-
 	public function selected($firstVar,$secondVar)
 	{
 		if ($firstVar == $secondVar)
@@ -183,4 +48,117 @@ class Metodo
 		}
 	}
 
+	// public function ValidarDatos($datos,$seccion)
+	// {
+	// 	$errores = array();
+		
+	// 	if($seccion == 'tela')
+	// 	{
+	// 		// Valido el Nombre de Tela:
+	// 		if(empty($datos['nombTela']))
+	// 		{
+	// 			$errores['nombTela'] = 'Ingrese el Nombre de Tela.';
+	// 		}
+			
+	// 		// Valido el Proveedor de Tela
+	// 		if(empty($datos['proveedTela']))
+	// 		{
+	// 			$errores['proveedTela'] = 'Ingrese el Proveedor de Tela.';
+	// 		}	
+	// 	}
+		
+	// 	if($seccion == 'articulo')
+	// 	{
+	// 		//Valido Cantidad
+	// 		if(empty($datos['cant']))
+	// 		{
+	// 			$errores['cant'] = 'Ingrese la cantidad.';
+	// 		}
+	// 		else
+	// 		{
+	// 			if(!is_numeric($datos['cant']) || $datos['cant'] <= 0)
+	// 			{
+	// 				$errores['cant'] = 'Las cantidades deben ser numeros.';
+	// 			}
+	// 		}
+
+	// 		// Valido el Articulo
+	// 		if(empty($datos['art']))
+	// 		{
+	// 			$errores['art'] = 'Ingrese el Articulo.';
+	// 		}
+
+	// 		// Valido la Descripcion
+	// 			if(empty($datos['descrip']))
+	// 		{
+	// 			$errores['descrip'] = 'Ingrese una Descripcion';
+	// 		}
+
+	// 		// Valido el Talle
+	// 			if(empty($datos['nombTalle']))
+	// 		{
+	// 			$errores['nombTalle'] = 'Ingrese un Talle';
+	// 		}
+			
+	// 		// Valido el Color
+	// 			if(empty($datos['nombColor']))
+	// 		{
+	// 			$errores['nombColor'] = 'Ingrese un Color';
+	// 		}
+	// 	}
+
+	// 	if($seccion == 'movimiento')
+	// 	{
+
+	// 		// Valido la Fecha
+	// 		if(empty($datos['fechaMov']))
+	// 		{
+	// 			$errores['fechaMov'] = 'Ingrese una Fecha.';
+	// 		}
+
+	// 		// Valido el Tipo de Movimiento
+	// 			if(empty($datos['tipoMov']))
+	// 		{
+	// 			$errores['tipoMov'] = 'Ingrese un Tipo de Movimiento';
+	// 		}
+
+	// 		//Valido Cantidad
+	// 		if(empty($datos['cantMov']))
+	// 		{
+	// 			$errores['cantMov'] = 'Ingrese la cantidad.';
+	// 		}
+	// 		else
+	// 		{
+	// 			if(!is_numeric($datos['cantMov']) || $datos['cantMov'] <= 0)
+	// 			{
+	// 				$errores['cantMov'] = 'Las cantidades deben ser numeros.';
+	// 			}
+	// 		}
+	// 		// Valido el Talle
+	// 			if(empty($datos['tallesMov']))
+	// 		{
+	// 			$errores['tallesMov'] = 'Ingrese un Talle';
+	// 		}
+			
+	// 		// Valido el Color
+	// 			if(empty($datos['nombColor']))
+	// 		{
+	// 			$errores['nombColor'] = 'Ingrese un Color';
+	// 		}
+
+	// 		// Valido el Taller
+	// 			if(empty($datos['tallerID']))
+	// 		{
+	// 			$errores['tallerID'] = 'Ingrese un Taller';
+	// 		}
+
+	// 		// Valido el Cliente
+	// 			if(empty($datos['clientID']))
+	// 		{
+	// 			$errores['clientID'] = 'Ingrese un Cliente';
+	// 		}
+	// 	}
+
+	// 	return $errores;
+	// }
 }

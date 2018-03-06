@@ -183,7 +183,8 @@ class Corte{
         return true;
     }
 
-    public function buscarCortePorID(){
+    public function buscarCortePorID()
+    {
 
         $link = Conexion::conectar();
         $sql = "SELECT corteID, nc, fechaCorte, temporada, cantidad, artID FROM corte WHERE corteID = :corteID";
@@ -196,7 +197,8 @@ class Corte{
         }
         else
         {
-        $stmt->bindParam(':corteID',$corteID,PDO::PARAM_INT);
+            $corteID = $this->getCorteID();
+            $stmt->bindParam(':corteID',$corteID,PDO::PARAM_INT);
         }
 
         $stmt->execute();
@@ -212,5 +214,11 @@ class Corte{
         {
             return $datoCorte;
         }
+    }
+
+    public function buscarArtPorCorte()
+    {
+        $link = Conexion::conectar();
+        $sql = "SELECT artID FROM corte WHERE nc = :nc";
     }
 }

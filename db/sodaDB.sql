@@ -24,6 +24,9 @@ CREATE TABLE `entrada` (
 	`tallesEntrada` VARCHAR(80) NOT NULL ,
 	`colorEntrada` VARCHAR(80) NOT NULL ,
 	`origen` VARCHAR(80) NOT NULL ,
+	`origenID` INT(15) NOT NULL ,
+	`corteID` INT(15) NOT NULL ,
+	`articuloID` INT(15) NOT NULL ,
 	PRIMARY KEY (`entradaID`)
 );
 
@@ -34,6 +37,9 @@ CREATE TABLE `salida` (
 	`tallesSalida` VARCHAR(80) NOT NULL ,
 	`colorSalida` VARCHAR(80) NOT NULL ,
 	`destino` VARCHAR(80) NOT NULL ,
+	`destinoID` INT(15) NOT NULL ,
+	`corteID` INT(15) NOT NULL ,
+	`articuloID` INT(15) NOT NULL ,
 	PRIMARY KEY (`salidaID`)
 );
 

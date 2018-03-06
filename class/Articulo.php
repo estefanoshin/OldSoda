@@ -274,7 +274,7 @@ class Articulo extends Corte
 
         if($stmt->rowCount() == 0)
         {
-            $obj = new Metodo();
+            echo  '<h2>No existe articulo en la base de Datos</h2>';
             return $datoArt;
         }
         else

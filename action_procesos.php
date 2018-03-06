@@ -21,6 +21,13 @@ else
 					$borrar->deleteEntrada();
 					$seccion_volver = 'readEntradas';
 					break;
+
+				case 'salida':
+					$borrar = new Salida();
+					$borrar->deleteSalida();
+					$seccion_volver = 'readSalidas';
+					break;
+
 				case 'articulo':
 					$borrar = new Articulo();
 					$borrar->deleteArt();
@@ -66,6 +73,17 @@ else
 					}
 					$seccion_volver = 'readEntradas';
 					break;
+
+				case 'salida':
+					$obj = new Salida();
+					$check = $obj->updateSalida();
+					if($check)
+					{
+						echo "<script>alert('Modificado exitosamente!!');</script>";
+					}
+					$seccion_volver = 'readSalidas';
+					break;
+
 				case 'articulo':
 					$obj = new Articulo();
 					$check = $obj->updateArt();
@@ -130,6 +148,17 @@ else
 					}
 					$seccion_volver = 'readEntradas';
 					break;
+
+				case 'salida':
+					$obj = new Salida();
+					$check = $obj->createSalida();
+					if($check)
+					{
+						echo "<script>alert('Agregado exitosamente!!');</script>";
+					}
+					$seccion_volver = 'readSalidas';
+					break;
+
 				case 'articulo':
 					$obj = new Articulo();
 					$check = $obj->createArt();

@@ -32,6 +32,9 @@
 		      <li class="nav-item">
 		        <a class="nav-link" href="index.php?page=readEntradas">Entradas</a>
 		      </li>
+  		      <li class="nav-item">
+		        <a class="nav-link" href="index.php?page=readSalidas">Salidas</a>
+		      </li>
 
 			<!-- ************************ -->
 			<li class="nav-item">

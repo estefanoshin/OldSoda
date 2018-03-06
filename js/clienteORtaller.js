@@ -1,22 +1,23 @@
-$('#cliente').hide();
-$("#taller").hide();
-
 $("#selectOrigen").change(function () {
 var selected_option = $('#selectOrigen').val();
 $('#origen').attr('value','');
+$('#origenID').attr('value','');
 
 
   if (selected_option === 'cliente') {
     $('#cliente').show();
     $("#taller").hide();
+    $('#origen').attr('value','cliente');
   }
   if (selected_option === 'taller') {
     $('#cliente').hide();
     $("#taller").show();
+    $('#origen').attr('value','taller');
   }
   if (selected_option === '') {
     $('#cliente').hide();
     $("#taller").hide();
+    $('#origen').attr('value','');
   }
 
 	$('#selectedClient').change(function () {
@@ -24,7 +25,7 @@ $('#origen').attr('value','');
 
 		if(selected_option === 'cliente') {
 			$('#cliente').change(function () {
-				$('#origen').attr('value',optCliente);
+				$('#origenID').attr('value',optCliente);
 			});
 		}
 	});
@@ -34,7 +35,7 @@ $('#origen').attr('value','');
 		
 	if(selected_option === 'taller') {
 		$('#taller').change(function () {
-			$('#origen').attr('value',optTaller);
+			$('#origenID').attr('value',optTaller);
 		});
 	}
 	});

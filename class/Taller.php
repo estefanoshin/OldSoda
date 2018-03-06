@@ -115,6 +115,7 @@ class Taller{
         }
         else
         {
+        $tallerID = $this->getTallerID();
         $stmt->bindParam(':tallerID',$tallerID,PDO::PARAM_INT);
         }
 
