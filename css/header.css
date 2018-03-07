@@ -95,6 +95,16 @@ nav{
 	display: inline-flex;
 	width: 100%;
 }
+
+#divCorte{
+	display: inline-flex;
+	width: 100%;
+}
+
+#divArticulo{
+	display: inline-flex;
+	width: 100%;
+}
 /* ---------------------------------------------------------- */
 /* ------------------- Media Queries ------------------- */
 

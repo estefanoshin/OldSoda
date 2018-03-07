@@ -6,7 +6,10 @@ $cliente = new Cliente();
 $listaCliente = $cliente->readClient();
 
 $corte = new Corte();
-$listaCorte = $corte->readCorte();
+
+// echo 'sda';
+// $listaCorte = $corte->buscarCorte();
+// print_r($listaCorte);
 ?>
 <section id="crearEntradas">
 	<h1>Crear nueva Entrada</h1>
@@ -25,30 +28,16 @@ $listaCorte = $corte->readCorte();
 
 		<tr>
 			<td>
-				<div id="origenOpt" class="input-group-pretend">
+				<div id="divCorte" class="input-group-pretend">
 					<span class="input-group-text">Corte</span>
-					<select name="corteID" id="articuloID" class="form-control" required>
+					<select name="corte" id="corte" class="form-control" required>
 						<option value="">Seleccione el Corte</option>
 
-						<?php foreach ($listaCorte as $c) { ?>
-						<option value="<?php echo $c['corteID']; ?>"><?php echo $c['nc']; ?></option>
-						<?php } ?>
-
-					</select>
-					<span class="invalid-tooltip">Ingrese un Numero de Corte</span>
-				</div>
-			</td>
-		</tr>
-
-		<tr>
-			<td>
-				<div id="origenOpt" class="input-group-pretend">
-					<span class="input-group-text">Corte</span>
-					<select name="corteID" id="articuloID" class="form-control" required>
-						<option value="">Seleccione el Corte</option>
-
-						<?php foreach ($listaCorte as $c) { ?>
-						<option value="<?php echo $c['corteID']; ?>"><?php echo $c['nc']; ?></option>
+						<?php 
+						$listaCorte = $corte->buscarCorte();
+						foreach ($listaCorte as $c) { 
+						?>
+						<option value="<?php echo $c['nc']; ?>"><?php echo $c['nc']; ?></option>
 						<?php } ?>
 
 					</select>
@@ -60,13 +49,18 @@ $listaCorte = $corte->readCorte();
 <!-- ************************ ART ************************ -->
 		<tr>
 			<td>
-				<div id="origenOpt" class="input-group-pretend">
+				<div id="divArticulo" class="input-group-pretend">
 					<span class="input-group-text">Articulo</span>
-					<select name="corteID" id="articuloID" class="form-control" required>
+					<select name="articuloID" id="articuloID" class="form-control" required>
 						<option value="">Seleccione un Articulo</option>
 
-						<?php foreach ($listaCorte as $a) { ?>
-						<option value="<?php echo $a['artID']; ?>"><?php echo $a['nc']; ?></option> BUSCAR ART REPETIDOS
+						<?php
+						$listaArt = $corte->buscarArtPorCorte();
+						foreach ($listaArt as $a) { 
+							
+						?>
+
+						<option ><?php echo $a['artID']; ?></option> BUSCAR ART REPETIDOS
 						<?php } ?>
 
 					</select>
@@ -169,6 +163,18 @@ $listaCorte = $corte->readCorte();
 <script>
 	$('#cliente').hide();
 	$("#taller").hide();
+
+	var articuloHTML = "";
+
+
+	$('#corte').change(function(){
+		var corte = $('#corte option:selected').val();
+
+		$('#divArticulo').append(articuloHTML);
+		$('#divArticulo').contents().unwrap();
+	});
+
+
 </script>
 <script src="js/clienteORtaller.js"></script>
 </section>

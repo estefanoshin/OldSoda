@@ -216,9 +216,31 @@ class Corte{
         }
     }
 
+    public function buscarCorte()
+    {
+        $this->cargaDatosform();
+        $link = Conexion::conectar();
+        $sql = "SELECT DISTINCT nc FROM corte";
+        $stmt = $link->prepare($sql);
+
+        $stmt->execute();
+
+        $datos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $datos;
+    }
+
     public function buscarArtPorCorte()
     {
+        $this->cargaDatosform();
         $link = Conexion::conectar();
-        $sql = "SELECT artID FROM corte WHERE nc = :nc";
+        $sql = "SELECT DISTINCT artID FROM corte";
+        $stmt = $link->prepare($sql);
+
+        $stmt->execute();
+
+        $datos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $datos;
     }
 }
