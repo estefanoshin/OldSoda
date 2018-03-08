@@ -5,6 +5,8 @@ $listaTaller = $taller->readTaller();
 $cliente = new Cliente();
 $listaCliente = $cliente->readClient();
 
+$art = new Articulo();
+
 $corte = new Corte();
 
 // echo 'sda';
@@ -55,12 +57,14 @@ $corte = new Corte();
 						<option value="">Seleccione un Articulo</option>
 
 						<?php
-						$listaArt = $corte->buscarArtPorCorte();
+						$listaArt = $corte->buscarArtPorCorte(VALOR A BUSCAR);
 						foreach ($listaArt as $a) { 
-							
+							$art->setArtID($a['artID']);
+							$datoArt = $art->buscarArtPorID();
+
 						?>
 
-						<option ><?php echo $a['artID']; ?></option> BUSCAR ART REPETIDOS
+						<option value="<?php echo $a['artID']; ?>"><?php echo $datoArt['art']; ?></option>
 						<?php } ?>
 
 					</select>
@@ -163,6 +167,7 @@ $corte = new Corte();
 <script>
 	$('#cliente').hide();
 	$("#taller").hide();
+	$('#divArticulo').hide();
 
 	var articuloHTML = "";
 
