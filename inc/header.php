@@ -8,6 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="css/header.css">
 	<script src="bootstrap/js/jquery-3.3.1.js"></script>
+	<script src="angular/angular.js"></script>
 </head>
 <body>
 	<header>

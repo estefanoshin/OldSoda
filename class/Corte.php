@@ -234,8 +234,12 @@ class Corte{
     {
         $this->cargaDatosform();
         $link = Conexion::conectar();
-        $sql = "SELECT DISTINCT artID FROM corte";
+        $sql = "SELECT DISTINCT artID FROM corte WHERE corteID = :corteID";
         $stmt = $link->prepare($sql);
+
+        $corteID = $this->getCorteID();
+
+        $stmt->bindParam(':corteID',$corteID,PDO::PARAM_INT);
 
         $stmt->execute();
 

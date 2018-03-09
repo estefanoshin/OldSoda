@@ -8,6 +8,7 @@ $listaCliente = $cliente->readClient();
 $art = new Articulo();
 
 $corte = new Corte();
+// $corte->setCorteID(0);
 
 // echo 'sda';
 // $listaCorte = $corte->buscarCorte();
@@ -39,7 +40,7 @@ $corte = new Corte();
 						$listaCorte = $corte->buscarCorte();
 						foreach ($listaCorte as $c) { 
 						?>
-						<option value="<?php echo $c['nc']; ?>"><?php echo $c['nc']; ?></option>
+						<option value="<?php echo $c['corteID']; ?>"><?php echo $c['nc']; ?></option>
 						<?php } ?>
 
 					</select>
@@ -56,8 +57,9 @@ $corte = new Corte();
 					<select name="articuloID" id="articuloID" class="form-control" required>
 						<option value="">Seleccione un Articulo</option>
 
+						$corte->setCorteID(ALGUN VALOR)
 						<?php
-						$listaArt = $corte->buscarArtPorCorte(VALOR A BUSCAR);
+						$listaArt = $corte->buscarArtPorCorte();
 						foreach ($listaArt as $a) { 
 							$art->setArtID($a['artID']);
 							$datoArt = $art->buscarArtPorID();
@@ -173,10 +175,11 @@ $corte = new Corte();
 
 
 	$('#corte').change(function(){
-		var corte = $('#corte option:selected').val();
+		// var corte = $('#corte option:selected').val();
 
-		$('#divArticulo').append(articuloHTML);
-		$('#divArticulo').contents().unwrap();
+		$('#divArticulo').show();
+		// $('#divArticulo').append(articuloHTML);
+		// $('#divArticulo').contents().unwrap();
 	});
 
 
