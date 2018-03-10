@@ -57,8 +57,8 @@ $corte = new Corte();
 					<select name="articuloID" id="articuloID" class="form-control" required>
 						<option value="">Seleccione un Articulo</option>
 
-						$corte->setCorteID(ALGUN VALOR)
 						<?php
+						$corte->setCorteID(/*ALGUN VALOR*/);
 						$listaArt = $corte->buscarArtPorCorte();
 						foreach ($listaArt as $a) { 
 							$art->setArtID($a['artID']);
