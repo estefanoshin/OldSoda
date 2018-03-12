@@ -230,21 +230,23 @@ class Corte{
         return $datos;
     }
 
-    public function buscarArtPorCorte()
+    public function datosJson()
     {
-        $this->cargaDatosform();
+        // $this->cargaDatosform();
         $link = Conexion::conectar();
-        $sql = "SELECT DISTINCT artID FROM corte WHERE corteID = :corteID";
+        $sql = "SELECT DISTINCT corteID, artID FROM corte";
         $stmt = $link->prepare($sql);
 
-        $corteID = $this->getCorteID();
+        // $corteID = $this->getCorteID();
 
-        $stmt->bindParam(':corteID',$corteID,PDO::PARAM_INT);
+        // $stmt->bindParam(':corteID',$corteID,PDO::PARAM_INT);
 
         $stmt->execute();
 
         $datos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+        // return json_encode($datos, JSON_FORCE_OBJECT);
         return $datos;
+
     }
 }

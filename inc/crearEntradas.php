@@ -8,15 +8,28 @@ $listaCliente = $cliente->readClient();
 $art = new Articulo();
 
 $corte = new Corte();
-// $corte->setCorteID(0);
-
-// echo 'sda';
-// $listaCorte = $corte->buscarCorte();
-// print_r($listaCorte);
+$cortes = $corte->datosJson();
 ?>
+<script>var cortes = []// = <?php //echo $cortes; ?>;</script>
+<?php
+foreach ($cortes as $crt) {	
+?>
+<script>cortes.push(<?php echo json_encode($crt); ?>)</script>
+
+<?php } ?>
+
+
+<script src="js/listArtEnCorte.js"></script>
+
+<div ng-app="crearEntradaSalida" ng-controller="corte">
+	
+	<div ng-repeat="listaDatos in datoCortes">
+		<p>Corte : {{ listaDatos.corteID }} | Articulo : {{ listaDatos.artID }}</p>
+	</div>
+</div>
+
 <section id="crearEntradas">
 	<h1>Crear nueva Entrada</h1>
-
 <form class="needs-validation" novalidate action="action_procesos.php?action=create&tipo=entrada" method="post">
 	<table class="tableContainer">
 		<tr>
@@ -28,7 +41,6 @@ $corte = new Corte();
 		        </div>
 			</td>
 		</tr>
-
 		<tr>
 			<td>
 				<div id="divCorte" class="input-group-pretend">
@@ -58,8 +70,8 @@ $corte = new Corte();
 						<option value="">Seleccione un Articulo</option>
 
 						<?php
-						$corte->setCorteID(/*ALGUN VALOR*/);
-						$listaArt = $corte->buscarArtPorCorte();
+						// $corte->setCorteID(/*ALGUN VALOR*/);
+						// $listaArt = $corte->buscarArtPorCorte();
 						foreach ($listaArt as $a) { 
 							$art->setArtID($a['artID']);
 							$datoArt = $art->buscarArtPorID();
@@ -74,6 +86,7 @@ $corte = new Corte();
 				</div>
 			</td>
 		</tr>
+
 <!-- ************************************************************************ -->
 
 		<tr>
