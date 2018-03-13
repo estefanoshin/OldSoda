@@ -31,7 +31,7 @@ class Metodo
 	}
 
 	public function selected($firstVar,$secondVar)
-	{
+	{	echo '-----'.$firstVar.'-----';
 		if ($firstVar == $secondVar)
 		{
 			echo 'selected';

@@ -26,7 +26,7 @@ CREATE TABLE `entrada` (
 	`tallesEntrada` VARCHAR(80) NOT NULL ,
 	`colorEntrada` VARCHAR(80) NOT NULL ,
 	`origen` VARCHAR(80) NOT NULL ,
-	`origenID` INT(15) NOT NULL ,
+	`origenName` VARCHAR(80) NOT NULL ,
 	`corteID` INT(15) NOT NULL ,
 	`articuloID` INT(15) NOT NULL ,
 	PRIMARY KEY (`entradaID`)

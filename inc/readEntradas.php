@@ -40,7 +40,7 @@
 			<td><?php echo $le['tallesEntrada'];?></td>
 			<td><?php echo $le['colorEntrada'];?></td>
 			<td><?php echo $le['origen'];?> : </td>
-			<td><?php echo $entrada->mostrarNombreOrigen($le['origen'],$le['origenID']);?></td>
+			<td><?php echo $le['origenName'];?></td>
 
 			<td><a href="index.php?page=updateEntradas&entradaID=<?php echo $le['entradaID'];?>"><img class="icono" src="img/site/update.png"></a></td>
 			<td><img class="icono" style="cursor: pointer;" id="<?php echo $le['entradaID'];?>" onclick="borrar('entradaID','<?php echo $le['entradaID'];?>','entrada')" src="img/site/delete.png"></td>

@@ -7,7 +7,7 @@ class Entrada extends Articulo
 	private $tallesEntrada;
     private $colorEntrada;
     private $origen;
-    private $origenID;
+    private $origenName;
     private $corteID;
     private $articuloID;
 
@@ -59,13 +59,13 @@ class Entrada extends Articulo
     {
         $this->origen = $origen;
     }
-    public function getOrigenID()
+    public function getOrigenName()
     {
-        return $this->origenID;
+        return $this->origenName;
     }
-    public function setOrigenID($origenID)
+    public function setOrigenName($origenName)
     {
-        $this->origenID = $origenID;
+        $this->origenName = $origenName;
     }
     public function getArticuloID()
     {
@@ -111,9 +111,9 @@ class Entrada extends Articulo
         {
             $this->setOrigen($_POST['origen']);
         }
-        if(isset($_POST['origenID']))
+        if(isset($_POST['origenName']))
         {
-            $this->setOrigenID($_POST['origenID']);
+            $this->setOrigenName($_POST['origenName']);
         }
         if(isset($_POST['corteID']))
         {
@@ -131,8 +131,8 @@ class Entrada extends Articulo
         $link = Conexion::conectar();
 
         $sql = 
-        "INSERT INTO entrada (fechaEntrada, cantEntrada, tallesEntrada, colorEntrada, origen, origenID, corteID, articuloID)
-        VALUES (:fechaEntrada, :cantEntrada, :tallesEntrada, :colorEntrada, :origen, :origenID, :corteID, :articuloID);";
+        "INSERT INTO entrada (fechaEntrada, cantEntrada, tallesEntrada, colorEntrada, origen, origenName, corteID, articuloID)
+        VALUES (:fechaEntrada, :cantEntrada, :tallesEntrada, :colorEntrada, :origen, :origenName, :corteID, :articuloID);";
 
         $stmt = $link->prepare($sql);
 
@@ -141,7 +141,7 @@ class Entrada extends Articulo
         $tallesEntrada = $this->getTallesEntrada();
         $colorEntrada = $this->getColorEntrada();
         $origen = $this->getOrigen();
-        $origenID = $this->getOrigenID();
+        $origenName = $this->getOrigenName();
         $corteID = $this->getCorteID();
         $articuloID = $this->getArticuloID();
 
@@ -150,7 +150,7 @@ class Entrada extends Articulo
         $stmt->bindParam(":tallesEntrada",$tallesEntrada,PDO::PARAM_STR);
         $stmt->bindParam(":colorEntrada",$colorEntrada,PDO::PARAM_STR);
         $stmt->bindParam(":origen",$origen,PDO::PARAM_STR);
-        $stmt->bindParam(":origenID",$origenID,PDO::PARAM_INT);
+        $stmt->bindParam(":origenName",$origenName,PDO::PARAM_STR);
         $stmt->bindParam(":corteID",$corteID,PDO::PARAM_INT);
         $stmt->bindParam(":articuloID",$articuloID,PDO::PARAM_INT);
 
@@ -163,7 +163,7 @@ class Entrada extends Articulo
     {
         $link = Conexion::conectar();
 
-        $sql = "SELECT entradaID, fechaEntrada, cantEntrada, tallesEntrada, colorEntrada, origen, origenID, corteID, articuloID FROM entrada";
+        $sql = "SELECT entradaID, fechaEntrada, cantEntrada, tallesEntrada, colorEntrada, origen, origenName, corteID, articuloID FROM entrada";
         $stmt = $link->prepare($sql);
         $stmt->execute();
 
@@ -187,7 +187,7 @@ class Entrada extends Articulo
 
         $sql =
         "UPDATE entrada
-        SET fechaEntrada = :fechaEntrada, cantEntrada = :cantEntrada, tallesEntrada = :tallesEntrada, colorEntrada = :colorEntrada, origen = :origen, origenID = :origenID, corteID = :corteID, articuloID = :articuloID  WHERE entradaID = :entradaID";
+        SET fechaEntrada = :fechaEntrada, cantEntrada = :cantEntrada, tallesEntrada = :tallesEntrada, colorEntrada = :colorEntrada, origen = :origen, origenName = :origenName, corteID = :corteID, articuloID = :articuloID  WHERE entradaID = :entradaID";
         $stmt = $link->prepare($sql);
 
         $fechaEntrada = $this->getFechaEntrada();
@@ -195,7 +195,7 @@ class Entrada extends Articulo
         $tallesEntrada = $this->getTallesEntrada();
         $colorEntrada = $this->getColorEntrada();
         $origen = $this->getOrigen();
-        $origenID = $this->getOrigenID();
+        $origenName = $this->getOrigenName();
         $articuloID = $this->getArticuloID();
         $entradaID = $this->getEntradaID();
         $corteID = $this->getCorteID();
@@ -205,7 +205,7 @@ class Entrada extends Articulo
         $stmt->bindParam(":tallesEntrada",$tallesEntrada,PDO::PARAM_STR);
         $stmt->bindParam(":colorEntrada",$colorEntrada,PDO::PARAM_STR);
         $stmt->bindParam(":origen",$origen,PDO::PARAM_STR);
-        $stmt->bindParam(":origenID",$origenID,PDO::PARAM_INT);
+        $stmt->bindParam(":origenName",$origenName,PDO::PARAM_STR);
         $stmt->bindParam(":corteID",$corteID,PDO::PARAM_INT);
         $stmt->bindParam(":articuloID",$articuloID,PDO::PARAM_INT);
         $stmt->bindParam(":entradaID",$entradaID,PDO::PARAM_INT);
@@ -234,7 +234,7 @@ class Entrada extends Articulo
     public function buscarEntradaPorID()
     {
         $link = Conexion::conectar();
-        $sql = "SELECT fechaEntrada, cantEntrada, tallesEntrada, colorEntrada, origen, origenID, corteID, articuloID FROM entrada WHERE entradaID = :entradaID";
+        $sql = "SELECT fechaEntrada, cantEntrada, tallesEntrada, colorEntrada, origen, origenName, corteID, articuloID FROM entrada WHERE entradaID = :entradaID";
 
         $stmt = $link->prepare($sql);
 

@@ -15,7 +15,7 @@ $cortes = $corte->datosJson();
 <script src="angular/angular-ui.js"></script>
 <script src="angular/unique.js"></script>
 
-<section id="crearEntradas" ng-app="crearEntradaSalida" ng-controller="corte">
+<section id="crearEntradas" ng-app="crearEntradaSalida" ng-controller="entradaSalida">
 	<h1>Crear nueva Entrada</h1>
 <form class="needs-validation" novalidate action="action_procesos.php?action=create&tipo=entrada" method="post">
 	<table class="tableContainer">
@@ -47,7 +47,7 @@ $cortes = $corte->datosJson();
 			<td>
 				<div id="divArticulo" class="input-group-pretend" ng-if="listaArt.length > 0">
 					<span class="input-group-text">Articulo</span>
-					<select name="articulo" id="articulo" class="form-control" required ng-model="datoCortes.corteID" ng-change="selectedArt(datoCortes.corteID)">
+					<select name="articulo" id="articulo" class="form-control" required ng-model="inputCorteID" ng-change="selectedArt(inputCorteID); buscarArticulo(inputCorteID)">
 						<option value="">Seleccione un Articulo</option>
 						<option ng-repeat="listaArticulos in listaArt" value="{{ listaArticulos.corteID }}">{{ listaArticulos.art }}</option>
 					</select>
@@ -57,6 +57,7 @@ $cortes = $corte->datosJson();
 		</tr>
 
 		<input type="text" name="corteID" ng-bind="datoCortes.corteID" value="{{ inputCorteID }}" hidden>
+		<input type="text" name="articuloID" ng-bind="datoCortes.corteID" value="{{ inputArtID }}" hidden>
 <!-- ************************************************************************ -->
 
 		<tr>
@@ -93,7 +94,7 @@ $cortes = $corte->datosJson();
 			<td>
 				<div id="origenOpt" class="input-group-pretend">
 					<span class="input-group-text">Origen</span>
-					<select name="selectOrigen" id="selectOrigen" class="form-control" required>
+					<select name="selectOrigen" id="selectOrigen" class="form-control" required ng-model="origenControl" ng-change="selectOrigen(origenControl)">
 						<option value="" selected>Seleccione el Origen</option>
 						<option value="cliente">Cliente</option>
 						<option value="taller">Taller</option>
@@ -102,11 +103,11 @@ $cortes = $corte->datosJson();
 			</td>
 		</tr>
 
-				<input id="origen" type="placeholder" name="origen" hidden>
 		<tr>
 			<td>
 				<div class="input-group-pretend">
-					<input id="origenID" type="placeholder" name="origenID" class="form-control" required hidden>
+					<input id="origen" type="placeholder" name="origen" class="form-control" required value="{{ origenControl }}" hidden>
+					<input id="origenName" type="placeholder" name="origenName" class="form-control" required value="{{ finalSelection }}" hidden>
 					<span class="invalid-tooltip">Ingrese algun origen</span>
 				</div>
 			</td>
@@ -114,14 +115,14 @@ $cortes = $corte->datosJson();
 <!-- ********************************* TALLERES Y CLIENTES -->
 		<tr>
 			<td>
-		        <div id="cliente" class="input-group-prepend" >
+		        <div id="cliente" class="input-group-prepend" ng-if="origenControl == 'cliente'">
 			        <span class="input-group-text">Cliente</span>
-					<select id="selectedClient" class="custom-select" name="clientID">
+					<select id="selectedClient" class="custom-select" name="clientID" ng-model="finalSelection" ng-change="chooseFinalOriginSelection(finalSelection)">
 						<option value="">Seleccione un Cliente</option>
 						<?php 
 							foreach ($listaCliente as $cl) {
 						?>
-						<option value="<?php echo $cl['clientID'];?>"><?php echo $cl['nombClient'];?></option>
+						<option value="<?php echo $cl['nombClient'];?>"><?php echo $cl['nombClient'];?></option>
 						<?php } ?>
 					</select>
 				</div>
@@ -130,14 +131,14 @@ $cortes = $corte->datosJson();
 
 		<tr>
 			<td>
-		        <div id="taller" class="input-group-prepend">
+		        <div id="taller" class="input-group-prepend" ng-if="origenControl == 'taller'">
 			        <span class="input-group-text">Taller</span>
-					<select id="selectedTaller" class="custom-select" name="tallerID">
+					<select id="selectedTaller" class="custom-select" name="tallerID" ng-model="finalSelection" ng-change="chooseFinalOriginSelection(finalSelection)">
 						<option value="">Seleccione un Taller</option>
 						<?php 
 							foreach ($listaTaller as $t) {
 						?>
-						<option value="<?php echo $t['tallerID'];?>"><?php echo $t['nombTaller'];?></option>
+						<option value="<?php echo $t['nombTaller'];?>"><?php echo $t['nombTaller'];?></option>
 						<?php } ?>
 					</select>
 				</div>
@@ -149,12 +150,4 @@ $cortes = $corte->datosJson();
 
 	<button class="btn btn-primary" type="submit">Agregar</button>
 </form>
-<script>
-	$('#cliente').hide();
-	$("#taller").hide();
-
-
-
-</script>
-<script src="js/clienteORtaller.js"></script>
 </section>
