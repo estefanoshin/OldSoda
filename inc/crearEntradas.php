@@ -5,30 +5,17 @@ $listaTaller = $taller->readTaller();
 $cliente = new Cliente();
 $listaCliente = $cliente->readClient();
 
-$art = new Articulo();
-
 $corte = new Corte();
 $cortes = $corte->datosJson();
 ?>
-<script>var cortes = []// = <?php //echo $cortes; ?>;</script>
-<?php
-foreach ($cortes as $crt) {	
-?>
-<script>cortes.push(<?php echo json_encode($crt); ?>)</script>
 
-<?php } ?>
-
+<script>var cortes = <?php echo $cortes; ?>;</script>
 
 <script src="js/listArtEnCorte.js"></script>
+<script src="angular/angular-ui.js"></script>
+<script src="angular/unique.js"></script>
 
-<div ng-app="crearEntradaSalida" ng-controller="corte">
-	
-	<div ng-repeat="listaDatos in datoCortes">
-		<p>Corte : {{ listaDatos.corteID }} | Articulo : {{ listaDatos.artID }}</p>
-	</div>
-</div>
-
-<section id="crearEntradas">
+<section id="crearEntradas" ng-app="crearEntradaSalida" ng-controller="corte">
 	<h1>Crear nueva Entrada</h1>
 <form class="needs-validation" novalidate action="action_procesos.php?action=create&tipo=entrada" method="post">
 	<table class="tableContainer">
@@ -41,52 +28,35 @@ foreach ($cortes as $crt) {
 		        </div>
 			</td>
 		</tr>
+
 		<tr>
 			<td>
 				<div id="divCorte" class="input-group-pretend">
 					<span class="input-group-text">Corte</span>
-					<select name="corte" id="corte" class="form-control" required>
+					<select name="corte" id="corte" class="form-control" required ng-model="datoCortes.nc" ng-change="listaArticulos(datoCortes.nc)">
 						<option value="">Seleccione el Corte</option>
-
-						<?php 
-						$listaCorte = $corte->buscarCorte();
-						foreach ($listaCorte as $c) { 
-						?>
-						<option value="<?php echo $c['corteID']; ?>"><?php echo $c['nc']; ?></option>
-						<?php } ?>
-
+						<option ng-repeat="listaDatos in datoCortes | unique : 'nc'" value="{{ listaDatos.nc }}">{{ listaDatos.nc }}</option>
 					</select>
 					<span class="invalid-tooltip">Ingrese un Numero de Corte</span>
 				</div>
 			</td>
 		</tr>
-
+		
 <!-- ************************ ART ************************ -->
 		<tr>
 			<td>
-				<div id="divArticulo" class="input-group-pretend">
+				<div id="divArticulo" class="input-group-pretend" ng-if="listaArt.length > 0">
 					<span class="input-group-text">Articulo</span>
-					<select name="articuloID" id="articuloID" class="form-control" required>
+					<select name="articulo" id="articulo" class="form-control" required ng-model="datoCortes.corteID" ng-change="selectedArt(datoCortes.corteID)">
 						<option value="">Seleccione un Articulo</option>
-
-						<?php
-						// $corte->setCorteID(/*ALGUN VALOR*/);
-						// $listaArt = $corte->buscarArtPorCorte();
-						foreach ($listaArt as $a) { 
-							$art->setArtID($a['artID']);
-							$datoArt = $art->buscarArtPorID();
-
-						?>
-
-						<option value="<?php echo $a['artID']; ?>"><?php echo $datoArt['art']; ?></option>
-						<?php } ?>
-
+						<option ng-repeat="listaArticulos in listaArt" value="{{ listaArticulos.corteID }}">{{ listaArticulos.art }}</option>
 					</select>
 					<span class="invalid-tooltip">Ingrese un Articulo</span>
 				</div>
 			</td>
 		</tr>
 
+		<input type="text" name="corteID" ng-bind="datoCortes.corteID" value="{{ inputCorteID }}" hidden>
 <!-- ************************************************************************ -->
 
 		<tr>
@@ -182,18 +152,7 @@ foreach ($cortes as $crt) {
 <script>
 	$('#cliente').hide();
 	$("#taller").hide();
-	$('#divArticulo').hide();
 
-	var articuloHTML = "";
-
-
-	$('#corte').change(function(){
-		// var corte = $('#corte option:selected').val();
-
-		$('#divArticulo').show();
-		// $('#divArticulo').append(articuloHTML);
-		// $('#divArticulo').contents().unwrap();
-	});
 
 
 </script>

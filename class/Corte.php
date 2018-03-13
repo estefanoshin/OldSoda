@@ -96,7 +96,7 @@ class Corte{
 
         $sql = 
         "INSERT INTO corte (nc, fechaCorte, temporada, cantidad, artID)
-        VALUES (:nc, :fechaCorte, :temporada, :artID);";
+        VALUES (:nc, :fechaCorte, :temporada, :cantidad, :artID);";
 
         $stmt = $link->prepare($sql);
 
@@ -115,7 +115,7 @@ class Corte{
 
         $stmt->execute();
 
-        return $true;
+        return true;
     }
 
     public function readCorte()
@@ -232,21 +232,14 @@ class Corte{
 
     public function datosJson()
     {
-        // $this->cargaDatosform();
         $link = Conexion::conectar();
-        $sql = "SELECT DISTINCT corteID, artID FROM corte";
+        $sql = "SELECT corte.artID, corte.nc, corte.corteID, articulo.art FROM corte JOIN articulo WHERE articulo.artID = corte.artID";
         $stmt = $link->prepare($sql);
-
-        // $corteID = $this->getCorteID();
-
-        // $stmt->bindParam(':corteID',$corteID,PDO::PARAM_INT);
 
         $stmt->execute();
 
         $datos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        // return json_encode($datos, JSON_FORCE_OBJECT);
-        return $datos;
-
+        return json_encode($datos, JSON_PRETTY_PRINT);
     }
 }
