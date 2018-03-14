@@ -9,7 +9,7 @@ $corte = new Corte();
 $cortes = $corte->datosJson();
 ?>
 
-<script>var cortes = <?php echo $cortes; ?>;</script>
+<script>var cortes = <?php echo $cortes; ?>; var iValue=0;</script>
 
 <script src="js/listArtEnCorte.js"></script>
 <script src="angular/angular-ui.js"></script>
@@ -37,6 +37,7 @@ $cortes = $corte->datosJson();
 						<option value="">Seleccione el Corte</option>
 						<option ng-repeat="listaDatos in datoCortes | unique : 'nc'" value="{{ listaDatos.nc }}">{{ listaDatos.nc }}</option>
 					</select>
+					<a class="btn btn-primary" href="index.php?page=crearCortes">Nuevo Corte</a>
 					<span class="invalid-tooltip">Ingrese un Numero de Corte</span>
 				</div>
 			</td>
@@ -51,6 +52,7 @@ $cortes = $corte->datosJson();
 						<option value="">Seleccione un Articulo</option>
 						<option ng-repeat="listaArticulos in listaArt" value="{{ listaArticulos.corteID }}">{{ listaArticulos.art }}</option>
 					</select>
+					<a class="btn btn-primary" href="index.php?page=crearArt">Nuevo Articulo</a>
 					<span class="invalid-tooltip">Ingrese un Articulo</span>
 				</div>
 			</td>
@@ -125,6 +127,7 @@ $cortes = $corte->datosJson();
 						<option value="<?php echo $cl['nombClient'];?>"><?php echo $cl['nombClient'];?></option>
 						<?php } ?>
 					</select>
+					<a class="btn btn-primary" href="index.php?page=crearClientes">Nuevo Cliente</a>
 				</div>
 			</td>
 		</tr>
@@ -141,6 +144,7 @@ $cortes = $corte->datosJson();
 						<option value="<?php echo $t['nombTaller'];?>"><?php echo $t['nombTaller'];?></option>
 						<?php } ?>
 					</select>
+					<a class="btn btn-primary" href="index.php?page=crearTalleres">Nuevo Taller</a>
 				</div>
 			</td>
 		</tr>

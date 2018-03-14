@@ -14,10 +14,6 @@ $corte->setCorteID($data_inicial['corteID']);
 $corteInicial = $corte->buscarCortePorID();
 
 $metodo = new Metodo();
-
-print_r($data_inicial);
-echo "<br>";
-print_r($corteInicial['nc']);
 ?>
 
 <script>var cortes = <?php echo $cortes; ?>;</script>
@@ -45,16 +41,14 @@ print_r($corteInicial['nc']);
 			<td>
 				<div id="divCorte" class="input-group-pretend">
 					<span class="input-group-text">Corte</span>
-					<select name="corte" id="corte" class="form-control" required ng-model="datoCortes.nc" ng-options="listaDatos.nc for listaDatos in datoCortes | unique : 'nc' track by listaDatos.nc" ng-change="listaArticulos(datoCortes.nc)">
+					<select name="corte" id="corte" class="form-control" required ng-model="datoCortes.nc" ng-change="listaArticulos(datoCortes.nc)">
 						<option value="">Seleccione el Corte</option>
-						<!-- <option ng-repeat="listaDatos in datoCortes | unique : 'nc'" value="{{ listaDatos.nc }}">{{ listaDatos.nc }}</option> -->
-						<option value="abc">test option</option>
+						<option ng-repeat="listaDatos in datoCortes | unique : 'nc'" value="{{ listaDatos.nc }}">{{ listaDatos.nc }}</option>
 					</select>
 					<span class="invalid-tooltip">Ingrese un Numero de Corte</span>
 				</div>
 			</td>
 		</tr>
-		<!-- {{ selectOption(listaDatos.nc,<?php //echo $corteInicial['nc']; ?>) }} -->
 <!-- ************************ ART ************************ -->
 		<tr>
 			<td>
@@ -77,7 +71,7 @@ print_r($corteInicial['nc']);
 			<td>
 		        <div class="input-group-prepend">
 			        <span class="input-group-text">Cantidad</span>
-					<input type="text" placeholder="Ingrese alguna Cantidad" class="form-control" name="cantEntrada" required>
+					<input type="text" placeholder="Ingrese alguna Cantidad" class="form-control" name="cantEntrada" required value="<?php echo $data_inicial['cantEntrada'] ?>">
 					<span class="invalid-tooltip">Ingrese alguna Cantidad</span>
 		        </div>
 			</td>
@@ -87,7 +81,7 @@ print_r($corteInicial['nc']);
 			<td>
 		        <div class="input-group-prepend">
 			        <span class="input-group-text">Talles</span>
-					<input type="text" placeholder="Ingrese Talles" class="form-control" name="tallesEntrada" required>
+					<input type="text" placeholder="Ingrese Talles" class="form-control" name="tallesEntrada" required value="<?php echo $data_inicial['tallesEntrada'] ?>">
 					<span class="invalid-tooltip">Ingrese Talles</span>
 		        </div>
 			</td>
@@ -97,7 +91,7 @@ print_r($corteInicial['nc']);
 			<td>
 		        <div class="input-group-prepend">
 			        <span class="input-group-text">Colores</span>
-					<input type="text" placeholder="Ingrese Colores" class="form-control" name="colorEntrada" required>
+					<input type="text" placeholder="Ingrese Colores" class="form-control" name="colorEntrada" required value="<?php echo $data_inicial['colorEntrada'] ?>">
 					<span class="invalid-tooltip">Ingrese Colores</span>
 		        </div>
 			</td>
@@ -160,7 +154,8 @@ print_r($corteInicial['nc']);
 
 <!-- *********************************************************************** -->
 	</table>
-
+	
+	<input type="placeholder" name="entradaID" value="<?php echo $_GET['entradaID']; ?>" hidden>
 	<button class="btn btn-primary" type="submit">Agregar</button>
 </form>
 </section>

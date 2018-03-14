@@ -22,7 +22,7 @@
 			<th scope="col">Cantidad de entrada</th>
 			<th scope="col">Talles</th>
 			<th scope="col">Colores</th>
-			<th scope="col" colspan="2">Origen</th>
+			<th scope="col" colspan="2">Entregado de: </th>
 
 			<th scope="col" colspan="2">+</th>
 		</thead>

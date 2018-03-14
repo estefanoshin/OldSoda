@@ -196,9 +196,9 @@ class Entrada extends Articulo
         $colorEntrada = $this->getColorEntrada();
         $origen = $this->getOrigen();
         $origenName = $this->getOrigenName();
+        $corteID = $this->getCorteID();
         $articuloID = $this->getArticuloID();
         $entradaID = $this->getEntradaID();
-        $corteID = $this->getCorteID();
 
         $stmt->bindParam(":fechaEntrada",$fechaEntrada,PDO::PARAM_STR);
         $stmt->bindParam(":cantEntrada",$cantEntrada,PDO::PARAM_INT);
@@ -211,6 +211,7 @@ class Entrada extends Articulo
         $stmt->bindParam(":entradaID",$entradaID,PDO::PARAM_INT);
 
         $stmt->execute();
+        
         return true;
     }
 
