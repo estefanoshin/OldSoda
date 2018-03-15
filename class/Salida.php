@@ -7,7 +7,8 @@ class salida extends Articulo
 	private $tallesSalida;
     private $colorSalida;
     private $destino;
-    private $destinoID;
+    private $destinoName;
+    private $corteID;
     private $articuloID;
 
     public function getSalidaID()
@@ -58,14 +59,24 @@ class salida extends Articulo
     {
         $this->destino = $destino;
     }
-        public function getDestinoID()
+        public function getDestinoName()
     {
-        return $this->destinoID;
+        return $this->destinoName;
     }
-    public function setDestinoID($destinoID)
+    public function setDestinoName($destinoName)
     {
-        $this->destinoID = $destinoID;
+        $this->destinoName = $destinoName;
     }
+
+    public function getCorteID()
+    {
+        return $this->corteID;
+    }
+    public function setCorteID($corteID)
+    {
+        $this->corteID = $corteID;
+    }
+
     public function getArticuloID()
     {
         return $this->articuloID;
@@ -102,9 +113,13 @@ class salida extends Articulo
         {
             $this->setDestino($_POST['destino']);
         }
-        if(isset($_POST['destinoID']))
+        if(isset($_POST['destinoName']))
         {
-            $this->setDestinoID($_POST['destinoID']);
+            $this->setDestinoName($_POST['destinoName']);
+        }
+        if(isset($_POST['corteID']))
+        {
+            $this->setCorteID($_POST['corteID']);
         }
         if(isset($_POST['articuloID']))
         {
@@ -118,8 +133,8 @@ class salida extends Articulo
         $link = Conexion::conectar();
 
         $sql = 
-        "INSERT INTO salida (fechaSalida, cantSalida, tallesSalida, colorSalida, destino, destinoID, articuloID)
-        VALUES (:fechaSalida, :cantSalida, :tallesSalida, :colorSalida, :destino, :destinoID, :articuloID);";
+        "INSERT INTO salida (fechaSalida, cantSalida, tallesSalida, colorSalida, destino, destinoNombre, corteID, articuloID)
+        VALUES (:fechaSalida, :cantSalida, :tallesSalida, :colorSalida, :destino, :destinoName, :corteID, :articuloID);";
 
         $stmt = $link->prepare($sql);
 
@@ -128,7 +143,8 @@ class salida extends Articulo
         $tallesSalida = $this->getTallesSalida();
         $colorSalida = $this->getColorSalida();
         $destino = $this->getDestino();
-        $destinoID = $this->getDestinoID();
+        $destinoID = $this->getDestinoName();
+        $corteID = $this->getCorteID();
         $articuloID = $this->getArticuloID();
 
         $stmt->bindParam(":fechaSalida",$fechaSalida,PDO::PARAM_STR);
@@ -136,7 +152,8 @@ class salida extends Articulo
         $stmt->bindParam(":tallesSalida",$tallesSalida,PDO::PARAM_STR);
         $stmt->bindParam(":colorSalida",$colorSalida,PDO::PARAM_STR);
         $stmt->bindParam(":destino",$destino,PDO::PARAM_STR);
-        $stmt->bindParam(":destinoID",$destinoID,PDO::PARAM_INT);
+        $stmt->bindParam(":destinoName",$destinoID,PDO::PARAM_STR);
+        $stmt->bindParam(":corteID",$corteID,PDO::PARAM_INT);
         $stmt->bindParam(":articuloID",$articuloID,PDO::PARAM_INT);
 
         $stmt->execute();
@@ -148,7 +165,8 @@ class salida extends Articulo
     {
         $link = Conexion::conectar();
 
-        $sql = "SELECT salidaID, fechaSalida, cantSalida, tallesSalida, colorSalida, destino, destinoID, articuloID FROM salida";
+        $sql = "SELECT salidaID, fechaSalida, cantSalida, tallesSalida, colorSalida, destino, destinoName, corteID, articuloID FROM salida";
+
         $stmt = $link->prepare($sql);
         $stmt->execute();
 
@@ -172,7 +190,7 @@ class salida extends Articulo
 
         $sql =
         "UPDATE salida
-        SET fechaSalida = :fechaSalida, cantSalida = :cantSalida, tallesSalida = :tallesSalida, colorSalida = :colorSalida, destino = :destino, destinoID = :destinoID, articuloID = :articuloID  WHERE salidaID = :salidaID";
+        SET fechaSalida = :fechaSalida, cantSalida = :cantSalida, tallesSalida = :tallesSalida, colorSalida = :colorSalida, destino = :destino, destinoName = :destinoName, corteID = :corteID, articuloID = :articuloID  WHERE salidaID = :salidaID";
         $stmt = $link->prepare($sql);
 
         $fechaSalida = $this->getFechaSalida();
@@ -180,7 +198,8 @@ class salida extends Articulo
         $tallesSalida = $this->getTallesSalida();
         $colorSalida = $this->getColorSalida();
         $destino = $this->getDestino();
-        $destinoID = $this->getDestinoID();
+        $destinoName = $this->getDestinoName();
+        $corteID = $this->getCorteID();
         $articuloID = $this->getArticuloID();
         $salidaID = $this->getSalidaID();
 
@@ -189,7 +208,8 @@ class salida extends Articulo
         $stmt->bindParam(":tallesSalida",$tallesSalida,PDO::PARAM_STR);
         $stmt->bindParam(":colorSalida",$colorSalida,PDO::PARAM_STR);
         $stmt->bindParam(":destino",$destino,PDO::PARAM_STR);
-        $stmt->bindParam(":destinoID",$destinoID,PDO::PARAM_INT);
+        $stmt->bindParam(":destinoName",$destinoName,PDO::PARAM_STR);
+        $stmt->bindParam(":corteID",$corteID,PDO::PARAM_INT);
         $stmt->bindParam(":articuloID",$articuloID,PDO::PARAM_INT);
         $stmt->bindParam(":salidaID",$salidaID,PDO::PARAM_INT);
 
@@ -217,7 +237,7 @@ class salida extends Articulo
     public function buscarSalidaPorID()
     {
         $link = Conexion::conectar();
-        $sql = "SELECT fechaSalida, cantSalida, tallesSalida, colorSalida, destino, destinoID, articuloID FROM salida WHERE salidaID = :salidaID";
+        $sql = "SELECT fechaSalida, cantSalida, tallesSalida, colorSalida, destino, destinoName, corteID, articuloID FROM salida WHERE salidaID = :salidaID";
 
         $stmt = $link->prepare($sql);
 

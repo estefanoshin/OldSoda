@@ -5,25 +5,33 @@ $listaTaller = $taller->readTaller();
 $cliente = new Cliente();
 $listaCliente = $cliente->readClient();
 
+$salida = new Salida();
+$data_inicial = $salida->buscarEntradaPorID();
+
 $corte = new Corte();
 $cortes = $corte->datosJson();
+$corte->setCorteID($data_inicial['corteID']);
+$corteInicial = $corte->buscarCortePorID();
+
+$metodo = new Metodo();
 ?>
 
-<script>var cortes = <?php echo $cortes; ?>; var iValue=0;</script>
+<script>var cortes = <?php echo $cortes; ?>;</script>
+<script>var iValue = <?php echo $corteInicial['nc']; ?>;</script>
 
 <script src="js/listArtEnCorte.js"></script>
 <script src="angular/angular-ui.js"></script>
 <script src="angular/unique.js"></script>
 
-<section id="crearSalidas" ng-app="crearEntradaSalida" ng-controller="entradaSalida">
-	<h1>Crear nueva Salida</h1>
-<form class="needs-validation" novalidate action="action_procesos.php?action=create&tipo=salida" method="post">
+<section id="updateSalida" ng-app="crearEntradaSalida" ng-controller="entradaSalida">
+	<h1>Modificar Salida</h1>
+<form class="needs-validation" novalidate action="action_procesos.php?action=update&tipo=salida" method="post">
 	<table class="tableContainer">
 		<tr>
 			<td>
 		        <div class="input-group-prepend">
 			        <span class="input-group-text">Fecha Movimiento</span>
-					<input type="date"  class="form-control" name="fechaSalida" required>
+					<input type="date"  class="form-control" name="fechaSalida" required value="<?php echo $data_inicial['fechaSalida']; ?>">
 					<span class="invalid-tooltip">Ingrese una Fecha</span>
 		        </div>
 			</td>
@@ -37,12 +45,10 @@ $cortes = $corte->datosJson();
 						<option value="">Seleccione el Corte</option>
 						<option ng-repeat="listaDatos in datoCortes | unique : 'nc'" value="{{ listaDatos.nc }}">{{ listaDatos.nc }}</option>
 					</select>
-					<a class="btn btn-primary" href="index.php?page=crearCortes">Nuevo Corte</a>
 					<span class="invalid-tooltip">Ingrese un Numero de Corte</span>
 				</div>
 			</td>
 		</tr>
-		
 <!-- ************************ ART ************************ -->
 		<tr>
 			<td>
@@ -52,7 +58,6 @@ $cortes = $corte->datosJson();
 						<option value="">Seleccione un Articulo</option>
 						<option ng-repeat="listaArticulos in listaArt" value="{{ listaArticulos.corteID }}">{{ listaArticulos.art }}</option>
 					</select>
-					<a class="btn btn-primary" href="index.php?page=crearArt">Nuevo Articulo</a>
 					<span class="invalid-tooltip">Ingrese un Articulo</span>
 				</div>
 			</td>
@@ -66,7 +71,7 @@ $cortes = $corte->datosJson();
 			<td>
 		        <div class="input-group-prepend">
 			        <span class="input-group-text">Cantidad</span>
-					<input type="text" placeholder="Ingrese alguna Cantidad" class="form-control" name="cantSalida" required>
+					<input type="text" placeholder="Ingrese alguna Cantidad" class="form-control" name="cantSalida" required value="<?php echo $data_inicial['cantSalida'] ?>">
 					<span class="invalid-tooltip">Ingrese alguna Cantidad</span>
 		        </div>
 			</td>
@@ -76,7 +81,7 @@ $cortes = $corte->datosJson();
 			<td>
 		        <div class="input-group-prepend">
 			        <span class="input-group-text">Talles</span>
-					<input type="text" placeholder="Ingrese Talles" class="form-control" name="tallesSalida" required>
+					<input type="text" placeholder="Ingrese Talles" class="form-control" name="tallesSalida" required value="<?php echo $data_inicial['tallesSalida'] ?>">
 					<span class="invalid-tooltip">Ingrese Talles</span>
 		        </div>
 			</td>
@@ -86,7 +91,7 @@ $cortes = $corte->datosJson();
 			<td>
 		        <div class="input-group-prepend">
 			        <span class="input-group-text">Colores</span>
-					<input type="text" placeholder="Ingrese Colores" class="form-control" name="colorSalida" required>
+					<input type="text" placeholder="Ingrese Colores" class="form-control" name="colorSalida" required value="<?php echo $data_inicial['colorSalida'] ?>">
 					<span class="invalid-tooltip">Ingrese Colores</span>
 		        </div>
 			</td>
@@ -127,7 +132,6 @@ $cortes = $corte->datosJson();
 						<option value="<?php echo $cl['nombClient'];?>"><?php echo $cl['nombClient'];?></option>
 						<?php } ?>
 					</select>
-					<a class="btn btn-primary" href="index.php?page=crearClientes">Nuevo Cliente</a>
 				</div>
 			</td>
 		</tr>
@@ -144,14 +148,14 @@ $cortes = $corte->datosJson();
 						<option value="<?php echo $t['nombTaller'];?>"><?php echo $t['nombTaller'];?></option>
 						<?php } ?>
 					</select>
-					<a class="btn btn-primary" href="index.php?page=crearTalleres">Nuevo Taller</a>
 				</div>
 			</td>
 		</tr>
 
 <!-- *********************************************************************** -->
 	</table>
-
+	
+	<input type="placeholder" name="salidaID" value="<?php echo $_GET['salidaID']; ?>" hidden>
 	<button class="btn btn-primary" type="submit">Agregar</button>
 </form>
 </section>
