@@ -133,7 +133,7 @@ class salida extends Articulo
         $link = Conexion::conectar();
 
         $sql = 
-        "INSERT INTO salida (fechaSalida, cantSalida, tallesSalida, colorSalida, destino, destinoNombre, corteID, articuloID)
+        "INSERT INTO salida (fechaSalida, cantSalida, tallesSalida, colorSalida, destino, destinoName, corteID, articuloID)
         VALUES (:fechaSalida, :cantSalida, :tallesSalida, :colorSalida, :destino, :destinoName, :corteID, :articuloID);";
 
         $stmt = $link->prepare($sql);
@@ -243,7 +243,6 @@ class salida extends Articulo
 
         if(isset($_GET['salidaID']))
         {
-            $this->setArtID($_GET['salidaID']);
             $stmt->bindParam(':salidaID',$_GET['salidaID'],PDO::PARAM_INT);
         }
         else

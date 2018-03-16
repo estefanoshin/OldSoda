@@ -6,7 +6,7 @@ $cliente = new Cliente();
 $listaCliente = $cliente->readClient();
 
 $salida = new Salida();
-$data_inicial = $salida->buscarEntradaPorID();
+$data_inicial = $salida->buscarSalidaPorID();
 
 $corte = new Corte();
 $cortes = $corte->datosJson();
@@ -31,7 +31,7 @@ $metodo = new Metodo();
 			<td>
 		        <div class="input-group-prepend">
 			        <span class="input-group-text">Fecha Movimiento</span>
-					<input type="date"  class="form-control" name="fechaSalida" required value="<?php echo $data_inicial['fechaSalida']; ?>">
+					<input type="date"  class="form-control" name="fechaEntrada" required value="<?php echo $data_inicial['fechaSalida']; ?>">
 					<span class="invalid-tooltip">Ingrese una Fecha</span>
 		        </div>
 			</td>
@@ -71,7 +71,7 @@ $metodo = new Metodo();
 			<td>
 		        <div class="input-group-prepend">
 			        <span class="input-group-text">Cantidad</span>
-					<input type="text" placeholder="Ingrese alguna Cantidad" class="form-control" name="cantSalida" required value="<?php echo $data_inicial['cantSalida'] ?>">
+					<input type="text" placeholder="Ingrese alguna Cantidad" class="form-control" name="cantSalida" required value="<?php echo $data_inicial['cantSalida']; ?>">
 					<span class="invalid-tooltip">Ingrese alguna Cantidad</span>
 		        </div>
 			</td>
@@ -81,7 +81,7 @@ $metodo = new Metodo();
 			<td>
 		        <div class="input-group-prepend">
 			        <span class="input-group-text">Talles</span>
-					<input type="text" placeholder="Ingrese Talles" class="form-control" name="tallesSalida" required value="<?php echo $data_inicial['tallesSalida'] ?>">
+					<input type="text" placeholder="Ingrese Talles" class="form-control" name="tallesSalida" required value="<?php echo $data_inicial['tallesSalida']; ?>">
 					<span class="invalid-tooltip">Ingrese Talles</span>
 		        </div>
 			</td>
@@ -91,7 +91,7 @@ $metodo = new Metodo();
 			<td>
 		        <div class="input-group-prepend">
 			        <span class="input-group-text">Colores</span>
-					<input type="text" placeholder="Ingrese Colores" class="form-control" name="colorSalida" required value="<?php echo $data_inicial['colorSalida'] ?>">
+					<input type="text" placeholder="Ingrese Colores" class="form-control" name="colorSalida" required value="<?php echo $data_inicial['colorSalida']; ?>">
 					<span class="invalid-tooltip">Ingrese Colores</span>
 		        </div>
 			</td>
@@ -101,7 +101,7 @@ $metodo = new Metodo();
 			<td>
 				<div id="origenOpt" class="input-group-pretend">
 					<span class="input-group-text">Destino</span>
-					<select name="selectOrigen" id="selectOrigen" class="form-control" required ng-model="origenControl" ng-change="selectOrigen(origenControl)">
+					<select name="selectDestino" id="selectOrigen" class="form-control" required ng-model="origenControl" ng-change="selectOrigen(origenControl)">
 						<option value="" selected>Seleccione el Destino</option>
 						<option value="cliente">Cliente</option>
 						<option value="taller">Taller</option>
@@ -113,8 +113,8 @@ $metodo = new Metodo();
 		<tr>
 			<td>
 				<div class="input-group-pretend">
-					<input id="origen" type="placeholder" name="destino" class="form-control" required value="{{ origenControl }}" hidden>
-					<input id="origenName" type="placeholder" name="destinoName" class="form-control" required value="{{ finalSelection }}" hidden>
+					<input id="destino" type="placeholder" name="destino" class="form-control" required value="{{ origenControl }}" hidden>
+					<input id="destinoName" type="placeholder" name="destinoName" class="form-control" required value="{{ finalSelection }}" hidden>
 					<span class="invalid-tooltip">Ingrese algun Destino</span>
 				</div>
 			</td>

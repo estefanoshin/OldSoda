@@ -39,7 +39,7 @@ CREATE TABLE `salida` (
 	`tallesSalida` VARCHAR(80) NOT NULL ,
 	`colorSalida` VARCHAR(80) NOT NULL ,
 	`destino` VARCHAR(80) NOT NULL ,
-	`destinoID` INT(15) NOT NULL ,
+	`destinoName` VARCHAR(80) NOT NULL ,
 	`corteID` INT(15) NOT NULL ,
 	`articuloID` INT(15) NOT NULL ,
 	PRIMARY KEY (`salidaID`)

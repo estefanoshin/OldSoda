@@ -40,9 +40,9 @@
 			<td><?php echo $ls['tallesSalida'];?></td>
 			<td><?php echo $ls['colorSalida'];?></td>
 			<td><?php echo $ls['destino'];?> : </td>
-			<td><?php echo $salida->mostrarNombredestino($ls['destino'],$ls['destinoID']);?></td>
+			<td><?php echo $ls['destinoName'];?></td>
 
-			<td><a href="index.php?page=updateEntradas&salidaID=<?php echo $ls['salidaID'];?>"><img class="icono" src="img/site/update.png"></a></td>
+			<td><a href="index.php?page=updateSalidas&salidaID=<?php echo $ls['salidaID'];?>"><img class="icono" src="img/site/update.png"></a></td>
 			<td><img class="icono" style="cursor: pointer;" id="<?php echo $ls['salidaID'];?>" onclick="borrar('salidaID','<?php echo $ls['salidaID'];?>','salida')" src="img/site/delete.png"></td>
 		</tr>
 <?php
