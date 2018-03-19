@@ -25,6 +25,7 @@ $metodo = new Metodo();
 
 <section id="updateEntrada" ng-app="crearEntradaSalida" ng-controller="entradaSalida">
 	<h1>Modificar Entrada</h1>
+
 <form class="needs-validation" novalidate action="action_procesos.php?action=update&tipo=entrada" method="post">
 	<table class="tableContainer">
 		<tr>
@@ -41,23 +42,42 @@ $metodo = new Metodo();
 			<td>
 				<div id="divCorte" class="input-group-pretend">
 					<span class="input-group-text">Corte</span>
-					<select name="corte" id="corte" class="form-control" required ng-model="datoCortes.nc" ng-change="listaArticulos(datoCortes.nc)">
+					<select
+						name="corte"
+						id="corte"
+						class="form-control"
+						required
+						ng-model="datoCortes.nc"
+						ng-change="listaArticulos(datoCortes.nc)"
+						ng-init="listaArticulos('<?php echo $corteInicial['nc']; ?>'); datoCortes.nc = '<?php echo $corteInicial['nc']; ?>'"
+						>
 						<option value="">Seleccione el Corte</option>
 						<option ng-repeat="listaDatos in datoCortes | unique : 'nc'" value="{{ listaDatos.nc }}">{{ listaDatos.nc }}</option>
 					</select>
+					<a class="btn btn-primary" href="index.php?page=crearCortes">Nuevo Corte</a>
 					<span class="invalid-tooltip">Ingrese un Numero de Corte</span>
 				</div>
 			</td>
 		</tr>
+	
 <!-- ************************ ART ************************ -->
 		<tr>
 			<td>
 				<div id="divArticulo" class="input-group-pretend" ng-if="listaArt.length > 0">
 					<span class="input-group-text">Articulo</span>
-					<select name="articulo" id="articulo" class="form-control" required ng-model="inputCorteID" ng-change="selectedArt(inputCorteID); buscarArticulo(inputCorteID)">
+					<select
+						name="articulo"
+						id="articulo"
+						class="form-control"
+						required
+						ng-model="inputCorteID"
+						ng-change="selectedArt(inputCorteID); buscarArticulo(inputCorteID)"
+						ng-init="inputCorteID = '<?php echo $corteInicial['corteID']; ?>'"
+						>
 						<option value="">Seleccione un Articulo</option>
 						<option ng-repeat="listaArticulos in listaArt" value="{{ listaArticulos.corteID }}">{{ listaArticulos.art }}</option>
 					</select>
+					<a class="btn btn-primary" href="index.php?page=crearArt">Nuevo Articulo</a>
 					<span class="invalid-tooltip">Ingrese un Articulo</span>
 				</div>
 			</td>
@@ -101,7 +121,14 @@ $metodo = new Metodo();
 			<td>
 				<div id="origenOpt" class="input-group-pretend">
 					<span class="input-group-text">Origen</span>
-					<select name="selectOrigen" id="selectOrigen" class="form-control" required ng-model="origenControl" ng-change="selectOrigen(origenControl)">
+					<select
+						name="selectOrigen"
+						id="selectOrigen"
+						class="form-control"
+						required
+						ng-model="origenControl"
+						ng-change="selectOrigen(origenControl)"
+						ng-init="origenControl = '<?php echo $data_inicial['origen']; ?>'">
 						<option value="" selected>Seleccione el Origen</option>
 						<option value="cliente">Cliente</option>
 						<option value="taller">Taller</option>
@@ -124,7 +151,17 @@ $metodo = new Metodo();
 			<td>
 		        <div id="cliente" class="input-group-prepend" ng-if="origenControl == 'cliente'">
 			        <span class="input-group-text">Cliente</span>
-					<select id="selectedClient" class="custom-select" name="clientID" ng-model="finalSelection" ng-change="chooseFinalOriginSelection(finalSelection)">
+					<select
+						id="selectedClient"
+						class="custom-select"
+						name="clientID"
+						ng-model="finalSelection"
+						ng-change="chooseFinalOriginSelection(finalSelection)"
+						<?php if($data_inicial['origen']=='cliente'){ ?>
+							ng-init="finalSelection = '<?php echo $data_inicial['origenName']; ?>'"
+						<?php }else{ ?>
+							ng-init="finalSelection = ''"
+						<?php } ?>>
 						<option value="">Seleccione un Cliente</option>
 						<?php 
 							foreach ($listaCliente as $cl) {
@@ -132,6 +169,7 @@ $metodo = new Metodo();
 						<option value="<?php echo $cl['nombClient'];?>"><?php echo $cl['nombClient'];?></option>
 						<?php } ?>
 					</select>
+					<a class="btn btn-primary" href="index.php?page=crearClientes">Nuevo Cliente</a>
 				</div>
 			</td>
 		</tr>
@@ -140,7 +178,17 @@ $metodo = new Metodo();
 			<td>
 		        <div id="taller" class="input-group-prepend" ng-if="origenControl == 'taller'">
 			        <span class="input-group-text">Taller</span>
-					<select id="selectedTaller" class="custom-select" name="tallerID" ng-model="finalSelection" ng-change="chooseFinalOriginSelection(finalSelection)">
+					<select
+						id="selectedTaller"
+						class="custom-select"
+						name="tallerID"
+						ng-model="finalSelection"
+						ng-change="chooseFinalOriginSelection(finalSelection)"
+						<?php if($data_inicial['origen']=='taller'){ ?>
+							ng-init="finalSelection = '<?php echo $data_inicial['origenName']; ?>'"
+						<?php }else{ ?>
+							ng-init="finalSelection = ''"
+						<?php } ?>>
 						<option value="">Seleccione un Taller</option>
 						<?php 
 							foreach ($listaTaller as $t) {
@@ -148,6 +196,7 @@ $metodo = new Metodo();
 						<option value="<?php echo $t['nombTaller'];?>"><?php echo $t['nombTaller'];?></option>
 						<?php } ?>
 					</select>
+					<a class="btn btn-primary" href="index.php?page=crearTalleres">Nuevo Taller</a>
 				</div>
 			</td>
 		</tr>
