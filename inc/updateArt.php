@@ -61,7 +61,7 @@ $data_inicial = $updateArt->buscarArtPorID();
 					<?php 
 						foreach ($listaTelas as $telas) {
 					?>
-					<option value="<?php echo $telas['telaID'];?>" <?php echo $selection->selected($telas['telaID'],$data_inicial['telaID']);?>><?php echo $telas['nombTela'];?></option>
+					<option value="<?php echo $telas['telaID'];?>" <?php echo $selection->selected($telas['telaID'],$data_inicial['telaID']);?> ><?php echo $telas['nombTela'];?></option>
 					<?php } ?>
 				</select>
 				<div class="invalid-tooltip">Ingrese una Tela</div>

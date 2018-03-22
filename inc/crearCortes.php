@@ -1,6 +1,8 @@
 <?php
 $articulo = new Articulo();
 $listaArt = $articulo->readArt();
+
+$method = new Metodo();
 ?>
 <section id="crearCortes">
 	<form id="formCrearCorte" class="needs-validation" novalidate action="action_procesos.php?action=create&tipo=corte" method="post">
@@ -54,6 +56,7 @@ foreach ($listaArt as $la) {
 
 						</select>
 						<div class="invalid-tooltip">Ingrese un Articulo</div>
+						<button class="btn btn-primary" onclick="window.location.assign('?page=crearArt')">Nuevo Articulo</button>
 				    </div>
 				</td>
 			</tr>
